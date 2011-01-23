@@ -1,7 +1,7 @@
-!/bin/sh
+#!/bin/sh
 
 mkdir undodir
-mkdit view
+mkdir view
 mkdir backup
 
 ln -s vimrc ../.vimrc
