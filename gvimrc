@@ -189,9 +189,6 @@ highlight Cursor guibg=lightgreen guifg=black
 highlight CursorLine guibg=#404040
 highlight Visual guibg=#407040
 
-set balloonexpr=FoldSpellBalloon()
-set ballooneval
-
 " activate spell checking
 set spell
 " set the maximum number of suggestions

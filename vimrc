@@ -153,7 +153,7 @@ nmap <C-left> :bp<CR>
 " It's useful to map . .`[ to repeat the last command and put the cursor at start of change.
 ":nmap . .`[
 
-if version >= 730
+if version >= 703
   " Gundo
   nnoremap <F5> :GundoToggle<CR>
 
