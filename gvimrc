@@ -197,3 +197,5 @@ set spellsuggest=6
 " set trailing char and tab char
 set list listchars=tab:\ \ ,trail:·
 
+" make clipboard work with std clipboard
+set clipboard=unnamed
