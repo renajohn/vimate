@@ -153,14 +153,17 @@ nmap <C-left> :bp<CR>
 " It's useful to map . .`[ to repeat the last command and put the cursor at start of change.
 ":nmap . .`[
 
-" Gundo
-nnoremap <F5> :GundoToggle<CR>
+if version >= 730
+  " Gundo
+  nnoremap <F5> :GundoToggle<CR>
 
-" Persistent undo
-set undodir=~/.vim/undodir
-set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+  " Persistent undo
+  set undodir=~/.vim/undodir
+  set undofile
+  set undolevels=1000 "maximum number of changes that can be undone
+  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+endif
+
 
 " activate the verbose mode
 verbose
