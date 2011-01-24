@@ -18,10 +18,6 @@ if has("gui_macvim")
   " Command-/ to toggle comments
   map <D-/> <plug>NERDCommenterToggle<CR>
 
-  " Command-][ to increase/decrease indentation
-  vmap <D-]> >gv
-  vmap <D-[> <gv
-
   " set my favorite font
   set guifont=Panic\ Sans:h11
 
@@ -30,15 +26,6 @@ if has("gui_macvim")
   nmap <D-C> :ColorHEX<cr>
   vmap <D-C> d:ColorHEX<cr>
 else
-  map <M-F> :Ack<space>
-
-  " Command-T for CommandT
-  map <M-t> :CommandT<CR>
-  imap <M-t> <Esc>:CommandT<CR>
-
-  " map terminal key
-  map <M-e> :call StartTerm()<CR>
-
   " set my favorite font for gvim
   set guifont=Andale\ Mono\ 9
 endif

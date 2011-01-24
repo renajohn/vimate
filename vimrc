@@ -121,9 +121,6 @@ color jellybeans+
 
 " enable folding
 set nofoldenable
-" save fold on leave
-"au BufWinLeave *.js,*.c,*.cpp,*.py,*.cc,*.h,*.hpp mkview
-"au BufWinEnter *.js,*.c,*.cpp,*.py,*.cc,*.h,*.hpp silent loadview
 
 " turn highlight of
 nmap <Leader><Leader> :nohlsearch<CR>
@@ -161,6 +158,17 @@ verbose
 
 " disable logging for Javascript indentation
 let g:js_indent_log=0
+
+
+map <M-F> :Ack<space>
+
+" Command-T for CommandT
+map <M-t> :CommandT<CR>
+imap <M-t> <Esc>:CommandT<CR>
+
+" map terminal key
+map <M-e> :call StartTerm()<CR>
+
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
