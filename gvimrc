@@ -30,6 +30,15 @@ if has("gui_macvim")
   nmap <D-C> :ColorHEX<cr>
   vmap <D-C> d:ColorHEX<cr>
 else
+  map <M-F> :Ack<space>
+
+  " Command-T for CommandT
+  map <M-t> :CommandT<CR>
+  imap <M-t> <Esc>:CommandT<CR>
+
+  " map terminal key
+  map <M-e> :call StartTerm()<CR>
+
   " set my favorite font for gvim
   set guifont=Andale\ Mono\ 9
 endif
@@ -41,6 +50,7 @@ set guioptions-=T
 function StartTerm()
   execute 'ConqueTerm ' . $SHELL . ' --login'
   setlocal listchars=tab:\ \ 
+  setlocal nospell
 endfunction
 
 " Project Tree
