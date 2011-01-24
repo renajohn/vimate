@@ -29,6 +29,9 @@ if has("gui_macvim")
   imap <D-C> <ESC>:ColorHEX<cr>a
   nmap <D-C> :ColorHEX<cr>
   vmap <D-C> d:ColorHEX<cr>
+else
+  " set my favorite font for gvim
+  set guifont=Andale\ Mono\ 9
 endif
 
 " Start without the toolbar
@@ -199,3 +202,8 @@ set list listchars=tab:\ \ ,trail:·
 
 " make clipboard work with std clipboard
 set clipboard=unnamed
+
+" window size
+set lines=200 columns=200 
+winpos 0 0 
+set guiheadroom=0
