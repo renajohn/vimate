@@ -1,9 +1,15 @@
 #!/bin/sh
 
-mkdir undodir
-mkdir view
-mkdir backup
+for i in ~/.vim ~/.vimrc ~/.gvimrc; do [ -e $i ] && mv $i $i.old; done
 
-ln -s vimrc ../.vimrc
-ln -s gvimrc ../.gvimrc
+mkdir ~/.vim/undodir
+mkdir ~/.vim/view
+mkdir ~/.vim/backup
 
+ln -s ~/.vim/vimrc ~/.vimrc
+ln -s ~/.vim/gvimrc ~/.gvimrc
+
+cd ~/.vim/ruby/command-t
+ruby extconf.rb
+make
+cd -

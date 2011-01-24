@@ -37,11 +37,14 @@ let NERDTreeIgnore=['\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeChDir=1
 
+" NERDCommenter, align declarations
+vmap <F2> \adec
+
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
 " ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
+map <Leader><CR> :ZoomWin<CR>
 
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
@@ -125,13 +128,6 @@ set nofoldenable
 " turn highlight of
 nmap <Leader><Leader> :nohlsearch<CR>
 
-" set super tab shortcut
-"let g:SuperTabDefaultCompletionType = 'cotext'
-"let g:SuperTabMappingForward = '<c-space>'
-"let g:SuperTabMappingBackward = '<s-c-space>'
-
-"imap <Plug>delimitMateS-Tab <c-space>
-" customize delimitMate
 let backspace=2
 let g:delimitMate_expand_cr=1
 
@@ -140,11 +136,6 @@ set hidden
 
 " activate cursor line
 set cursorline
-
-" activate spell checking
-"set spell
-"set the maximum number of suggestions
-"set spellsuggest=6
 
 " cycle through buffers
 nmap <C-right> :bn<CR>
