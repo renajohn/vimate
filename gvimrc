@@ -217,3 +217,10 @@ set clipboard=unnamed
 set lines=200 columns=200 
 winpos 0 0 
 set guiheadroom=0
+
+" Include user's local vim config
+if filereadable(expand("~/.gvimrc.local"))
+  source ~/.gvimrc.local
+endif
+
+

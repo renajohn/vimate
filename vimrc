@@ -170,3 +170,9 @@ verbose
 
 " disable logging for Javascript indentation
 let g:js_indent_log=0
+
+" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
