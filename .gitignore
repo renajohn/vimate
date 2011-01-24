@@ -5,3 +5,9 @@ view/*
 undodir/*
 backup/*
 .VimballRecord
+bundle/command-t/ruby/command-t/Makefile
+bundle/command-t/ruby/command-t/ext.bundle
+bundle/command-t/ruby/command-t/ext.o
+bundle/command-t/ruby/command-t/match.o
+bundle/command-t/ruby/command-t/matcher.o
+bundle/command-t/ruby/command-t/mkmf.log
