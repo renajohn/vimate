@@ -182,12 +182,12 @@ call s:DefineCommand("e", "Edit")
 call s:DefineCommand("mkdir", "Mkdir")
 
 "color wombat
-color jellybeans+
+colorscheme wombat256
 
 " customize cursor color value
-highlight Cursor guibg=lightgreen guifg=black
+highlight Cursor guibg=lightgreen guifg=darkgreen
 highlight CursorLine guibg=#404040
-highlight Visual guibg=#407040
+highlight Visual guibg=#407040 guifg=lightgreen
 
 " activate spell checking
 set spell
