@@ -125,9 +125,6 @@ set nofoldenable
 " turn highlight of
 nmap <Leader><Leader> :nohlsearch<CR>
 
-let backspace=2
-let g:delimitMate_expand_cr=1
-
 " allow for switching buffers when a file has changes
 set hidden
 
@@ -137,9 +134,6 @@ set cursorline
 " cycle through buffers
 nmap <C-right> :bn<CR>
 nmap <C-left> :bp<CR>
-
-" It's useful to map . .`[ to repeat the last command and put the cursor at start of change.
-":nmap . .`[
 
 if version >= 703
   " Gundo
@@ -160,14 +154,14 @@ verbose
 let g:js_indent_log=0
 
 
-map <M-F> :Ack<space>
+map <F4> :Ack<space>
 
 " Command-T for CommandT
-map <M-t> :CommandT<CR>
-imap <M-t> <Esc>:CommandT<CR>
+map <F3> :CommandT<CR>
+imap <F3> <Esc>:CommandT<CR>
 
 " map terminal key
-map <M-e> :call StartTerm()<CR>
+map <F6> :call StartTerm()<CR>
 
 
 " Include user's local vim config
