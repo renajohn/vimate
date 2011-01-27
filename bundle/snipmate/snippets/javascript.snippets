@@ -11,10 +11,12 @@ snippet fun
 	}
 # Anonymous Function
 snippet f
-	function(${1}) {${2}};
+	function(${1}) {${2}}
 # if
 snippet if
-	if (${1:true}) {${2}}
+	if (${1:true}) {
+		${2}
+	}
 # if ... else
 snippet ife
 	if (${1:true}) {${2}}
@@ -42,12 +44,12 @@ snippet case
 snippet for
 	for (var ${2:i} = 0; $2 < ${1:Things}.length; $2${3:++}) {
 		${4:$1[$2]}
-	};
+	}
 # for (...) {...} (Improved Native For-Loop)
 snippet forr
 	for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2${3:--}) {
 		${4:$1[$2]}
-	};
+	}
 # while (...) {...}
 snippet wh
 	while (${1:/* condition */}) {
@@ -57,7 +59,7 @@ snippet wh
 snippet do
 	do {
 		${2:/* code */}
-	} while (${1:/* condition */});
+	} while (${1:/* condition */})
 # Object Method
 snippet :f
 	${1:method_name}: function(${2:attribute}) {
@@ -72,3 +74,6 @@ snippet get
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
+# console log
+snippet con
+	console.log("${1:this: }"${3:+}${2:this});
