@@ -131,10 +131,3 @@ bundle/web-indent:
   squashed: true
   type: svn
   url: http://web-indent.googlecode.com/svn/trunk
-repeat: 
-  branch: master
-  remote: braid/repeat
-  revision: c4101c205ef9e06bdfeff571a7dbba2576f08974
-  squashed: true
-  type: git
-  url: https://github.com/tpope/vim-repeat.git
