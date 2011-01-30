@@ -13,6 +13,13 @@ bundle/Align:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/Align.vim.git
+bundle/DelimitMate: 
+  branch: master
+  remote: braid/bundle/DelimitMate
+  revision: 9efb01da683721927589e7e340e8f2374d7dd3ea
+  squashed: true
+  type: git
+  url: https://github.com/Raimondi/delimitMate.git
 bundle/camelcasemotion: 
   branch: master
   remote: braid/bundle/camelcasemotion
