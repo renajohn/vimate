@@ -6,6 +6,13 @@ bundle/Ack:
   squashed: true
   type: git
   url: https://github.com/mileszs/ack.vim.git
+bundle/camelcasemotion: 
+  branch: master
+  remote: braid/bundle/camelcasemotion
+  revision: e810454eb3d60f8f461cf7e1b8f9ab0337148d3e
+  squashed: true
+  type: git
+  url: https://github.com/vim-scripts/camelcasemotion.git
 bundle/gundo: 
   branch: master
   remote: braid/bundle/gundo
