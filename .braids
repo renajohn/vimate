@@ -69,6 +69,13 @@ bundle/indent-object:
   squashed: true
   type: git
   url: https://github.com/michaeljsmith/vim-indent-object.git
+bundle/jslint: 
+  branch: master
+  remote: braid/bundle/jslint
+  revision: 291b1dc382526e1dca5605ce0edb305d22586609
+  squashed: true
+  type: git
+  url: https://github.com/hallettj/jslint.vim.git
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
