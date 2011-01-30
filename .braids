@@ -125,6 +125,12 @@ bundle/unimpaired:
   squashed: true
   type: git
   url: https://github.com/tpope/vim-unimpaired.git
+bundle/web-indent: 
+  remote: braid/bundle/web-indent
+  revision: 14
+  squashed: true
+  type: svn
+  url: http://web-indent.googlecode.com/svn/trunk
 repeat: 
   branch: master
   remote: braid/repeat
