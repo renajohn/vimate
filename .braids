@@ -111,6 +111,13 @@ bundle/taglist:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/taglist.vim.git
+bundle/unimpaired: 
+  branch: master
+  remote: braid/bundle/unimpaired
+  revision: 2f4bb087756084fe703bd8b23c267d799e866ef0
+  squashed: true
+  type: git
+  url: https://github.com/tpope/vim-unimpaired.git
 repeat: 
   branch: master
   remote: braid/repeat
