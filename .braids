@@ -48,6 +48,13 @@ bundle/conque_2.0:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/Conque-Shell.git
+bundle/fugitive: 
+  branch: master
+  remote: braid/bundle/fugitive
+  revision: 156123520b1b0f1e128837a4c51f4246017932d4
+  squashed: true
+  type: git
+  url: https://github.com/tpope/vim-fugitive.git
 bundle/gundo: 
   branch: master
   remote: braid/bundle/gundo
