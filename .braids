@@ -27,6 +27,13 @@ bundle/command-t:
   squashed: true
   type: git
   url: https://github.com/wincent/Command-T.git
+bundle/conque_2.0: 
+  branch: master
+  remote: braid/bundle/conque-2.0
+  revision: 0fcdf37738ad60ddc2ebbd36323f636a184b1493
+  squashed: true
+  type: git
+  url: https://github.com/vim-scripts/Conque-Shell.git
 bundle/gundo: 
   branch: master
   remote: braid/bundle/gundo
