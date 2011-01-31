@@ -6,7 +6,7 @@ snippet proto
 	};
 # Function
 snippet fun
-	function ${1:function_name} (${2:argument}) {
+	var ${1:function_name} = function(${2:argument}) {
 		${3:// body...}
 	}
 # Anonymous Function
@@ -75,6 +75,6 @@ snippet get
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
 # console log
-snippet con
+snippet log
 	console.log("${1:this: }"${3:+}${2:this});
 
