@@ -145,10 +145,3 @@ bundle/web-indent:
   squashed: true
   type: svn
   url: http://web-indent.googlecode.com/svn/trunk
-hallway/xptemplate: 
-  branch: master
-  remote: braid/hallway/xptemplate
-  revision: 8ff244cbff1f60c8d661e2891cc8a4afeda2e8c6
-  squashed: true
-  type: git
-  url: git://github.com/drmingdrmer/xptemplate.git
