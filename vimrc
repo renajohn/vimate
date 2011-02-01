@@ -30,18 +30,23 @@ let g:SuperTabMappingForward = '<Plug>supertabKey'
 " if nothing matched in xpt, try supertab
 let g:xptemplate_fallback = '<Plug>supertabKey'
 
-" xpt uses <Tab> as trigger key
-let g:xptemplate_key = '<Tab>'
-
-" " use <tab>/<S-tab> to navigate through pum. Optional
-let g:xptemplate_pum_tab_nav = 1
-let g:xptemplate_always_show_pum = 1
-
-" " xpt triggers only when you typed whole name of a snippet. Optional
-let g:xptemplate_minimal_prefix = 1
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
 
 " Status bar
 set laststatus=2
+"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
+set statusline=%t       "tail of the filename
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
