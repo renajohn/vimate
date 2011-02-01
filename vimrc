@@ -154,7 +154,7 @@ verbose
 let g:js_indent_log=0
 
 
-map <F4> :Ack<space>
+map <F4> :TlistToggle<CR>
 
 " Command-T for CommandT
 map <F3> :CommandT<CR>
