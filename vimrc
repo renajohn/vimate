@@ -24,10 +24,6 @@ set wildignore+=*.o,*.obj,.git,*.rbc
 " pathogen for bundle support
 call pathogen#runtime_append_all_bundles() 
 
-" UltiSnips 
-let g:UltiSnipsExpandTrigger="<C-\>"
-let g:UltiSnipsListSnippets="<C-|"
-
 " Status bar
 set laststatus=2
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)

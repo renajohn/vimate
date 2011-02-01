@@ -152,12 +152,6 @@ bundle/web-indent:
   squashed: true
   type: svn
   url: http://web-indent.googlecode.com/svn/trunk
-bundle/xpt: 
-  remote: braid/bundle/xpt
-  revision: 1042
-  squashed: true
-  type: svn
-  url: http://xptemplate.googlecode.com/svn/trunk/dist
 bundle/zoomwin: 
   branch: master
   remote: braid/bundle/zoomwin
