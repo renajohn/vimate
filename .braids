@@ -62,6 +62,13 @@ bundle/conque_2.0:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/Conque-Shell.git
+bundle/fswitch: 
+  branch: master
+  remote: braid/bundle/fswitch
+  revision: 10b305a207f63221a1fab0ff6a77a03c21298144
+  squashed: true
+  type: git
+  url: https://github.com/ewiplayer/vim-fswitch.git
 bundle/fugitive: 
   branch: master
   remote: braid/bundle/fugitive
