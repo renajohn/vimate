@@ -158,3 +158,10 @@ bundle/xpt:
   squashed: true
   type: svn
   url: http://xptemplate.googlecode.com/svn/trunk/dist
+bundle/zoomwin: 
+  branch: master
+  remote: braid/bundle/zoomwin
+  revision: ab08ef036392f7bd3181c920f08a02f0335267eb
+  squashed: true
+  type: git
+  url: https://github.com/rphillips/vim-zoomwin.git
