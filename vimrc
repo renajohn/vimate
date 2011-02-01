@@ -24,14 +24,9 @@ set wildignore+=*.o,*.obj,.git,*.rbc
 " pathogen for bundle support
 call pathogen#runtime_append_all_bundles() 
 
-" avoid key conflict
-let g:SuperTabMappingForward = '<Plug>supertabKey'
-
-" if nothing matched in xpt, try supertab
-let g:xptemplate_fallback = '<Plug>supertabKey'
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
+" UltiSnips 
+let g:UltiSnipsExpandTrigger="<C-\>"
+let g:UltiSnipsListSnippets="<C-|"
 
 " Status bar
 set laststatus=2
