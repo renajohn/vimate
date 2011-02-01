@@ -24,6 +24,22 @@ set wildignore+=*.o,*.obj,.git,*.rbc
 " pathogen for bundle support
 call pathogen#runtime_append_all_bundles() 
 
+" avoid key conflict
+let g:SuperTabMappingForward = '<Plug>supertabKey'
+
+" if nothing matched in xpt, try supertab
+let g:xptemplate_fallback = '<Plug>supertabKey'
+
+" xpt uses <Tab> as trigger key
+let g:xptemplate_key = '<Tab>'
+
+" " use <tab>/<S-tab> to navigate through pum. Optional
+let g:xptemplate_pum_tab_nav = 1
+let g:xptemplate_always_show_pum = 1
+
+" " xpt triggers only when you typed whole name of a snippet. Optional
+let g:xptemplate_minimal_prefix = 1
+
 " Status bar
 set laststatus=2
 
