@@ -61,6 +61,7 @@ let g:CommandTMaxHeight=20
 map <Leader><CR> :ZoomWin<CR>
 
 " CTags
+set tags=./tags;$HOME " collect all tags up to the home directory
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 
 " Remember last location in file
@@ -177,6 +178,19 @@ imap <F3> <Esc>:CommandT<CR>
 " map terminal key
 map <F6> :call StartTerm()<CR>
 
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+endif
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
