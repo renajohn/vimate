@@ -1,0 +1,23 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=672
+
+:verbose set <option> will tell you where an option was set.
+Unfortunately it's not so easy to find out where a map was
+defined.
+
+This script will open a new window with a list of
+all sourced scripts. If maps are defined in the script then
+they will list below the script name. Initially this will
+appear folded.
+
+You can then inspect the maps in a script or search for a
+map to find out where it was defined. 
+
+To use
+
+   :Listmaps
+
+It pulls out just about anything that looks like it might be
+a map for completeness. There will be a few a lines that the
+script mistakes for a map, but which aren't. And it may be a
+little slow.
+
