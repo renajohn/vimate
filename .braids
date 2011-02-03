@@ -34,6 +34,13 @@ bundle/ZoomIn:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/zoom.vim.git
+bundle/autoload_cscope: 
+  branch: master
+  remote: braid/bundle/autoload-cscope
+  revision: 26f428f400d96d25a9d633e6314f6e1760923db1
+  squashed: true
+  type: git
+  url: https://github.com/vim-scripts/autoload_cscope.vim.git
 bundle/camelcasemotion: 
   branch: master
   remote: braid/bundle/camelcasemotion
