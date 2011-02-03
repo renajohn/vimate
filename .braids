@@ -118,6 +118,13 @@ bundle/listmaps:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/listmaps.vim.git
+bundle/markdown-preview: 
+  branch: master
+  remote: braid/bundle/markdown-preview
+  revision: b0842f896bf151324573e1d11a02be3c028876eb
+  squashed: true
+  type: git
+  url: https://github.com/robgleeson/vim-markdown-preview.git
 bundle/nerdcommenter: 
   branch: master
   remote: braid/bundle/nerdcommenter
