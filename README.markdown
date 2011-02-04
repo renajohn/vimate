@@ -1,7 +1,7 @@
 Vimate
 ======
 
-Vimate is a set of plug-ins and configuration file for vim. It is heavily based on 
+Vimate is a set of plug-ins and configuration file for vim. It is heavily based on the excellent 
 [Janus](https://github.com/carlhuda/janus). Vimate is targeted at C, C++, and HTML5 developers. 
 It comes with a descent numbers of plug-ins and file types.
 
@@ -34,6 +34,15 @@ To specify your name and email address, you need to add the following lines in y
     export EMAIL=my.email@domain.com
     export NAME="John Doe"
 
+You can create `~/.vimrc.local` and `~/.gvimrc.local` for any local
+customizations.
+
+For example, to override the default color schemes:
+
+    echo color desert  > ~/.vimrc.local
+    echo color molokai > ~/.gvimrc.local
+
+
 Plug-ins
 --------
 
@@ -43,25 +52,25 @@ Custom mappings
 ---------------
 **Node:** vimate `<Leader>` key is `/`
 
-| Command | Action 
-|:-------------------|:-------
-| `<Leader>` `n`  | Toggle NERDTree 
-| `<Leader>` `r` `t`  | create tags DB 
-| `<Leader>` `<CR>`  | Zoom in and out current window 
-| `<Leader>` `e`  | Opens a document in current tab 
-| `<Leader>` `t` `e`  | Opens document in a new tab 
-| `<C-P>`  | Print the document's directory when in command bar 
-| `<C-Up>`  | Move current line or visual block up 
-| `<C-Down>`  | Move current line or visual block down 
-| `<Leader>` `<Leader>`  | Incremental search is turned on. This removes the highlighted search term. 
-| `<C-right>`  | Move to next buffer 
-| `<C-left>`  | Move to previous buffer 
-| `<Leader>` `p`  | Preview markdown document in browser 
-| `<F2>`  | align definition 
-| `<F3>`  | Trigger the command-T command 
-| `<F4>`  | Toggle the tags list 
-| `<F5>`  | Toggle Gundo. Gundo let you navigate in the persistent undo tree. 
-| `<F6>`  | Start a terminal in the current buffer 
+|Command              |Action
+|:------------------- |:-------
+|`<Leader>` `n`       |Toggle NERDTree
+|`<Leader>` `r` `t`   |create tags DB
+|`<Leader>` `<CR>`    |Zoom in and out current window
+|`<Leader>` `e`       |expands to `:e {directory of current file}/` (open in the current buffer)
+|`<Leader>` `t` `e`   |expands to `:te {directory of current file}/` (open in a new tab)
+|`<C-P>`              |Insert the directory of the current file when in command bar
+|`<C-Up>`             |Move current line or visual block up
+|`<C-Down>`           |Move current line or visual block down
+|`<Leader>` `<Leader>`|Incremental search is turned on. This removes the highlighted search term.
+|`<C-right>`          |Move to next buffer
+|`<C-left>`           |Move to previous buffer
+|`<Leader>` `p`       |Preview markdown document in browser
+|`<F2>`               |align definition
+|`<F3>`               |Trigger the command-T command
+|`<F4>`               |Toggle the tags list
+|`<F5>`               |Toggle Gundo. Gundo let you navigate in the persistent undo tree.
+|`<F6>`               |Start a terminal in the current buffer
 
 If you ever feel lost, you can type `:Listmaps` to get a list of all
 mappings offered by Vimate distribution.
