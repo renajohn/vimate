@@ -27,13 +27,6 @@ bundle/UltiSnips:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/UltiSnips.git
-bundle/ZoomIn: 
-  branch: master
-  remote: braid/bundle/ZoomIn
-  revision: 8d91ea755719a764bad129b915e048d4e847e7a3
-  squashed: true
-  type: git
-  url: https://github.com/vim-scripts/zoom.vim.git
 bundle/autoload_cscope: 
   branch: master
   remote: braid/bundle/autoload-cscope
