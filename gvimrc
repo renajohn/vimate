@@ -182,7 +182,7 @@ call s:DefineCommand("e", "Edit")
 call s:DefineCommand("mkdir", "Mkdir")
 
 "color wombat
-colorscheme wombat256
+colorscheme neon
 
 " customize cursor color value
 highlight Cursor guibg=lightgreen guifg=darkgreen
