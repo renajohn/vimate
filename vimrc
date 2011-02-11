@@ -132,7 +132,7 @@ set directory=~/.vim/backup
 set guioptions=aAce
 
 " color theme
-color ir_black
+color neon
 
 " enable folding
 set nofoldenable

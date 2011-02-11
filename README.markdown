@@ -74,3 +74,21 @@ Custom mappings
 
 If you ever feel lost, you can type `:Listmaps` to get a list of all
 mappings offered by Vimate distribution.
+
+Useful command with VIM:
+------------------------
+
+### Editing
+
+**Normal mode**
+| Command | action
+|:---------------|:---------------
+| `daw` | **d**elete (**a**round) the **w**ord under the cursor, even if cursor is in the middle of the word. If there is a space after or before the word, it will be deleted too.
+| `diw` | **d**elete (**i**nside) the **w**ord under the cursor, even if cursor is in the middle of the word. No space deleted.
+| `I` | Move cursor at the beginning of the line and enter in **I**nsert mode.
+| `A` | Append at the end of the line. (Very useful)
+
+**Visual block mode**
+| `I` | **I**nsert text in from of every selected lines 
+| `$A` | **A**ppend text at the end of every selected lines (`$` extends the block selection to the longest line in the selection).
+
