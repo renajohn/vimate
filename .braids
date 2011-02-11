@@ -135,7 +135,7 @@ bundle/matchit:
 bundle/nerdcommenter: 
   branch: master
   remote: braid/bundle/nerdcommenter
-  revision: 760df352734666753ceb66a0886e0f0a844c3a48
+  revision: 2b60d872ba8d61d9130e9386e234f65570403423
   squashed: true
   type: git
   url: https://github.com/scrooloose/nerdcommenter.git
