@@ -9,3 +9,7 @@ ruby extconf.rb
 make
 cd -
 
+# make sure yajl is compiled
+cd $HOME/.vim/bundle/yajl/
+./configure -p $HOME/.vim/bundle/yajl
+make install

@@ -81,6 +81,12 @@ function s:setupMarkup()
   map <buffer> <Leader>p :Mm <CR>
 endfunction
 
+autocmd BufRead *.json set filetype=json
+"au! Syntax json source json.vim
+autocmd FileType json set equalprg=~/.vim/bundle/yajl/bin/json_reformat
+autocmd FileType json set makeprg=~/.vim/bundle/yajl/bin/json_verify\ <\ %
+autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
+
 " make and python use real tabs
 au FileType make                                     set noexpandtab
 au FileType python                                   set noexpandtab
