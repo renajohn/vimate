@@ -25,7 +25,15 @@ if has("gui_macvim")
   imap <D-C> <ESC>:ColorHEX<cr>a
   nmap <D-C> :ColorHEX<cr>
   vmap <D-C> d:ColorHEX<cr>
+
+  " make clipboard work with std clipboard
+  set clipboard=unnamed
 else
+  " make clipboard work with std clipboard
+  " Note that X11 uses the plus register for
+  " std clipboard, not the * as Mac os or windows
+  set clipboard=unnamedplus
+
   " set my favorite font for gvim
   set guifont=Andale\ Mono\ 9
 endif
@@ -196,9 +204,6 @@ set spellsuggest=6
 
 " set trailing char and tab char
 set list listchars=tab:\ \ ,trail:·
-
-" make clipboard work with std clipboard
-set clipboard=unnamed
 
 " window size
 set lines=200 columns=200 

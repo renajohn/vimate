@@ -82,7 +82,6 @@ function s:setupMarkup()
 endfunction
 
 autocmd BufRead *.json set filetype=json
-"au! Syntax json source json.vim
 autocmd FileType json set equalprg=~/.vim/bundle/yajl/bin/json_reformat
 autocmd FileType json set makeprg=~/.vim/bundle/yajl/bin/json_verify\ <\ %
 autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
