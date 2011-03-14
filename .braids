@@ -100,7 +100,7 @@ bundle/gundo:
 bundle/indent-object: 
   branch: master
   remote: braid/bundle/indent-object
-  revision: eb911bc389d0beed9198dd5995fdcca95572719a
+  revision: 78fffa609b3e6b84ef01ee4c9aba6d7435d7b18e
   squashed: true
   type: git
   url: https://github.com/michaeljsmith/vim-indent-object.git
