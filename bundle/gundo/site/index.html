@@ -96,6 +96,7 @@
                             <li><a href="#gundo_right">g:gundo_right</a></li>
                             <li><a href="#gundo_help">g:gundo_help</a></li>
                             <li><a href="#gundo_disable">g:gundo_disable</a></li>
+                            <li><a href="#gundo_map_move">g:gundo_map_move_[older/newer]</a></li>
                         </ul>
                     </li>
                     <li><a href="#license">License</a></li>
@@ -302,6 +303,21 @@ let g:gundo_right = 1
                 </p>
 
                 <p>Default: 0 (Gundo is enabled as usual)</p>
+
+                <a name="gundo_map_move"></a>
+                <h2>g:gundo_map_move_[older/newer]</h2>
+
+                <p>
+                    These options let you change the keys that navigate the
+                    undo graph. This is useful if you use a Dvorak keyboard and
+                    have changed your movement keys.
+                </p>
+
+                <p>
+                    Default:<br/>
+                    gundo_map_move_older: "j"<br/>
+                    gundo_map_move_newer: "k"
+                </p>
             </section>
             <section>
                 <a name="license"></a>
@@ -343,6 +359,36 @@ let g:gundo_right = 1
                 <h1>Changelog</h1>
                 
                 <ol class="changelog">
+                    <li>v2.1.1
+                        <ul>
+                            <li>
+                                Fix a bug with the movement key mappings.
+                            </li>
+                        </ul>
+                    </li><li>v2.1.0
+                        <ul>
+                            <li>
+                                Warnings about having an incompatible Vim and/or
+                                Python installation are now deferred until the
+                                first time you try to use Gundo, instead of being
+                                displayed on launch.
+                            </li>
+                            <li>
+                                The <code>j</code> and <code>k</code> mappings are
+                                now configurable with
+                                <code>g:gundo_map_move_older</code> and
+                                <code>g:gundo_map_move_newer</code>.
+                            </li>
+                            <li>
+                                The <code>o</code>, <code>Up</code> and
+                                <code>Down</code> keys are now mapped in the
+                                Gundo pane.
+                            </li>
+                            <li>
+                                Improve and add several unit tests for Gundo.
+                            </li>
+                        </ul>
+                    </li>
                     <li>v2.0.0
                         <ul>
                             <li>
