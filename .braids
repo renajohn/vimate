@@ -204,7 +204,7 @@ bundle/web-indent:
 bundle/yajl: 
   branch: master
   remote: braid/bundle/yajl
-  revision: fa8f8dbeb710cce57fa723b7762cba549b5492c2
+  revision: 4adbfa2c4e5068ff255a342c8a38b35ad864235a
   squashed: true
   type: git
   url: https://github.com/lloyd/yajl.git
