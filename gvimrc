@@ -189,13 +189,18 @@ call s:DefineCommand("rm", "Remove")
 call s:DefineCommand("e", "Edit")
 call s:DefineCommand("mkdir", "Mkdir")
 
-"color wombat
-colorscheme neon
+"color
+"if has('gui_running')
+""    set background=light
+"else
+    set background=dark
+"endif
+colorscheme solarized
 
 " customize cursor color value
-highlight Cursor guibg=lightgreen guifg=darkgreen
-highlight CursorLine guibg=#404040
-highlight Visual guibg=#407040 guifg=lightgreen
+"highlight Cursor guibg=lightgreen guifg=darkgreen
+"highlight CursorLine guibg=#404040
+"highlight Visual guibg=#407040 guifg=lightgreen
 
 " activate spell checking
 set spell
