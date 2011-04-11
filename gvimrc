@@ -9,8 +9,8 @@ if has("gui_macvim")
   imap <D-t> <Esc>:CommandT<CR>
 
   " Command-Shift-F for Ack
-  macmenu Window.Toggle\ Full\ Screen\ Mode key=<nop>
-  map <D-F> :Ack<space>
+  macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-F>
+  "map <D-F> :Ack<space>
 
   " Command-e for ConqueTerm
   map <D-e> :call StartTerm()<CR>
@@ -19,7 +19,7 @@ if has("gui_macvim")
   map <D-/> <plug>NERDCommenterToggle<CR>
 
   " set my favorite font
-  set guifont=Panic\ Sans:h11
+  set guifont=Panic\ Sans:h12
 
   " open color picker
   imap <D-C> <ESC>:ColorHEX<cr>a
@@ -35,8 +35,26 @@ else
   set clipboard=unnamedplus
 
   " set my favorite font for gvim
-  set guifont=Andale\ Mono\ 9
+  set guifont=Andale\ Mono\ 10
 endif
+
+"custom tab stuff
+" tab navigation like safari
+" idea adopted from: [[VimTip1221]]
+:nmap <D-S-[> :tabprevious<CR>
+:nmap <C-S-[> :tabprevious<CR>
+:nmap <D-S-]> :tabnext<CR>
+:nmap <C-S-]> :tabnext<CR>
+:map <D-S-[> :tabprevious<CR>
+:map <C-S-[> :tabprevious<CR>
+:map <D-S-]> :tabnext<CR>
+:map <C-S-]> :tabnext<CR>
+:imap <D-S-[> <Esc>:tabprevious<CR>i
+:imap <C-S-[> <Esc>:tabprevious<CR>i
+:imap <D-S-]> <Esc>:tabnext<CR>i
+:imap <C-S-]> <Esc>:tabnext<CR>i
+:nmap <D-t> :tabnew<CR>
+:imap <D-t> <Esc>:tabnew<CR>
 
 " Start without the toolbar
 set guioptions-=T
@@ -190,17 +208,8 @@ call s:DefineCommand("e", "Edit")
 call s:DefineCommand("mkdir", "Mkdir")
 
 "color
-"if has('gui_running')
-""    set background=light
-"else
-    set background=dark
-"endif
+set background=dark
 colorscheme solarized
-
-" customize cursor color value
-"highlight Cursor guibg=lightgreen guifg=darkgreen
-"highlight CursorLine guibg=#404040
-"highlight Visual guibg=#407040 guifg=lightgreen
 
 " activate spell checking
 set spell
