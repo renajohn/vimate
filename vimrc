@@ -18,6 +18,7 @@ set ignorecase
 set smartcase
 
 " Tab completion
+let g:SuperTabDefaultCompletionType = "context"
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc
 
