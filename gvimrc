@@ -42,17 +42,11 @@ endif
 " tab navigation like safari
 " idea adopted from: [[VimTip1221]]
 :nmap <D-S-[> :tabprevious<CR>
-:nmap <C-S-[> :tabprevious<CR>
 :nmap <D-S-]> :tabnext<CR>
-:nmap <C-S-]> :tabnext<CR>
 :map <D-S-[> :tabprevious<CR>
-:map <C-S-[> :tabprevious<CR>
 :map <D-S-]> :tabnext<CR>
-:map <C-S-]> :tabnext<CR>
 :imap <D-S-[> <Esc>:tabprevious<CR>i
-:imap <C-S-[> <Esc>:tabprevious<CR>i
 :imap <D-S-]> <Esc>:tabnext<CR>i
-:imap <C-S-]> <Esc>:tabnext<CR>i
 :nmap <D-t> :tabnew<CR>
 :imap <D-t> <Esc>:tabnew<CR>
 
