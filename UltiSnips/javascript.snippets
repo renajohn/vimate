@@ -1,0 +1,29 @@
+###########################################################################
+#                            Javascirpt Snippets                          #
+###########################################################################
+
+snippet head "Header information"
+//
+// `!v expand("%")` 
+//  
+// `echo $NAME` <`echo $EMAIL`> `date +"%d %B %Y"`
+// 
+// Copyright `date +%Y` `echo $COMPANY`. All rights reserved.
+//
+// ${1:Description}
+//
+endsnippet
+
+snippet log "console log"
+console.log(${1:'${2:#log}'});
+endsnippet
+
+snippet req "NodeJS requires"
+var ${1:#module} = require('$1');
+endsnippet
+
+snippet vf "function"
+var ${1:function_name} = function(${2:parameters}) {
+  ${3:// body...}
+};
+endsnippet
