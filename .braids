@@ -58,7 +58,7 @@ bundle/colorx:
 bundle/command-t: 
   branch: master
   remote: braid/bundle/command-t
-  revision: 85fd8b0ce657f772ad9c1c50fe502e08ca2bf04c
+  revision: cee619ac6e906d1c6bfc3052f01ccaa6ac1d4b3c
   squashed: true
   type: git
   url: https://github.com/wincent/Command-T.git
