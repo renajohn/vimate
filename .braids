@@ -211,7 +211,7 @@ bundle/zoomwin:
 undodir/clang_complete: 
   branch: master
   remote: braid/undodir/clang-complete
-  revision: 9a3d070e24a82fc046d263648e885a9b1d35ac8b
+  revision: c7be2d38ad0e1faa718d92523fc3d23314a9a77c
   squashed: true
   type: git
   url: https://github.com/Rip-Rip/clang_complete.git
