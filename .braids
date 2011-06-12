@@ -153,13 +153,6 @@ bundle/nerdtree:
   squashed: true
   type: git
   url: https://github.com/scrooloose/nerdtree.git
-bundle/protodef: 
-  branch: master
-  remote: braid/bundle/protodef
-  revision: 691094207eeb2478af51449363e3c6e1da565a6c
-  squashed: true
-  type: git
-  url: https://github.com/ewiplayer/vim-protodef.git
 bundle/repeat: 
   branch: master
   remote: braid/bundle/repeat
