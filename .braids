@@ -183,7 +183,7 @@ bundle/unimpaired:
   url: https://github.com/tpope/vim-unimpaired.git
 bundle/web-indent: 
   remote: braid/bundle/web-indent
-  revision: 14
+  revision: 15
   squashed: true
   type: svn
   url: http://web-indent.googlecode.com/svn/trunk
