@@ -156,7 +156,7 @@ bundle/repeat:
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
-  revision: 231e05425062f34d131c42e468cb716c98e94c9c
+  revision: 80ec6539e4139a2e0281a0f1e36d5038d55ad980
   squashed: true
   type: git
   url: https://github.com/ervandew/supertab.git
