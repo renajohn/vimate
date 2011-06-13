@@ -165,6 +165,8 @@ Custom mappings
 
 |Command              |Action
 |:------------------- |:-------
+|`F2`                 |Toggle copy and past mode. This is very useful
+when you want to past something in vim running in the terminal. It will deactivate the auto-indent and auto-insert of parenthesis. 
 |`<Leader>` `n`       |Toggle NERDTree
 |`<Leader>` `<CR>`    |Zoom in and out current window
 |`<Leader>` `e`       |expands to `:e {directory of current file}/` (open in the current buffer)
@@ -187,12 +189,12 @@ Useful command with VIM:
 **Normal mode**
 | Command | action
 |:---------------|:---------------
-| `daw` | **d**elete (**a**round) the **w**ord under the cursor, even if cursor is in the middle of the word. If there is a space after or before the word, it will be deleted too.
-| `diw` | **d**elete (**i**nside) the **w**ord under the cursor, even if cursor is in the middle of the word. No space deleted.
-| `I` | Move cursor at the beginning of the line and enter in **I**nsert mode.
-| `A` | Append at the end of the line. (Very useful)
+| `daw` |**d**elete (**a**round) the **w**ord under the cursor, even if cursor is in the middle of the word. If there is a space after or before the word, it will be deleted too.
+|`diw` |**d**elete (**i**nside) the **w**ord under the cursor, even if cursor is in the middle of the word. No space deleted.
+|`I` |Move cursor at the beginning of the line and enter in **I**nsert mode.
+|`A` |Append at the end of the line. (Very useful)
 
 **Visual block mode**
-| `I` | **I**nsert text in from of every selected lines 
-| `$A` | **A**ppend text at the end of every selected lines (`$` extends the block selection to the longest line in the selection).
+|`I` | **I**nsert text in from of every selected lines 
+|`$A` | **A**ppend text at the end of every selected lines (`$` extends the block selection to the longest line in the selection).
 
