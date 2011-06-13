@@ -52,8 +52,8 @@ let NERDTreeIgnore=['\.rbc$', '\~$']
 map <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeChDir=1
 
-" NERDCommenter, align declarations
-vmap <F2> \adec
+" align declarations
+vmap <F7> \adec
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -336,3 +336,8 @@ if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
+" toggle auto indent for pasting
+nnoremap <F2> :set invpaste paste?<CR>
+inoremap <F2> <C-O>:set invpaste paste?<CR>
+nnoremap <F2> :set nonumber!<CR>
+set pastetoggle=<F2>
