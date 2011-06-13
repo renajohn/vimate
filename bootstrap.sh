@@ -19,7 +19,3 @@ rake make
 cd $HOME/.vim/bundle/yajl/
 ./configure -p $HOME/.vim/bundle/yajl
 make install
-
-# install required gems
-sudo gem install github-markup
-sudo gem install redcarpet

@@ -13,6 +13,9 @@ How to install
     cd ~/.vim
     sh bootstrap.sh
 
+    [sudo] gem install github-markup
+    [sudo] gem install redcarpet
+
 How to updates plug-ins
 -----------------------
 Vimate uses pathogen.vim to keep each plug-in separated in the ~/.vim/bundle/ directory. 
@@ -21,6 +24,9 @@ allowing you to keep all plug-ins up-to-date, independently from Vimate.
 
     cd .vim
     sh update.sh
+
+**NOTE** submodules are note updated (currently command-T and
+solarized)
 
 Configuration
 -------------
