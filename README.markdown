@@ -195,6 +195,9 @@ Useful command with VIM:
 |`A` |Append at the end of the line. (Very useful)
 
 **Visual block mode**
+
+| Command | action
+|:---------------|:---------------
 |`I` |**I**nsert text in from of every selected lines 
 |`$A` |**A**ppend text at the end of every selected lines (`$` extends the block selection to the longest line in the selection).
 
