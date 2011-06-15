@@ -25,8 +25,6 @@ set wildignore+=*.o,*.obj,.git,*.rbc
 " pathogen for bundle support
 call pathogen#runtime_append_all_bundles() 
 
-let protodefprotogetter="~/.vim/bundle/protodef/pullproto.pl"
-
 " Status bar
 set laststatus=2
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
@@ -331,11 +329,6 @@ imap <F3> <Esc>:CommandT<CR>
 " map terminal key
 map <F6> :call StartTerm()<CR>
 
-" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
 " toggle auto indent for pasting
 nnoremap <F2> :set invpaste paste?<CR>
 inoremap <F2> <C-O>:set invpaste paste?<CR>
@@ -345,3 +338,8 @@ set pastetoggle=<F2>
 " change cursor shape in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
