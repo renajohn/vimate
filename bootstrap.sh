@@ -15,7 +15,3 @@ ln -s ~/.vim/gvimrc ~/.gvimrc
 cd $HOME/.vim/bundle/command-t/ruby/command-t
 rake make
 
-# make sure yajl is compiled
-cd $HOME/.vim/bundle/yajl/
-./configure -p $HOME/.vim/bundle/yajl
-make install
