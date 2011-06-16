@@ -57,6 +57,11 @@ For example, to override the default color schemes:
     echo color desert  > ~/.vimrc.local
     echo color molokai > ~/.gvimrc.local
 
+Solarized color scheme
+----------------------
+The default color scheme is
+[Solarized](http://ethanschoonover.com/solarized), a highly professional
+color scheme which comes in dark or light background.
 
 Plug-ins
 --------
