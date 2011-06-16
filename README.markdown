@@ -28,6 +28,15 @@ allowing you to keep all plug-ins up-to-date, independently from Vimate.
 **NOTE** submodules are note updated (currently command-T and
 solarized)
 
+VIM in terminal
+---------------
+Solarized colorscheme needs some special colors that the terminal does
+not provide. To have a sweat experience you can change the default
+palette of your terminal emulator or decide to use the 256 degraded
+colors in vim.
+
+Instructions are in Solarized [README](http://ethanschoonover.com/solarized/vim-colors-solarized#important-note-for-terminal-users)
+
 Configuration
 -------------
 UltiSnips all.snippets has the following custom snippets:
@@ -67,10 +76,10 @@ boxes, align comments, align declarations, etc.
 
 Command-T provides a mechanism for searching for a file inside the
 current working directory. It behaves similarly to command-t in
-Textmate.
+TextMate.
 
 **Customizations**: Vimate rebinds `F3` to bring up this
-plugin. It defaults to `<Leader>t`.
+plug-in. It defaults to `<Leader>t`.
 
 ## ConqueTerm
 
@@ -112,7 +121,7 @@ based on the current context.
 
 ## ctags
 
-Vimate includes the TagList plugin, which binds `:Tlist` to an overview
+Vimate includes the TagList plug-in, which binds `:Tlist` to an overview
 panel that lists all ctags for easy navigation.
 
 **Customizations**: Vimate binds `<Leader>rt` to the ctags command to
