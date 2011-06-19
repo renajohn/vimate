@@ -1,4 +1,3 @@
-
 if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
@@ -8,9 +7,7 @@ if has("gui_macvim")
   map <D-t> :CommandT<CR>
   imap <D-t> <Esc>:CommandT<CR>
 
-  " Command-Shift-F for Ack
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-F>
-  "map <D-F> :Ack<space>
 
   " Command-e for ConqueTerm
   map <D-e> :call StartTerm()<CR>
@@ -38,6 +35,9 @@ else
   set guifont=Andale\ Mono\ 10
 endif
 
+" shut up
+set visualbell
+
 "custom tab stuff
 " tab navigation like safari
 " idea adopted from: [[VimTip1221]]
@@ -53,15 +53,12 @@ endif
 " Start without the toolbar
 set guioptions-=T
 
+" no scroll bars
+set guioptions=aAce
 
 "color
 set background=dark
 colorscheme solarized
-
-" activate spell checking
-set spell
-" set the maximum number of suggestions
-set spellsuggest=6
 
 " set trailing char and tab char
 set list listchars=tab:\ \ ,trail:·
@@ -71,9 +68,29 @@ set lines=200 columns=200
 winpos 0 0 
 set guiheadroom=0
 
+" Open nerd tree by default
+function s:CdIfDirectory(directory)
+  let explicitDirectory = isdirectory(a:directory)
+  let directory = explicitDirectory || empty(a:directory)
+
+  if explicitDirectory
+    exe "cd " . a:directory
+  endif
+
+  if directory
+    NERDTree
+    wincmd p
+    bd
+  endif
+
+  if explicitDirectory
+    wincmd p
+  endif
+endfunction
+autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+
 " Include user's local vim config
 if filereadable(expand("~/.gvimrc.local"))
   source ~/.gvimrc.local
 endif
-
 

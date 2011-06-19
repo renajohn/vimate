@@ -139,9 +139,11 @@ set modelines=10
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
+" activate spell checking
+set spell
 
-" no scroll bars
-set guioptions=aAce
+" set the maximum number of suggestions
+set spellsuggest=6
 
 " color theme
 set background=dark
@@ -158,10 +160,6 @@ set hidden
 
 " activate cursor line
 set cursorline
-
-" cycle through buffers
-nmap <C-right> :bn<CR>
-nmap <C-left> :bp<CR>
 
 if version >= 703
   " Gundo
@@ -182,7 +180,6 @@ function StartTerm()
 endfunction
 
 " Project Tree
-autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call s:UpdateNERDTree()
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
@@ -199,24 +196,6 @@ function s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 " If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
-  let explicitDirectory = isdirectory(a:directory)
-  let directory = explicitDirectory || empty(a:directory)
-
-  if explicitDirectory
-    exe "cd " . a:directory
-  endif
-
-  if directory
-    NERDTree
-    wincmd p
-    bd
-  endif
-
-  if explicitDirectory
-    wincmd p
-  endif
-endfunction
 
 " NERDTree utility function
 function s:UpdateNERDTree(...)
