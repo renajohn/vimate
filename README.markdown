@@ -25,17 +25,7 @@ allowing you to keep all plug-ins up-to-date, independently from Vimate.
     cd .vim
     sh update.sh
 
-**NOTE** submodules are note updated (currently command-T and
-solarized)
-
-VIM in terminal
----------------
-Solarized colorscheme needs some special colors that the terminal does
-not provide. To have a sweat experience you can change the default
-palette of your terminal emulator or decide to use the 256 degraded
-colors in vim.
-
-Instructions are in Solarized [README](http://ethanschoonover.com/solarized/vim-colors-solarized#important-note-for-terminal-users)
+**NOTE**: Solarized and Command-T are GIT submodules and are therefor not updated by the script
 
 Configuration
 -------------
@@ -62,6 +52,16 @@ Solarized color scheme
 The default color scheme is
 [Solarized](http://ethanschoonover.com/solarized), a highly professional
 color scheme which comes in dark or light background.
+You can use `F8` to toggle from dark to light theme.
+
+Solarized in terminal
+---------------------
+Solarized colorscheme needs some special colors that the terminal does
+not provide. To have a sweat experience you can change the default
+palette of your terminal emulator or decide to use the 256 degraded
+colors in vim.
+
+Instructions are in Solarized [README](http://ethanschoonover.com/solarized/vim-colors-solarized#important-note-for-terminal-users)
 
 Plug-ins
 --------
@@ -188,8 +188,7 @@ Custom mappings
 |`<C-Up>`             |Move current line or visual block up
 |`<C-Down>`           |Move current line or visual block down
 |`<Leader>` `<Leader>`|Incremental search is turned on. This removes the highlighted search term.
-|`<C-right>`          |Move to next buffer
-|`<C-left>`           |Move to previous buffer
+|`<F8>` |Toggle between dark and light theme for Solarized.
 
 If you ever feel lost, you can type `:Listmaps` to get a list of all
 mappings offered by Vimate distribution.

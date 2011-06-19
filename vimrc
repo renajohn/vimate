@@ -148,6 +148,7 @@ set spellsuggest=6
 " color theme
 set background=dark
 colorscheme solarized
+call togglebg#map("<F8>")
 
 " enable folding
 set nofoldenable
