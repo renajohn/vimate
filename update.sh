@@ -9,3 +9,6 @@ ruby extconf.rb
 make
 cd -
 
+# update solarized
+git pull -s subtree bundle/solarized master
+git pull -s subtree bundle/command-t master
