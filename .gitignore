@@ -2,9 +2,6 @@
 .netrwhist
 *.pyc
 tmp
-view/*
-undodir/*
-backup/*
 .VimballRecord
 bundle/command-t/ruby/command-t/Makefile
 bundle/command-t/ruby/command-t/ext.bundle
