@@ -13,6 +13,13 @@ bundle/Align:
   squashed: true
   type: git
   url: https://github.com/tsaleh/vim-align.git
+bundle/Command-T: 
+  branch: master
+  remote: braid/bundle/Command-T
+  revision: cee619ac6e906d1c6bfc3052f01ccaa6ac1d4b3c
+  squashed: true
+  type: git
+  url: https://github.com/wincent/Command-T.git
 bundle/DelimitMate: 
   branch: master
   remote: braid/bundle/DelimitMate
@@ -146,6 +153,13 @@ bundle/repeat:
   squashed: true
   type: git
   url: https://github.com/tpope/vim-repeat.git
+bundle/solarized: 
+  branch: master
+  remote: braid/bundle/solarized
+  revision: 528a59f26d12278698bb946f8fb82a63711eec21
+  squashed: true
+  type: git
+  url: https://github.com/altercation/vim-colors-solarized.git
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
