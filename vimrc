@@ -22,6 +22,16 @@ let g:SuperTabDefaultCompletionType = "context"
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc
 
+" set omnicompletion functions
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html let b:delimitMate_autoclose = 0
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
 " pathogen for bundle support
 call pathogen#runtime_append_all_bundles() 
 
@@ -80,10 +90,8 @@ function s:setupMarkup()
   map <buffer> <Leader>p :Hammer <CR>
 endfunction
 
-autocmd BufRead *.json set filetype=json
-autocmd FileType json set equalprg=~/.vim/bundle/yajl/bin/json_reformat
-autocmd FileType json set makeprg=~/.vim/bundle/yajl/bin/json_verify\ <\ %
-autocmd FileType json set errorformat=%E%f:\ %m\ at\ line\ %l,%-G%.%#
+" JSON is javascript, after all
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " make and python use real tabs
 au FileType make                                     set noexpandtab
@@ -131,13 +139,16 @@ set modelines=10
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
+" activate spell checking
+set spell
 
-" no scroll bars
-set guioptions=aAce
+" set the maximum number of suggestions
+set spellsuggest=6
 
 " color theme
 set background=dark
 colorscheme solarized
+call togglebg#map("<F8>")
 
 " enable folding
 set nofoldenable
@@ -150,10 +161,6 @@ set hidden
 
 " activate cursor line
 set cursorline
-
-" cycle through buffers
-nmap <C-right> :bn<CR>
-nmap <C-left> :bp<CR>
 
 if version >= 703
   " Gundo
@@ -174,7 +181,6 @@ function StartTerm()
 endfunction
 
 " Project Tree
-autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call s:UpdateNERDTree()
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 
@@ -191,24 +197,6 @@ function s:CloseIfOnlyNerdTreeLeft()
 endfunction
 
 " If the parameter is a directory, cd into it
-function s:CdIfDirectory(directory)
-  let explicitDirectory = isdirectory(a:directory)
-  let directory = explicitDirectory || empty(a:directory)
-
-  if explicitDirectory
-    exe "cd " . a:directory
-  endif
-
-  if directory
-    NERDTree
-    wincmd p
-    bd
-  endif
-
-  if explicitDirectory
-    wincmd p
-  endif
-endfunction
 
 " NERDTree utility function
 function s:UpdateNERDTree(...)

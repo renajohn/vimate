@@ -13,6 +13,13 @@ bundle/Align:
   squashed: true
   type: git
   url: https://github.com/tsaleh/vim-align.git
+bundle/Command-T: 
+  branch: master
+  remote: braid/bundle/Command-T
+  revision: cee619ac6e906d1c6bfc3052f01ccaa6ac1d4b3c
+  squashed: true
+  type: git
+  url: https://github.com/wincent/Command-T.git
 bundle/DelimitMate: 
   branch: master
   remote: braid/bundle/DelimitMate
@@ -79,14 +86,14 @@ bundle/fswitch:
 bundle/fugitive: 
   branch: master
   remote: braid/bundle/fugitive
-  revision: 50e7887498acc9c23474d28df9ea60827a8356a9
+  revision: 44533707686c09972bf845c31544368bdfe0ce4f
   squashed: true
   type: git
   url: https://github.com/tpope/vim-fugitive.git
 bundle/gundo: 
   branch: master
   remote: braid/bundle/gundo
-  revision: 48ea154861d14c864597a4473eca4b47e5d48a1f
+  revision: adcf3394669868cf1872be6395bd7c8ae9a3324d
   squashed: true
   type: git
   url: https://github.com/sjl/gundo.vim.git
@@ -111,13 +118,6 @@ bundle/jslint:
   squashed: true
   type: git
   url: https://github.com/hallettj/jslint.vim.git
-bundle/json: 
-  branch: master
-  remote: braid/bundle/json
-  revision: 3c602d4b5dac674d7f1fd8da56e834ff8f1cc9c7
-  squashed: true
-  type: git
-  url: https://github.com/vim-scripts/JSON.vim.git
 bundle/listmaps: 
   branch: master
   remote: braid/bundle/listmaps
@@ -153,6 +153,13 @@ bundle/repeat:
   squashed: true
   type: git
   url: https://github.com/tpope/vim-repeat.git
+bundle/solarized: 
+  branch: master
+  remote: braid/bundle/solarized
+  revision: 528a59f26d12278698bb946f8fb82a63711eec21
+  squashed: true
+  type: git
+  url: https://github.com/altercation/vim-colors-solarized.git
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
@@ -187,13 +194,6 @@ bundle/web-indent:
   squashed: true
   type: svn
   url: http://web-indent.googlecode.com/svn/trunk
-bundle/yajl: 
-  branch: master
-  remote: braid/bundle/yajl
-  revision: dbcba50b7785170d89bfeddaf2b41fe3f3ffacf4
-  squashed: true
-  type: git
-  url: https://github.com/lloyd/yajl.git
 bundle/zoomwin: 
   branch: master
   remote: braid/bundle/zoomwin
