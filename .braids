@@ -167,6 +167,13 @@ bundle/surround:
   squashed: true
   type: git
   url: https://github.com/tpope/vim-surround.git
+bundle/tabular: 
+  branch: master
+  remote: braid/bundle/tabular
+  revision: b7b4d8791a50013b56c2d68b6c5708c808203b54
+  squashed: true
+  type: git
+  url: https://github.com/godlygeek/tabular.git
 bundle/taglist: 
   branch: master
   remote: braid/bundle/taglist
