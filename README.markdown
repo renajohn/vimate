@@ -71,12 +71,21 @@ Plug-ins
 Ack.vim uses ack to search inside the current directory for a pattern.
 You can learn more about it with :help Ack
 
-## Align
+## Tabularized
 
-Align lets you align statements on their equal signs, make comment
+Tabularized lets you align statements on their equal signs, make comment
 boxes, align comments, align declarations, etc.
 
-* `:5,10Align =>` to align lines 5-10 on `=>`'s
+* `:Tab /=` to align on `=`'s
+* Tabularized on `=` and `:` are mapped on `<Leader>a=` and `<Leader>a:`
+  respectively
+
+When working on table like the following:
+        
+    | a | b |
+    | c | d |
+
+Tabularized will align the table each time `|` is typed. 
 
 ## Command-T
 
