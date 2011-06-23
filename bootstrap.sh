@@ -1,13 +1,6 @@
 #!/bin/sh
 
-git submodule init
-git submodule update
-
 for i in ~/.vimrc ~/.gvimrc; do [ -e $i ] && mv $i $i.old; done
-
-mkdir ~/.vim/undodir
-mkdir ~/.vim/view
-mkdir ~/.vim/backup
 
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
