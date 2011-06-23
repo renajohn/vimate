@@ -14,7 +14,7 @@ How to install
     sh bootstrap.sh
 
     [sudo] gem install github-markup
-    [sudo] gem install redcarpet
+    [sudo] gem install redcarpet # for markdown wiki notation
 
 How to updates plug-ins
 -----------------------
@@ -25,7 +25,8 @@ allowing you to keep all plug-ins up-to-date, independently from Vimate.
     cd .vim
     sh update.sh
 
-**NOTE**: Solarized and Command-T are GIT submodules and are therefor not updated by the script
+**NOTE**: braid is not currently working with ruby 1.9, if you use rvm,
+switch to ruby 1.8.+ before calling `update.sh`.
 
 Configuration
 -------------
