@@ -181,6 +181,13 @@ bundle/taglist:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/taglist.vim.git
+bundle/toggleMouse: 
+  branch: master
+  remote: braid/bundle/toggleMouse
+  revision: 1c89b0c1e9b85a3fb339cedb6329a1375a43cdb9
+  squashed: true
+  type: git
+  url: https://github.com/nvie/vim-togglemouse.git
 bundle/unimpaired: 
   branch: master
   remote: braid/bundle/unimpaired
