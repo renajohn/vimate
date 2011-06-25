@@ -333,10 +333,27 @@ imap <F3> <Esc>:CommandT<CR>
 " map terminal key
 map <F6> :call StartTerm()<CR>
 
+" active mouse
+set mouse=a
+
 " toggle auto indent for pasting
-nnoremap <F2> :set invpaste paste?<CR>
-inoremap <F2> <C-O>:set invpaste paste?<CR>
-nnoremap <F2> :set nonumber!<CR>
+" TODO: ZoomWin should be triggered only if there are more then 1 window. No
+" idea how to detect the number of window in VIM.
+function ToggleCopyAndPast()
+  set invpaste paste?
+  if &mouse == ""
+    set number
+    let &mouse = "a"
+    :ZoomWin
+  else
+    set nonumber
+    let &mouse=""
+    :ZoomWin
+  endif
+endfunction
+
+noremap <F2> :call ToggleCopyAndPast()<CR>
+inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>
 set pastetoggle=<F2>
 
 " change cursor shape in insert mode
