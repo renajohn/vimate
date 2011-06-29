@@ -1,0 +1,33 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3383
+
+DESCRIPTION
+This plugin indicates the state of the buffer (modified, readonly,
+unmodifiable, special non-file "scratch") / window (is preview window) by
+changing the highlighting of the window's status line. It defines additional
+StatusLine... / StatusLine...NC highlight groups that are customizable and by
+default use different colors to differentiate the buffer states. 
+
+HOW IT WORKS
+Using different colors for the status line is trickier than it seems: Though
+the 'statusline' setting supports inline expressions via %{expr}, the returned
+text is taken as-is; highlight items %#hlgroup# and #* are not evaluated, only
+printed as text. Evaluation does happen when one %!expr is used, but the
+expression seems to be evaluated only once for a complete screen redraw cycle,
+not for each individual status line, so one cannot use it to set different
+highlightings for different status lines. 
+
+Therefore, this plugin sets up autocmds that continually adapt buffer-local
+'statusline' settings (which prepend the highlight group to the (mostly)
+global setting (though local 'statusline' settings set by ftplugins are kept,
+too)). 
+
+USAGE
+This plugin does not introduce any commands or mappings. Just observe the
+changed status line colors, e.g. when using :view, :pedit, :help, etc. 
+
+You immediately see that a buffer is read-only because its status line is
+gray, not black; unmodifiable buffers are even "more" gray. Unsaved, modified
+buffers are indicated via a dark-red status line. Special windows like the
+command and quickfix windows, as well as many "scratch" buffers used by
+plugins are shown in dark blue. The preview window is now also easy to find,
+because it has a blue status line. 
