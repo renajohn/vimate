@@ -37,18 +37,17 @@ call pathogen#runtime_append_all_bundles()
 
 " Status bar
 set laststatus=2
-"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
-set statusline=%t       "tail of the filename
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+set statusline=%t                                 " tail of the filename
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, " file encoding
+set statusline+=%{&ff}]                           " file format
+set statusline+=%h                                " help file flag
+set statusline+=%m                                " modified flag
+set statusline+=%r                                " read only flag
+set statusline+=%y                                " filetype
+set statusline+=%=                                " left/right separator
+set statusline+=col:%c,                           " cursor column
+set statusline+=\ line\ %l\ of\ %L                " cursor line/total lines
+set statusline+=\ (%P)                            " percent through file
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
