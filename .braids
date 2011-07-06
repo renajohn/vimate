@@ -160,13 +160,6 @@ bundle/solarized:
   squashed: true
   type: git
   url: https://github.com/altercation/vim-colors-solarized.git
-bundle/statusline: 
-  branch: master
-  remote: braid/bundle/statusline
-  revision: 95741a3cfd73005f3d3fc646f73c24962f14d3e9
-  squashed: true
-  type: git
-  url: https://github.com/vim-scripts/StatusLineHighlight.git
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
