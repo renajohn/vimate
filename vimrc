@@ -1,5 +1,8 @@
 set nocompatible
 
+" pathogen for bundle support
+call pathogen#runtime_append_all_bundles() 
+
 set number
 set ruler
 syntax on
@@ -31,9 +34,6 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
-
-" pathogen for bundle support
-call pathogen#runtime_append_all_bundles() 
 
 " Status bar
 set laststatus=2
