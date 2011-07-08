@@ -1,7 +1,11 @@
 set nocompatible
 
 " pathogen for bundle support
+filetype off
 call pathogen#runtime_append_all_bundles() 
+
+" load the plugin and indent settings for the detected filetype
+filetype plugin indent on
 
 set number
 set ruler
@@ -122,9 +126,6 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" load the plugin and indent settings for the detected filetype
-filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
