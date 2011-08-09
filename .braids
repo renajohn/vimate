@@ -93,7 +93,7 @@ bundle/gundo:
 bundle/hammer: 
   branch: master
   remote: braid/bundle/hammer
-  revision: 8f30078ba4001cccc94d714856d6b687cd745f8c
+  revision: e2aa2dcc78c03c3da23b40f0fea7b19275b3cbee
   squashed: true
   type: git
   url: git://github.com/robgleeson/hammer.vim.git
