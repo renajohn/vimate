@@ -1,3 +1,5 @@
+" Vimate v0.3.2
+
 set nocompatible
 
 " pathogen for bundle support
