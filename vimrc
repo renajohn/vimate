@@ -353,7 +353,7 @@ function ToggleCopyAndPast()
 endfunction
 
 noremap <F2> :call ToggleCopyAndPast()<CR>
-inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>
+inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>i
 set pastetoggle=<F2>
 
 " change cursor shape in insert mode
