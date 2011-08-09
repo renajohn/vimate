@@ -23,7 +23,7 @@ bundle/DelimitMate:
 bundle/UltiSnips: 
   branch: master
   remote: braid/bundle/UltiSnips
-  revision: 6d9aab1e90166757ff6bef5a6caf28451017404e
+  revision: 21b0584fabebd354989f4b94a6b24b8fcb463d2a
   squashed: true
   type: git
   url: https://github.com/vim-scripts/UltiSnips.git
