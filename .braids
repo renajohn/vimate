@@ -6,31 +6,24 @@ bundle/Ack:
   squashed: true
   type: git
   url: https://github.com/mileszs/ack.vim.git
-bundle/Align: 
-  branch: master
-  remote: braid/bundle/Align
-  revision: fa5fdeeea25269c3e83262c03dfa1ccd27dbd3c9
-  squashed: true
-  type: git
-  url: https://github.com/tsaleh/vim-align.git
 bundle/Command-T: 
   branch: master
   remote: braid/bundle/Command-T
-  revision: cee619ac6e906d1c6bfc3052f01ccaa6ac1d4b3c
+  revision: 3c0dc0a392fbea847ac97efe25f774cf1f2dcda0
   squashed: true
   type: git
   url: https://github.com/wincent/Command-T.git
 bundle/DelimitMate: 
   branch: master
   remote: braid/bundle/DelimitMate
-  revision: 9efb01da683721927589e7e340e8f2374d7dd3ea
+  revision: 39b8298390a9171c796df077ad3c5f3c0f111c56
   squashed: true
   type: git
   url: https://github.com/Raimondi/delimitMate.git
 bundle/UltiSnips: 
   branch: master
   remote: braid/bundle/UltiSnips
-  revision: 6d9aab1e90166757ff6bef5a6caf28451017404e
+  revision: 21b0584fabebd354989f4b94a6b24b8fcb463d2a
   squashed: true
   type: git
   url: https://github.com/vim-scripts/UltiSnips.git
@@ -86,21 +79,21 @@ bundle/fswitch:
 bundle/fugitive: 
   branch: master
   remote: braid/bundle/fugitive
-  revision: 44533707686c09972bf845c31544368bdfe0ce4f
+  revision: a0f5c0445eca54b5ce9ed90275fd49feafc998fd
   squashed: true
   type: git
   url: https://github.com/tpope/vim-fugitive.git
 bundle/gundo: 
   branch: master
   remote: braid/bundle/gundo
-  revision: adcf3394669868cf1872be6395bd7c8ae9a3324d
+  revision: 240efe741554246823723525a67ea0c39ba3ddfe
   squashed: true
   type: git
   url: https://github.com/sjl/gundo.vim.git
 bundle/hammer: 
   branch: master
   remote: braid/bundle/hammer
-  revision: 8f30078ba4001cccc94d714856d6b687cd745f8c
+  revision: e2aa2dcc78c03c3da23b40f0fea7b19275b3cbee
   squashed: true
   type: git
   url: git://github.com/robgleeson/hammer.vim.git
@@ -111,6 +104,13 @@ bundle/indent-object:
   squashed: true
   type: git
   url: https://github.com/michaeljsmith/vim-indent-object.git
+bundle/javascript: 
+  branch: master
+  remote: braid/bundle/javascript
+  revision: 6362ba99c825afc046818807267d5c1143b5c887
+  squashed: true
+  type: git
+  url: https://github.com/pangloss/vim-javascript.git
 bundle/jslint: 
   branch: master
   remote: braid/bundle/jslint
@@ -135,17 +135,24 @@ bundle/matchit:
 bundle/nerdcommenter: 
   branch: master
   remote: braid/bundle/nerdcommenter
-  revision: 5a9371437f97eef12325c04607de5e58b7168432
+  revision: b28e7be63235982501ab7dd30c03ea7feef7b095
   squashed: true
   type: git
   url: https://github.com/scrooloose/nerdcommenter.git
 bundle/nerdtree: 
   branch: master
   remote: braid/bundle/nerdtree
-  revision: 1cd50482d2b0137a3faa3ee6ec4cb9d425bd3bb6
+  revision: 2dd198c6c412b4ddd361b43586b01981e8383239
   squashed: true
   type: git
   url: https://github.com/scrooloose/nerdtree.git
+bundle/pathogen: 
+  branch: master
+  remote: braid/bundle/pathogen
+  revision: 8c46ed160e3b94ea39b5742da55b6d4574774f19
+  squashed: true
+  type: git
+  url: https://github.com/tpope/vim-pathogen.git
 bundle/repeat: 
   branch: master
   remote: braid/bundle/repeat
@@ -174,26 +181,34 @@ bundle/surround:
   squashed: true
   type: git
   url: https://github.com/tpope/vim-surround.git
-bundle/taglist: 
+bundle/tabular: 
   branch: master
-  remote: braid/bundle/taglist
-  revision: 53041fbc45398a9af631a20657e109707a455339
+  remote: braid/bundle/tabular
+  revision: b7b4d8791a50013b56c2d68b6c5708c808203b54
   squashed: true
   type: git
-  url: https://github.com/vim-scripts/taglist.vim.git
+  url: https://github.com/godlygeek/tabular.git
+bundle/tagbar: 
+  branch: master
+  remote: braid/bundle/tagbar
+  revision: 3b389aed0033fd2b3d1ee9d2db7c174d28f6c44c
+  squashed: true
+  type: git
+  url: https://github.com/majutsushi/tagbar.git
+bundle/toggleMouse: 
+  branch: master
+  remote: braid/bundle/toggleMouse
+  revision: 1c89b0c1e9b85a3fb339cedb6329a1375a43cdb9
+  squashed: true
+  type: git
+  url: https://github.com/nvie/vim-togglemouse.git
 bundle/unimpaired: 
   branch: master
   remote: braid/bundle/unimpaired
-  revision: fe95324a679685054f2db2cc47fe482e9861ee8f
+  revision: 5b7a9c3addc98684ce4739e22840866aa0726537
   squashed: true
   type: git
   url: https://github.com/tpope/vim-unimpaired.git
-bundle/web-indent: 
-  remote: braid/bundle/web-indent
-  revision: 15
-  squashed: true
-  type: svn
-  url: http://web-indent.googlecode.com/svn/trunk
 bundle/zoomwin: 
   branch: master
   remote: braid/bundle/zoomwin

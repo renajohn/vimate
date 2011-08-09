@@ -1,4 +1,13 @@
+" Vimate v0.3.2
+
 set nocompatible
+
+" pathogen for bundle support
+filetype off
+call pathogen#runtime_append_all_bundles() 
+
+" load the plugin and indent settings for the detected filetype
+filetype plugin indent on
 
 set number
 set ruler
@@ -32,23 +41,19 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
-" pathogen for bundle support
-call pathogen#runtime_append_all_bundles() 
-
 " Status bar
 set laststatus=2
-"set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
-set statusline=%t       "tail of the filename
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+set statusline=%t                                 " tail of the filename
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, " file encoding
+set statusline+=%{&ff}]                           " file format
+set statusline+=%h                                " help file flag
+set statusline+=%m                                " modified flag
+set statusline+=%r                                " read only flag
+set statusline+=%y                                " filetype
+set statusline+=%=                                " left/right separator
+set statusline+=col:%c,                           " cursor column
+set statusline+=\ line\ %l\ of\ %L                " cursor line/total lines
+set statusline+=\ (%P)                            " percent through file
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
@@ -61,7 +66,23 @@ map <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeChDir=1
 
 " align declarations
-vmap <F7> \adec
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -107,9 +128,6 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-" load the plugin and indent settings for the detected filetype
-filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -308,7 +326,7 @@ verbose
 let g:js_indent_log=0
 
 
-map <F4> :TlistToggle<CR>
+map <F4> :TagbarToggle<CR>
 
 " Command-T for CommandT
 map <F3> :CommandT<CR>
@@ -317,10 +335,27 @@ imap <F3> <Esc>:CommandT<CR>
 " map terminal key
 map <F6> :call StartTerm()<CR>
 
+" active mouse
+set mouse=a
+
 " toggle auto indent for pasting
-nnoremap <F2> :set invpaste paste?<CR>
-inoremap <F2> <C-O>:set invpaste paste?<CR>
-nnoremap <F2> :set nonumber!<CR>
+" TODO: ZoomWin should be triggered only if there are more then 1 window. No
+" idea how to detect the number of window in VIM.
+function ToggleCopyAndPast()
+  set invpaste paste?
+  if &mouse == ""
+    set number
+    let &mouse = "a"
+    :ZoomWin
+  else
+    set nonumber
+    let &mouse=""
+    :ZoomWin
+  endif
+endfunction
+
+noremap <F2> :call ToggleCopyAndPast()<CR>
+inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>i
 set pastetoggle=<F2>
 
 " change cursor shape in insert mode

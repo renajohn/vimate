@@ -1,6 +1,6 @@
 *unimpaired.txt*  Pairs of handy bracket mappings
 
-Author:  Tim Pope <vimNOSPAM@tpope.org>         *unimpaired-author*
+Author:  Tim Pope <http://tpo.pe/>
 License: Same terms as Vim itself (see |license|)
 
 This plugin is only available if 'compatible' is not set.
@@ -31,6 +31,10 @@ is "args" and for the "q" commands is "quickfix".
 *]q* |:cnext|
 *[Q* |:cfirst|
 *]Q* |:clast|
+*[t* |:tprevious|
+*]t* |:tnext|
+*[T* |:tfirst|
+*]T* |:tlast|
 
                                                 *[o*
 [o                      Go to the file preceding the current one
