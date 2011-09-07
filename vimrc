@@ -2,6 +2,9 @@
 
 set nocompatible
 
+" specify where node is
+let $JS_CMD='node'
+
 " pathogen for bundle support
 filetype off
 call pathogen#runtime_append_all_bundles() 
