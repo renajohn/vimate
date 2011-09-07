@@ -361,6 +361,19 @@ noremap <F2> :call ToggleCopyAndPast()<CR>
 inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>i
 set pastetoggle=<F2>
 
+" activate bracketed past mode
+if &term =~ "xterm.*"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+endif
+
 " change cursor shape in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
