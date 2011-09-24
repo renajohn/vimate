@@ -58,7 +58,7 @@ bundle/colorx:
 bundle/conque_2.0: 
   branch: master
   remote: braid/bundle/conque-2.0
-  revision: 61274355db591a4c836c1a9e45627cefd23631b3
+  revision: f3c92a29a162045c2604212f51846f0d7f73d661
   squashed: true
   type: git
   url: https://github.com/vim-scripts/Conque-Shell.git
