@@ -117,6 +117,9 @@ endfunction
 " JSON is javascript, after all
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
+" NFO files is XML
+autocmd BufNewFile,BufRead *.nfo set ft=xml
+
 " make and python use real tabs
 au FileType make                                     set noexpandtab
 au FileType python                                   set noexpandtab
