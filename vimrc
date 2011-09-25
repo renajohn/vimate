@@ -7,6 +7,7 @@ let $JS_CMD='node'
 
 " pathogen for bundle support
 filetype off
+call pathogen#helptags()
 call pathogen#runtime_append_all_bundles() 
 
 " load the plugin and indent settings for the detected filetype
