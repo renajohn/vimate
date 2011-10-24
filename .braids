@@ -156,7 +156,7 @@ bundle/nerdtree:
 bundle/pathogen: 
   branch: master
   remote: braid/bundle/pathogen
-  revision: a32131ce199621f48802167e584804ca97d5c346
+  revision: 00ce0614f0526708431243ca6b126a3bec802697
   squashed: true
   type: git
   url: https://github.com/tpope/vim-pathogen.git
