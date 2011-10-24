@@ -2,7 +2,7 @@
 bundle/Ack: 
   branch: master
   remote: braid/bundle/Ack
-  revision: a41d5d52c39a31128e969e69acf800b198cb07f9
+  revision: 9895285042a2fd5691b2f6582aa979e4d1bdffea
   squashed: true
   type: git
   url: https://github.com/mileszs/ack.vim.git
