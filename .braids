@@ -118,13 +118,6 @@ bundle/javascript:
   squashed: true
   type: git
   url: https://github.com/pangloss/vim-javascript.git
-bundle/jslint: 
-  branch: master
-  remote: braid/bundle/jslint
-  revision: 8605dd82733497929046b294f42a5e35dcd1f906
-  squashed: true
-  type: git
-  url: https://github.com/hallettj/jslint.vim.git
 bundle/listmaps: 
   branch: master
   remote: braid/bundle/listmaps
