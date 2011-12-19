@@ -55,13 +55,6 @@ bundle/colorx:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/ColorX.git
-bundle/conque_2.0: 
-  branch: master
-  remote: braid/bundle/conque-2.0
-  revision: f3c92a29a162045c2604212f51846f0d7f73d661
-  squashed: true
-  type: git
-  url: https://github.com/vim-scripts/Conque-Shell.git
 bundle/cscope_macros: 
   branch: master
   remote: braid/bundle/cscope-macros
