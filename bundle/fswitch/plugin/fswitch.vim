@@ -25,7 +25,7 @@ if v:version < 700
 endif
 
 " Version
-let s:fswitch_version = '0.9.3'
+let s:fswitch_version = '0.9.4'
 
 " Get the path separator right
 let s:os_slash = &ssl == 0 && (has("win16") || has("win32") || has("win64")) ? '\' : '/'
@@ -297,6 +297,19 @@ function! FSwitch(filename, precmd)
             let newpath = FSReturnCompanionFilenameString(a:filename)
         endif
     endif
+    if &switchbuf =~ "^use"
+        let i = 1
+        let bufnum = winbufnr(i)
+        while bufnum != -1
+            let filename = fnamemodify(bufname(bufnum), ':p')
+            if filename == newpath
+                execute ":sbuffer " .  filename
+                return
+            endif
+            let i += 1
+            let bufnum = winbufnr(i)
+        endwhile
+    endif
     if openfile == 1
         if newpath != ''
             if strlen(a:precmd) != 0
@@ -325,11 +338,11 @@ augroup END
 "
 com! FSHere       :call FSwitch('%', '')
 com! FSRight      :call FSwitch('%', 'wincmd l')
-com! FSSplitRight :call FSwitch('%', 'vsplit | wincmd l')
+com! FSSplitRight :call FSwitch('%', 'let b:curspr=&spr | set nospr | vsplit | wincmd l | if b:curspr | set spr | endif | unlet b:curspr')
 com! FSLeft       :call FSwitch('%', 'wincmd h')
-com! FSSplitLeft  :call FSwitch('%', 'vsplit | wincmd h')
+com! FSSplitLeft  :call FSwitch('%', 'let b:curspr=&spr | set nospr | vsplit | wincmd h | if b:curspr | set spr | endif | unlet b:curspr')
 com! FSAbove      :call FSwitch('%', 'wincmd k')
-com! FSSplitAbove :call FSwitch('%', 'split | wincmd k')
+com! FSSplitAbove :call FSwitch('%', 'let b:cursb=&sb | set nosb | split | wincmd k | if b:cursb | set sb | endif | unlet b:cursb')
 com! FSBelow      :call FSwitch('%', 'wincmd j')
-com! FSSplitBelow :call FSwitch('%', 'split | wincmd j')
+com! FSSplitBelow :call FSwitch('%', 'let b:cursb=&sb | set nosb | split | wincmd j | if b:cursb | set sb | endif | unlet b:cursb')
 

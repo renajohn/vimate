@@ -72,7 +72,7 @@ bundle/cscope_macros:
 bundle/fswitch: 
   branch: master
   remote: braid/bundle/fswitch
-  revision: c70003d1e3c3acd34bd27cb37f47b447e9de99c5
+  revision: c76d0db54c68e05553aa401141ca88b6dd357ebf
   squashed: true
   type: git
   url: https://github.com/derekwyatt/vim-fswitch.git
