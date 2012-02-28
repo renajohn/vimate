@@ -100,7 +100,7 @@ bundle/indent-object:
 bundle/javascript: 
   branch: master
   remote: braid/bundle/javascript
-  revision: e66f9019b4eca05d7f5dfe38c742cf42e641e98d
+  revision: a8ce721701fdd015695406f7df315f48bb447ebb
   squashed: true
   type: git
   url: https://github.com/pangloss/vim-javascript.git
