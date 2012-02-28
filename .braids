@@ -9,7 +9,7 @@ bundle/Ack:
 bundle/Command-T: 
   branch: master
   remote: braid/bundle/Command-T
-  revision: 18686a82a2e4d015b877bf0b6867a269aa8a284f
+  revision: bcd391402144c80bae1d8a58a61b1bac0e0062a1
   squashed: true
   type: git
   url: https://github.com/wincent/Command-T.git
