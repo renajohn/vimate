@@ -1,4 +1,4 @@
-*tagbar.txt*	Display tags of a file in their correct scope
+*tagbar.txt*	Display tags of a file ordered by scope
 
 Author:		Jan Larres <jan@majutsushi.net>
 Licence:	Vim licence, see |license|
@@ -6,7 +6,7 @@ Homepage:	http://majutsushi.github.com/tagbar/
 Version:	2.3
 
 ==============================================================================
-Contents					*tagbar* *tagbar-contents*
+Contents                                            *tagbar* *tagbar-contents*
 
 	 1. Intro ........................... |tagbar-intro|
 	      Pseudo-tags ................... |tagbar-pseudotags|
@@ -20,6 +20,7 @@ Contents					*tagbar* *tagbar-contents*
 	 5. Configuration ................... |tagbar-configuration|
 	      Highlight colours ............. |tagbar-highlight|
 	      Automatically opening Tagbar .. |tagbar-autoopen|
+	      Show current tag in statusline  |tagbar-statusline|
 	 6. Extending Tagbar ................ |tagbar-extend|
 	 7. Troubleshooting & Known issues .. |tagbar-issues|
 	 8. History ......................... |tagbar-history|
@@ -27,7 +28,7 @@ Contents					*tagbar* *tagbar-contents*
 	10. Credits ......................... |tagbar-credits|
 
 ==============================================================================
-1. Intro						*tagbar-intro*
+1. Intro                                                        *tagbar-intro*
 
 Tagbar is a plugin for browsing the tags of source code files. It provides a
 sidebar that displays the ctags-generated tags of the current file, ordered by
@@ -64,7 +65,7 @@ listed after its name and a colon. Third, tags for which the access/visibility
 information is known are prefixed with a symbol indicating that.
 
 ------------------------------------------------------------------------------
-PSEUDO-TAGS						*tagbar-pseudotags*
+PSEUDO-TAGS                                                *tagbar-pseudotags*
 
 The example also introduces the concept of "pseudo-tags". Pseudo-tags are tags
 that are not explicitly defined in the file but have children in it. In this
@@ -83,7 +84,7 @@ window.
 Pseudo-tags are denoted with an asterisk ('*') at the end of their name.
 
 ------------------------------------------------------------------------------
-SUPPORTED FEATURES					*tagbar-features*
+SUPPORTED FEATURES                                           *tagbar-features*
 
 The following features are supported by Tagbar:
 
@@ -104,7 +105,7 @@ The following features are supported by Tagbar:
   - Can be extended to support arbitrary new types.
 
 ------------------------------------------------------------------------------
-OTHER CTAGS-COMPATIBLE PROGRAMS				*tagbar-other*
+OTHER CTAGS-COMPATIBLE PROGRAMS                                 *tagbar-other*
 
 Tagbar theoretically also supports filetype-specific programs that can output
 tag information that is compatible with ctags. However due to potential
@@ -116,7 +117,7 @@ correct configuration please contact me.
 Note: Please check |tagbar-issues| for some possible issues with jsctags.
 
 ==============================================================================
-2. Requirements						*tagbar-requirements*
+2. Requirements                                          *tagbar-requirements*
 
 The following requirements have to be met in order to be able to use tagbar:
 
@@ -143,7 +144,7 @@ The following requirements have to be met in order to be able to use tagbar:
   - Tagbar will not work in |restricted-mode| or with 'compatible' set.
 
 ==============================================================================
-3. Installation						*tagbar-installation*
+3. Installation                                          *tagbar-installation*
 
 Use the normal Vimball install method for installing tagbar.vba:
 >
@@ -160,7 +161,7 @@ $PATH environment variable you have to set the g:tagbar_ctags_bin variable,
 see |g:tagbar_ctags_bin|.
 
 ==============================================================================
-4. Usage						*tagbar-usage*
+4. Usage                                                        *tagbar-usage*
 
 There are essentially two ways to use Tagbar:
 
@@ -184,7 +185,7 @@ closed. By default the window is opened on the right side, set the option
 |:TagbarClose| will simply close the window if it is open.
 
 It is probably a good idea to assign a key to these commands. For example, put
-this in your |vimrc|:
+this into your |vimrc|:
 >
 	nnoremap <silent> <F9> :TagbarToggle<CR>
 <
@@ -223,7 +224,7 @@ case it will be displayed in a pop-up window. The prototype will also be
 displayed when the cursor stays on a tag for 'updatetime' milliseconds.
 
 ------------------------------------------------------------------------------
-COMMANDS						*tagbar-commands*
+COMMANDS                                                     *tagbar-commands*
 
 :TagbarOpen [{flags}]
     Open the Tagbar window if it is closed.
@@ -269,7 +270,7 @@ COMMANDS						*tagbar-commands*
     End debug mode, debug messages will no longer be written to the logfile.
 
 ------------------------------------------------------------------------------
-KEY MAPPINGS						*tagbar-keys*
+KEY MAPPINGS                                                     *tagbar-keys*
 
 The following mappings are valid in the Tagbar window:
 
@@ -297,9 +298,9 @@ x             Toggle zooming the window.
 q             Close the Tagbar window.
 
 ==============================================================================
-5. Configuration					*tagbar-configuration*
+5. Configuration                                        *tagbar-configuration*
 
-							*g:tagbar_ctags_bin*
+                                                          *g:tagbar_ctags_bin*
 g:tagbar_ctags_bin~
 Default: empty
 
@@ -311,7 +312,7 @@ Example:
 	let g:tagbar_ctags_bin = 'C:\Ctags5.8\ctags.exe'
 <
 
-							*g:tagbar_left*
+                                                               *g:tagbar_left*
 g:tagbar_left~
 Default: 0
 
@@ -323,7 +324,7 @@ Example:
 	let g:tagbar_left = 1
 <
 
-							*g:tagbar_width*
+                                                              *g:tagbar_width*
 g:tagbar_width~
 Default: 40
 
@@ -334,7 +335,7 @@ Example:
 	let g:tagbar_width = 30
 <
 
-							*g:tagbar_autoclose*
+                                                          *g:tagbar_autoclose*
 g:tagbar_autoclose~
 Default: 0
 
@@ -346,7 +347,7 @@ Example:
 	let g:tagbar_autoclose = 1
 <
 
-							*g:tagbar_autofocus*
+                                                          *g:tagbar_autofocus*
 g:tagbar_autofocus~
 Default: 0
 
@@ -358,7 +359,7 @@ Example:
 	let g:tagbar_autofocus = 1
 <
 
-							*g:tagbar_sort*
+                                                               *g:tagbar_sort*
 g:tagbar_sort~
 Default: 1
 
@@ -372,7 +373,7 @@ Example:
 	let g:tagbar_sort = 0
 <
 
-							*g:tagbar_compact*
+                                                            *g:tagbar_compact*
 g:tagbar_compact~
 Default: 0
 
@@ -385,7 +386,7 @@ Example:
 	let g:tagbar_compact = 1
 <
 
-							*g:tagbar_expand*
+                                                             *g:tagbar_expand*
 g:tagbar_expand~
 Default: 0
 
@@ -397,7 +398,7 @@ Example:
 	let g:tagbar_expand = 1
 <
 
-							*g:tagbar_singleclick*
+                                                        *g:tagbar_singleclick*
 g:tagbar_singleclick~
 Default: 0
 
@@ -409,7 +410,7 @@ Example:
 	let g:tagbar_singleclick = 1
 <
 
-							*g:tagbar_foldlevel*
+                                                          *g:tagbar_foldlevel*
 g:tagbar_foldlevel~
 Default: 99
 
@@ -421,7 +422,7 @@ Example:
 	let g:tagbar_foldlevel = 2
 <
 
-							*g:tagbar_iconchars*
+                                                          *g:tagbar_iconchars*
 g:tagbar_iconchars~
 
 Since the display of the icons used to indicate open or closed folds depends
@@ -439,7 +440,7 @@ choose other characters in that case):
 	let g:tagbar_iconchars = ['+', '-']  (default on Windows)
 <
 
-							*g:tagbar_autoshowtag*
+                                                        *g:tagbar_autoshowtag*
 g:tagbar_autoshowtag~
 Default: 0
 
@@ -454,7 +455,7 @@ Example:
 	let g:tagbar_autoshowtag = 1
 <
 
-						*g:tagbar_updateonsave_maxlines*
+                                              *g:tagbar_updateonsave_maxlines*
 g:tagbar_updateonsave_maxlines~
 Default: 5000
 
@@ -470,7 +471,7 @@ Example:
 	let g:tagbar_updateonsave_maxlines = 10000
 <
 
-							*g:tagbar_systemenc*
+                                                          *g:tagbar_systemenc*
 g:tagbar_systemenc~
 Default: value of 'encoding'
 
@@ -486,7 +487,7 @@ Example:
 <
 
 ------------------------------------------------------------------------------
-HIGHLIGHT COLOURS					*tagbar-highlight*
+HIGHLIGHT COLOURS                                           *tagbar-highlight*
 
 All of the colours used by Tagbar can be customized. Here is a list of the
 highlight groups that are defined by Tagbar:
@@ -535,12 +536,16 @@ your vimrc:
 See |:highlight| for more information.
 
 ------------------------------------------------------------------------------
-AUTOMATICALLY OPENING TAGBAR				*tagbar-autoopen*
+AUTOMATICALLY OPENING TAGBAR                                 *tagbar-autoopen*
 
 Since there are several different situations in which you might want to open
 Tagbar automatically there is no single option to enable automatic opening.
 Instead, autocommands can be used together with a convenience function that
-opens Tagbar only if a supported file is open(ed).
+opens Tagbar only if a supported file is open(ed). It has a boolean parameter
+that specifies whether Tagbar should be opened if any loaded buffer is
+supported (in case the parameter is set to true) or only if a supported
+file/buffer is currently being shown in a window. This can be useful if you
+use multiple tabs and don't edit supported files in all of them.
 
 If you want to open Tagbar automatically on Vim startup no matter what put
 this into your vimrc:
@@ -550,29 +555,75 @@ this into your vimrc:
 If you want to open it only if you're opening Vim with a supported file/files
 use this instead:
 >
-    autocmd VimEnter * nested :call tagbar#autoopen()
+    autocmd VimEnter * nested :call tagbar#autoopen(1)
 <
+The above is exactly what the Taglist plugin does if you set the
+Tlist_Auto_Open option, in case you want to emulate this behaviour.
+
 For opening Tagbar also if you open a supported file in an already running
 Vim:
 >
-    autocmd FileType * nested :call tagbar#autoopen()
+    autocmd FileType * nested :call tagbar#autoopen(0)
 <
-And if you only want to open Tagbar only for specific filetypes, not for all
-of the supported ones:
+If you use multiple tabs and want Tagbar to also open in the current tab when
+you switch to an already loaded, supported buffer:
+>
+    autocmd BufEnter * nested :call tagbar#autoopen(0)
+<
+And if you want to open Tagbar only for specific filetypes, not for all of the
+supported ones:
 >
     autocmd FileType c,cpp nested :TagbarOpen
 <
 Check out |autocmd.txt| if you want it to open automatically in more
 complicated cases.
 
+------------------------------------------------------------------------------
+SHOWING THE CURRENT TAG IN THE STATUSLINE                  *tagbar-statusline*
+
+You can show the current tag in the 'statusline', or in any other place that
+you want to, by calling the tagbar#currenttag() function. The current tag is
+exactly the same as would be highlighted in the Tagbar window if it is open.
+It is defined as the nearest tag upwards in the file starting from the cursor
+position. This means that for example in a function it should usually be the
+name of the function.
+
+The function has the following signature:
+
+tagbar#currenttag({format}, {default} [, {longsig}])
+    {format} is a |printf()|-compatible format string where "%s" will be
+    replaced by the name of the tag. {default} will be displayed instead of
+    the format string if no tag can be found. If the optional argument
+    {longsig} is given and is non-zero then functions will have their complete
+    signature shown, otherwise only "()" will be appended so they can be more
+    easily distinguished from other tags.
+
+    For example, if you put the following into your statusline: >
+        %{tagbar#currenttag('[%s] ', '')}
+<   then the function "myfunc" will be show as "[myfunc()] ".
+
 ==============================================================================
-6. Extending Tagbar					*tagbar-extend*
+6. Extending Tagbar                                            *tagbar-extend*
 
 Tagbar has a flexible mechanism for extending the existing file type (i.e.
 language) definitions. This can be used both to change the settings of the
-existing types and to add completely new types. A complete configuration
-consists of a type definition for Tagbar in your |vimrc| and optionally a
-language definition for ctags in case you want to add a new language.
+existing types and to add completely new types. For Tagbar to support a
+filetype two things are needed: a program that generates the tag information,
+usually Exuberant Ctags, and a Tagbar type definition in your |vimrc| or an
+|ftplugin| that tells Tagbar how to interpret the generated tags.
+
+There are two ways to generate the tag information for new filetypes: add a
+definition to Exuberant Ctags or create a specialized program for your
+language that generates ctags-compatible tag information (see
+|tags-file-format| for information about how a "tags" file is structured). The
+former allows simple regular expression-based parsing that is easy to get
+started with, but doesn't support scopes unless you instead want to write a
+C-based parser module for Exuberant Ctags. The regex approach is described in
+more detail below.
+Writing your own program is the approach used by for example jsctags and can
+be useful if your language can best be parsed by a program written in the
+language itself, or if you want to provide the program as part of a complete
+support package for the language.
 
 Before writing your own extension have a look at the wiki
 (https://github.com/majutsushi/tagbar/wiki/Support-for-additional-filetypes)
@@ -662,7 +713,8 @@ ctagsbin:  The path to a filetype-specific ctags-compatible program like
            used automatically if found in your $PATH and does not have to be
            set in that case. If it is not in your path you have to set this
            key, the rest of the configuration should not be necessary (unless
-           you want to change something, of course).
+           you want to change something, of course). Note: if you use this
+           then the "ctagstype" key is not needed.
 ctagsargs: The arguments to be passed to the filetype-specific ctags program
 {optional} (without the filename). Make sure you set an option that makes the
            program output its data on stdout. Not used for the normal ctags
@@ -826,7 +878,7 @@ Tagbar should now be able to show the sections and other tags from LaTeX
 files.
 
 ==============================================================================
-7. Troubleshooting & Known issues			*tagbar-issues*
+7. Troubleshooting & Known issues                              *tagbar-issues*
 
 As a general rule, if the tag information displayed by Tagbar is wrong (for
 example, a method doesn't show up or is in the wrong place) you should first
@@ -891,12 +943,12 @@ file.
                 def bar(self):
                     pass
 <
-    I haven't found a clean way around this yet, but it shouldn't be much of a
-    problem in practice anyway. Tags with the same name at any other level are
-    no problem, though.
+    I haven't found a proper way around this yet, but it shouldn't be much of
+    a problem in practice anyway. Tags with the same name at any other level
+    are no problem, though.
 
 ==============================================================================
-8. History						*tagbar-history*
+8. History                                                    *tagbar-history*
 
 2.3 (2011-12-24)
     - Add a convenience function that allows more flexible ways to
@@ -979,7 +1031,7 @@ file.
     - Initial release
 
 ==============================================================================
-9. Todo							*tagbar-todo*
+9. Todo                                                          *tagbar-todo*
 
   - Allow filtering the Tagbar content by some criteria like tag name,
     visibility, kind ...
@@ -988,7 +1040,7 @@ file.
   - Allow jumping to a tag in the preview window, a split window or a new tab.
 
 ==============================================================================
-10. Credits						*tagbar-credits*
+10. Credits                                                   *tagbar-credits*
 
 Tagbar was written by Jan Larres and is released under the Vim licence, see
 |license|. It was heavily inspired by the Taglist plugin by Yegappan
@@ -1011,6 +1063,7 @@ Seth Milliken
 Kien N
 pielgrzym
 Taybin Rutkin
+Ville Valkonen
 
 ==============================================================================
  vim: tw=78 ts=8 sw=8 sts=8 noet ft=help
