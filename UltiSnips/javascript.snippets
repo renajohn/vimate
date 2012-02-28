@@ -3,15 +3,12 @@
 ###########################################################################
 
 snippet head "Header information"
-//
-// `!v expand("%")` 
-//  
-// `echo $NAME` <`echo $EMAIL`> `date +"%d %B %Y"`
-// 
-// Copyright `date +%Y` `echo $COMPANY`. All rights reserved.
-//
-// ${1:Description}
-//
+/*
+ * Copyright (C) `date +%Y` `echo $COMPANY`. All rights reserved.
+ * `echo $NAME` <`echo $EMAIL`> `date +"%d %B %Y"`
+ *
+ * ${1:Description}
+ */
 endsnippet
 
 snippet log "console log"
