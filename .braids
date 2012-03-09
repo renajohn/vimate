@@ -205,7 +205,7 @@ bundle/toggleMouse:
 bundle/unimpaired: 
   branch: master
   remote: braid/bundle/unimpaired
-  revision: 52eef03408f0df43b7a05484e2278a2acb777944
+  revision: e8013727a008a68664a789fe0d2b5c2ab2ecf657
   squashed: true
   type: git
   url: https://github.com/tpope/vim-unimpaired.git
