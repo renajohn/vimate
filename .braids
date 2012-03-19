@@ -170,7 +170,7 @@ bundle/solarized:
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
-  revision: b8a34a485dfdda1f88a2290c8e4b611556cc2fc4
+  revision: 5a38ce8b600e11941f695523363fe04e6478549a
   squashed: true
   type: git
   url: https://github.com/ervandew/supertab.git
