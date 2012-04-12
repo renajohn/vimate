@@ -16,7 +16,7 @@ bundle/Command-T:
 bundle/DelimitMate: 
   branch: master
   remote: braid/bundle/DelimitMate
-  revision: 0b34aea202daee0a3e85ce948bc9c9f8082f1899
+  revision: a42dff4ad85b0bb98fdbf0890a2b70ac15862c80
   squashed: true
   type: git
   url: https://github.com/Raimondi/delimitMate.git
