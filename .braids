@@ -79,7 +79,7 @@ bundle/fugitive:
 bundle/gundo: 
   branch: master
   remote: braid/bundle/gundo
-  revision: dea060dafe83ec111d8601d455136a36ec9bc257
+  revision: 7198c51b5d2b145b5ca4899fda8397e7f68efa77
   squashed: true
   type: git
   url: https://github.com/sjl/gundo.vim.git
