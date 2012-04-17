@@ -59,11 +59,6 @@ set statusline+=col:%c,                           " cursor column
 set statusline+=\ line\ %l\ of\ %L                " cursor line/total lines
 set statusline+=\ (%P)                            " percent through file
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
-
 " Maps Alt-[h,j,k,l] to resizing a window split
 map <silent> <A-h> <C-w><
 map <silent> <A-j> <C-W>-
@@ -99,9 +94,6 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
-
-" Command-T configuration
-let g:CommandTMaxHeight=20
 
 " ZoomWin configuration
 map <Leader><CR> :ZoomWin<CR>
@@ -254,9 +246,6 @@ function s:UpdateNERDTree(...)
     endif
   endif
 
-  if exists(":CommandTFlush") == 2
-    CommandTFlush
-  endif
 endfunction
 
 " Utility functions to create file commands
@@ -346,10 +335,6 @@ let g:js_indent_log=0
 
 
 map <F4> :TagbarToggle<CR>
-
-" Command-T for CommandT
-map <F3> :CommandT<CR>
-imap <F3> <Esc>:CommandT<CR>
 
 " map terminal key
 map <F6> :call StartTerm()<CR>
