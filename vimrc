@@ -5,6 +5,9 @@ set nocompatible
 " specify where node is
 let $JS_CMD='node'
 
+" add a line at 80 c
+set cc=80
+
 " pathogen for bundle support
 filetype off
 call pathogen#helptags()
