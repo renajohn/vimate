@@ -1,0 +1,36 @@
+snippet head "Header information"
+<!--
+  Copyright (C) `date +%Y` `echo $COMPANY`. All rights reserved.
+  `echo $NAME` <`echo $EMAIL`> `date +"%d %B %Y"`
+
+  ${1:Description}
+-->
+endsnippet
+
+snippet script
+<script type="text/x-handlebars" data-template-name="${1:TheTemplateName}">
+$2
+</script>
+endsnippet
+
+snippet if
+{{#if ${1:condition}}}
+  ${2:<!-- thruthy -->}
+{{/if}}
+endsnippet
+
+snippet else
+{{else}}
+endsnippet
+
+snippet each
+{{#each ${1:"${2:collection}"}}}
+  $3
+{{/each}}
+endsnippet
+
+snippet view
+{{#view ${1:myView}}}
+  $3
+{{/view}}
+endsnippet
