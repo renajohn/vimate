@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/indent-object: 
-  branch: master
-  remote: braid/bundle/indent-object
-  revision: 78fffa609b3e6b84ef01ee4c9aba6d7435d7b18e
-  squashed: true
-  type: git
-  url: https://github.com/michaeljsmith/vim-indent-object.git
 bundle/javascript: 
   branch: master
   remote: braid/bundle/javascript
