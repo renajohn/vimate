@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/unimpaired: 
-  branch: master
-  remote: braid/bundle/unimpaired
-  revision: e8013727a008a68664a789fe0d2b5c2ab2ecf657
-  squashed: true
-  type: git
-  url: https://github.com/tpope/vim-unimpaired.git
 bundle/zoomwin: 
   branch: master
   remote: braid/bundle/zoomwin
