@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/nerdcommenter: 
-  branch: master
-  remote: braid/bundle/nerdcommenter
-  revision: cb242a9cb41e9fc9884caa2235c67d18b18e9067
-  squashed: true
-  type: git
-  url: https://github.com/scrooloose/nerdcommenter.git
 bundle/pathogen: 
   branch: master
   remote: braid/bundle/pathogen
