@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/handlebars: 
-  branch: master
-  remote: braid/bundle/handlebars
-  revision: 5a678612502d2e981dc2c9a60f8b630e33a45848
-  squashed: true
-  type: git
-  url: https://github.com/nono/vim-handlebars.git
 bundle/indent-object: 
   branch: master
   remote: braid/bundle/indent-object
