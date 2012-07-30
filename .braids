@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/jshint: 
-  branch: master
-  remote: braid/bundle/jshint
-  revision: dd2e24a5ee604759862bf2ab408bde6783eca047
-  squashed: true
-  type: git
-  url: https://github.com/wookiehangover/jshint.vim.git
 bundle/less: 
   branch: master
   remote: braid/bundle/less
