@@ -1,8 +1,2 @@
---- 
-bundle/cscope_macros: 
-  branch: master
-  remote: braid/bundle/cscope-macros
-  revision: d1e0c369e8c25ecfd57d20382f1ed6fe0a1ac694
-  squashed: true
-  type: git
-  url: https://github.com/vim-scripts/cscope_macros.vim.git
+--- {}
+
