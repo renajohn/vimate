@@ -7,8 +7,38 @@ let $JS_CMD='node'
 
 " pathogen for bundle support
 filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles() 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" all bundles
+Bundle 'mileszs/ack.vim.git'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'Raimondi/delimitMate'
+Bundle 'vim-scripts/UltiSnips'
+Bundle 'vim-scripts/camelcasemotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'sjl/gundo.vim'
+Bundle 'nono/vim-handlebars'
+Bundle 'pangloss/vim-javascript'
+Bundle 'wookiehangover/jshint.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-repeat'
+Bundle 'ervandew/supertab'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/syntastic'
+Bundle 'godlygeek/tabular'
+Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'rphillips/vim-zoomwin'
+Bundle 'Lokaltog/vim-powerline'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
@@ -46,30 +76,8 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
 " Status bar
+let g:Powerline_symbols = 'fancy'
 set laststatus=2
-set statusline=%t                                 " tail of the filename
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, " file encoding
-set statusline+=%{&ff}]                           " file format
-set statusline+=%h                                " help file flag
-set statusline+=%m                                " modified flag
-set statusline+=%r                                " read only flag
-set statusline+=%y                                " filetype
-set statusline+=%=                                " left/right separator
-set statusline+=col:%c,                           " cursor column
-set statusline+=\ line\ %l\ of\ %L                " cursor line/total lines
-set statusline+=\ (%P)                            " percent through file
-
-" Maps Alt-[h,j,k,l] to resizing a window split
-map <silent> <A-h> <C-w><
-map <silent> <A-j> <C-W>-
-map <silent> <A-k> <C-W>+
-map <silent> <A-l> <C-w>>
-" Maps Alt-[s.v] to horizontal and vertical split respectively
-map <silent> <A-s> :split<CR>
-map <silent> <A-v> :vsplit<CR>
-" Maps Alt-[n,p] for moving next and previous window respectively
-map <silent> <A-n> <C-w><C-w>
-map <silent> <A-p> <C-w><S-w>
 
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
@@ -126,8 +134,8 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.nfo set ft=xml
 
 " make and python use real tabs
-au FileType make                                     set noexpandtab
-au FileType python                                   set noexpandtab
+au FileType make set noexpandtab
+au FileType python set noexpandtab
 
 " Thorfile, Rakefile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
@@ -201,13 +209,6 @@ if version >= 703
   set undolevels=1000 "maximum number of changes that can be undone
   set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 endif
-
-" ConqueTerm wrapper
-function StartTerm()
-  execute 'ConqueTerm ' . $SHELL . ' --login'
-  setlocal listchars=tab:\ \ 
-  setlocal nospell
-endfunction
 
 " Project Tree
 autocmd FocusGained * call s:UpdateNERDTree()
@@ -309,16 +310,6 @@ function Edit(file)
   endif
 
   execute "e " . a:file
-
-ruby << RUBY
-  destination = File.expand_path(VIM.evaluate(%{system("dirname " . a:file)}))
-  pwd         = File.expand_path(Dir.pwd)
-  home        = pwd == File.expand_path("~")
-
-  if home || Regexp.new("^" + Regexp.escape(pwd)) !~ destination
-    VIM.command(%{call ChangeDirectory(system("dirname " . a:file), 0)})
-  end
-RUBY
 endfunction
 
 " Define the NERDTree-aware aliases
