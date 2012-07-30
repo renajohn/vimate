@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/solarized: 
-  branch: master
-  remote: braid/bundle/solarized
-  revision: 528a59f26d12278698bb946f8fb82a63711eec21
-  squashed: true
-  type: git
-  url: https://github.com/altercation/vim-colors-solarized.git
 bundle/supertab: 
   branch: master
   remote: braid/bundle/supertab
