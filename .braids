@@ -6,13 +6,6 @@ bundle/cscope_macros:
   squashed: true
   type: git
   url: https://github.com/vim-scripts/cscope_macros.vim.git
-bundle/supertab: 
-  branch: master
-  remote: braid/bundle/supertab
-  revision: 8302775fc2dee4935c35f3436e59486940dba3b8
-  squashed: true
-  type: git
-  url: https://github.com/ervandew/supertab.git
 bundle/surround: 
   branch: master
   remote: braid/bundle/surround
