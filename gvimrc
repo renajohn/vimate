@@ -6,13 +6,8 @@ if has("gui_macvim")
 
   " Command-T for CommandT
   macmenu &File.New\ Tab key=<nop>
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
 
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-F>
-
-  " Command-e for ConqueTerm
-  map <D-e> :call StartTerm()<CR>
 
   " Command-/ to toggle comments
   map <D-/> <plug>NERDCommenterToggle<CR>
@@ -69,27 +64,6 @@ set list listchars=tab:\ \ ,trail:·
 set lines=200 columns=200 
 winpos 0 0 
 set guiheadroom=0
-
-" Open nerd tree by default
-function s:CdIfDirectory(directory)
-  let explicitDirectory = isdirectory(a:directory)
-  let directory = explicitDirectory || empty(a:directory)
-
-  if explicitDirectory
-    exe "cd " . a:directory
-  endif
-
-  if directory
-    NERDTree
-    wincmd p
-    bd
-  endif
-
-  if explicitDirectory
-    wincmd p
-  endif
-endfunction
-autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 
 " Include user's local vim config
 if filereadable(expand("~/.gvimrc.local"))
