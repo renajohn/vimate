@@ -40,7 +40,6 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/camelcasemotion'
 Bundle 'vim-scripts/matchit.zip'
-Bundle 'wookiehangover/jshint.vim'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
