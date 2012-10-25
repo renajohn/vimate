@@ -1,25 +1,6 @@
 " Vimate v0.3.2
 
 if has("gui_macvim")
-  " Fullscreen takes up entire screen
-  set fuoptions=maxhorz,maxvert
-
-  " Command-T for CommandT
-  macmenu &File.New\ Tab key=<nop>
-
-  macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-F>
-
-  " Command-/ to toggle comments
-  map <D-/> <plug>NERDCommenterToggle<CR>
-
-  " set my favorite font
-  set guifont=Panic\ Sans:h12
-
-  " open color picker
-  imap <D-C> <ESC>:ColorHEX<cr>a
-  nmap <D-C> :ColorHEX<cr>
-  vmap <D-C> d:ColorHEX<cr>
-
   " make clipboard work with std clipboard
   set clipboard=unnamed
 else
@@ -29,23 +10,14 @@ else
   set clipboard=unnamedplus
 
   " set my favorite font for gvim
-  set guifont=Andale\ Mono\ 10
+  "set guifont=Andale\ Mono\ 10
 endif
+
+" set my favorite font
+set guifont=Inconsolata-dz\ For\ Powerline:h13
 
 " shut up
 set visualbell
-
-"custom tab stuff
-" tab navigation like safari
-" idea adopted from: [[VimTip1221]]
-:nmap <D-S-[> :tabprevious<CR>
-:nmap <D-S-]> :tabnext<CR>
-:map <D-S-[> :tabprevious<CR>
-:map <D-S-]> :tabnext<CR>
-:imap <D-S-[> <Esc>:tabprevious<CR>i
-:imap <D-S-]> <Esc>:tabnext<CR>i
-:nmap <D-t> :tabnew<CR>
-:imap <D-t> <Esc>:tabnew<CR>
 
 " Start without the toolbar
 set guioptions-=T

@@ -21,11 +21,13 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Raimondi/delimitMate'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'einars/js-beautify'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'maksimr/vim-jsbeautify'
 Bundle 'nono/vim-handlebars'
 Bundle 'pangloss/vim-javascript'
 Bundle 'rphillips/vim-zoomwin'
@@ -54,6 +56,11 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+
+let g:jsbeautify = {'indent_size': 2, 'indent_char': ' ', 'jslint_happy': 1, 'keep_array_indentation': 1, 'space_before_conditional': 1}
+let g:htmlbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 80, 'brace_style': 'expand', 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u']}
+let g:cssbeautify = {'indent_size': 2, 'indent_char': ' '}
+
 
 " Searching
 set hlsearch
