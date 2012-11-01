@@ -22,7 +22,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'Raimondi/delimitMate'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'einars/js-beautify'
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
@@ -69,6 +69,12 @@ let g:jsbeautify = {'indent_size': 2, 'indent_char': ' ', 'jslint_happy': 1, 'ke
 let g:htmlbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 80, 'brace_style': 'expand', 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u']}
 let g:cssbeautify = {'indent_size': 2, 'indent_char': ' '}
 
+" Beautifier
+autocmd FileType javascript noremap <buffer> <leader>ff :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <leader>ff :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <leader>ff :call CSSBeautify()<cr>
 
 " Searching
 set hlsearch
