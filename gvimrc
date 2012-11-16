@@ -25,10 +25,6 @@ set guioptions-=T
 " no scroll bars
 set guioptions=aAce
 
-"color
-set background=dark
-colorscheme solarized
-
 " set trailing char and tab char
 set list listchars=tab:\ \ ,trail:·
 

@@ -1,0 +1,20 @@
+".editorconfig
+
+[**.js]
+indent_size = 0
+jslint_happy = 1
+keep_array_indentation = 1
+space_before_conditional = 1
+break_chained_methods = 1
+indent_style = space
+
+[**.css]
+indent_style = space
+indent_size = 2
+
+[**.html]
+unformatted = ['a', 'sub', 'sup', 'b', 'i', 'u']
+indent_style = space
+indent_size = 2
+max_char = 80
+brace_style = expand

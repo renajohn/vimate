@@ -22,7 +22,6 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'Raimondi/delimitMate'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'einars/js-beautify'
-"Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
@@ -42,6 +41,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/camelcasemotion'
 Bundle 'vim-scripts/matchit.zip'
+Bundle 'vim-scripts/Lucius'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
@@ -64,10 +64,6 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-
-let g:jsbeautify = {'indent_size': 2, 'indent_char': ' ', 'jslint_happy': 1, 'keep_array_indentation': 1, 'space_before_conditional': 1, 'break_chained_methods': 1}
-let g:htmlbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 80, 'brace_style': 'expand', 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u']}
-let g:cssbeautify = {'indent_size': 2, 'indent_char': ' '}
 
 " Beautifier
 autocmd FileType javascript noremap <buffer> <leader>ff :call JsBeautify()<cr>
@@ -206,7 +202,9 @@ set spellsuggest=6
 
 " color theme
 set background=dark
-colorscheme solarized
+colorscheme lucius
+"LuciusDarkLowContrast
+
 call togglebg#map("<F8>")
 
 " enable folding
