@@ -1,7 +1,6 @@
 root = true
 
 [**.js]
-;vim:path=~/.vim/bundle/js-beautify/beautify.js
 indent_size = 2
 jslint_happy = 1
 keep_array_indentation = 1
@@ -10,12 +9,10 @@ break_chained_methods = 1
 indent_style = space
 
 [**.css]
-;vim:path=~/.vim/bundle/js-beautify/beautify-css.js
 indent_style = space
 indent_size = 2
 
 [**.html]
-;vim:path=~/.vim/bundle/js-beautify/beautify-html.js
 unformatted = ['a', 'sub', 'sup', 'b', 'i', 'u']
 indent_style = space
 indent_size = 2
