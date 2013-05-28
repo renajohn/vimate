@@ -82,6 +82,9 @@ let g:SuperTabDefaultCompletionType = "context"
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc
 
+" Ultisnips, don't use defaults, they sucks
+let g:UltiSnipsSnippetDirectories=["snippets"]
+
 " set omnicompletion functions
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS

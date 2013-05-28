@@ -1,0 +1,132 @@
+###########################################################################
+#                            Javascirpt Snippets                          #
+###########################################################################
+extends javascript
+
+snippet head "Header information"
+/*
+ * Copyright (C) `date +%Y` `echo $COMPANY`. All rights reserved.
+ * `echo $NAME` <`echo $EMAIL`> `date +"%d %B %Y"`
+ *
+ * ${1:Description}
+ */
+endsnippet
+
+snippet error "winston error"
+winston.error('${1:##}');$2
+endsnippet
+
+snippet debug "winston debug"
+winston.debug('${1:##}');$2
+endsnippet
+
+snippet info "winston info"
+winston.info('${1:##}');$2
+endsnippet
+
+snippet log "console log"
+console.log('${1:##}');$2
+endsnippet
+
+snippet req "NodeJS requires"
+var ${1:#module} = require('$2$1');
+endsnippet
+
+snippet vf "function"
+var ${1:function_name} = function(${2:parameters}) {
+  ${3:// body...}
+};
+endsnippet
+
+snippet ife "if ___ else"
+if (${1:true}) {
+  $0
+} else { 
+}
+endsnippet
+
+snippet if "if"
+if (${1:true}) {
+  $0
+}
+endsnippet
+
+snippet fun "function (fun)"
+function ${1:function_name} (${2:argument}) {
+	${0:// body...}
+}
+
+snippet :, "Object Value JS"
+${1:value_name}: ${0:value},
+endsnippet
+
+snippet : "Object key key: 'value'"
+${1:key}: ${2:"${3:value}"}${4:,}
+endsnippet
+
+snippet :f "Object Method"
+${1:method_name}: function (${3:attribute}){
+	$0
+}${10:,}
+endsnippet
+
+snippet '':f "object method string"
+'${1:${2:#thing}:${3:click}}': function (element){
+	$0
+}${10:,}
+endsnippet
+
+snippet map "array.map"
+${1:array}.map(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet .map "map" i
+.map(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet filter "filter"
+${1:array}.filter(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet .filter "filter" i
+.filter(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet for "forEach"
+${1:array}.forEach(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet .forEach "forEach" i
+.forEach(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet .for "forEach" i
+.forEach(function (${2:item}) {
+  $0
+});
+endsnippet
+
+snippet for "for (...) {...}"
+for (var ${2:i}=0; $2 < ${1:Things}.length; $2++) {
+	${3:$1[$2]}$0
+}
+endsnippet
+
+snippet for "for (...) {...} (faster)"
+for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2--){
+	${3:$1[$2]}$0
+}
+endsnippet
+
