@@ -14,7 +14,7 @@ else
 endif
 
 " set my favorite font
-set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h13
+set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h15
 
 " shut up
 set visualbell

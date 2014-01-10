@@ -14,20 +14,22 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " all bundles
+Bundle 'tpope/vim-sensible'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'Raimondi/delimitMate'
+Bundle 'jiangmiao/auto-pairs'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'godlygeek/tabular'
 Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
-Bundle 'majutsushi/tagbar'
 Bundle 'maksimr/vim-jsbeautify'
-Bundle 'nono/vim-handlebars'
-Bundle 'pangloss/vim-javascript'
+Bundle 'majutsushi/tagbar'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'lukaszb/vim-web-indent'
 Bundle 'rphillips/vim-zoomwin'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
@@ -39,119 +41,42 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-scripts/UltiSnips'
 Bundle 'vim-scripts/camelcasemotion'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'vim-scripts/Lucius'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'chriskempson/base16-vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'mattn/emmet-vim'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
 set number
-set ruler
 syntax on
 
-" syntastic
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = '✗✗'
-let g:syntastic_style_error_symbol = '✠✠'
-let g:syntastic_warning_symbol = '∆∆'
-let g:syntastic_style_warning_symbol = '≈≈'
-
-" Whitespace stuff
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
 
 " Beautifier
-autocmd FileType javascript noremap <buffer> <leader>ff :call JsBeautify()<cr>
+autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
 " for html
-autocmd FileType html noremap <buffer> <leader>ff :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css noremap <buffer> <leader>ff :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-" Tab completion
-let g:SuperTabDefaultCompletionType = "context"
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc
-
-" Ultisnips, don't use defaults, they sucks
-let g:UltiSnipsSnippetDirectories=["snippets"]
+" remove trailing white space on save
+autocmd BufWritePre * :%s/\s\+$//e
 
 " set omnicompletion functions
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html let b:delimitMate_autoclose = 0
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 
-" Status bar
-let g:Powerline_symbols = 'fancy'
-set laststatus=2
-
-" NERDTree configuration
-let NERDTreeIgnore=['\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-let g:NERDTreeChDir=1
-
-" align declarations
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /^[^:]*\zs:<CR>
-vmap <Leader>a: :Tabularize /^[^:]*\zs:<CR>
-
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
-
-" ZoomWin configuration
-map <Leader><CR> :ZoomWin<CR>
-
-" CTags
-set tags=./tags;$HOME " collect all tags up to the home directory
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-
-" Remember last location in file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-endif
-
-function s:setupWrapping()
-  set wrap
-  set wm=2
-  set textwidth=72
-endfunction
-
-function s:setupMarkup()
-  call s:setupWrapping()
-  map <buffer> <Leader>p :Hammer <CR>
-endfunction
-
 " JSON is javascript, after all
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
-" NFO files is XML
-autocmd BufNewFile,BufRead *.nfo set ft=xml
+" Handlebars is handlebars
+autocmd BufNewFile,BufRead *.mustache,*.handlebars,*.hbs,*.hogan,*.hulk,*.hjs,*.hb set filetype=html syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 
 " make and python use real tabs
 au FileType make set noexpandtab
@@ -162,23 +87,79 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
-
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" javascript
+let javascript_enable_domhtmlcss = 1
 
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+" syntastic
+let g:syntastic_mode_map={ 'mode': 'active',
+                     \ 'active_filetypes': [],
+                     \ 'passive_filetypes': ['html'] }
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_error_symbol = '✗✗'
+let g:syntastic_style_error_symbol = '✠✠'
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
+"let g:syntastic_filetype_map = { 'mustache.handlebars.html': 'handlebars' }
 
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+" Whitespace stuff
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" Searching
+set hlsearch
+set ignorecase
+set smartcase
+
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc
+
+" Ultisnips, don't use defaults, they sucks
+let g:UltiSnipsSnippetDirectories=["snippets"]
+
+" Status bar
+let g:Powerline_symbols = 'fancy'
+
+" NERDTree configuration
+let NERDTreeIgnore=['\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeChDir=1
+
+" ZoomWin configuration
+map <Leader><CR> :ZoomWin<CR>
+
+" CTags
+set tags=./tags;$HOME " collect all tags up to the home directory
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+
+" Remember last location in file
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+
+function! s:setupWrapping()
+  set wrap
+  set wm=2
+  set textwidth=72
+endfunction
+
+function! s:setupMarkup()
+  call s:setupWrapping()
+  map <buffer> <Leader>p :Hammer <CR>
+endfunction
+
 
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" custom ignore for ctrlp
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|compiled_tpls\|tmp\|build'
 
 " Unimpaired configuration
 " Bubble single lines
@@ -203,17 +184,13 @@ set spell
 set spellsuggest=6
 
 " color theme
+set t_Co=256
+let base16colorspace=256  " Access colors present in 256 colorspace"
 set background=dark
-colorscheme lucius
-"LuciusDarkLowContrast
+colorscheme base16-eighties
 
-call togglebg#map("<F8>")
-
-" enable folding
+" disable folding
 set nofoldenable
-
-" turn highlight of
-nmap <Leader><Leader> :nohlsearch<CR>
 
 " allow for switching buffers when a file has changes
 set hidden
@@ -223,7 +200,7 @@ set cursorline
 
 if version >= 703
   " Gundo
-  nnoremap <F5> :GundoToggle<CR>
+  nnoremap <F6> :GundoToggle<CR>
 
   " Persistent undo
   set undodir=~/.vim/undodir
@@ -235,7 +212,16 @@ endif
 " disable logging for Javascript indentation
 let g:js_indent_log=0
 
-map <F4> :TagbarToggle<CR>
+" next and prev in location file
+map <F4> :lnext<CR>
+map <S-F4> :lprevious<CR>
+
+" next and prev in quickfix
+map <F5> :cnext<CR>
+map <S-F5> :cprevious<CR>
+
+" tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " active mouse
 set mouse=a
@@ -243,7 +229,7 @@ set mouse=a
 " toggle auto indent for pasting
 " TODO: ZoomWin should be triggered only if there are more then 1 window. No
 " idea how to detect the number of window in VIM.
-function ToggleCopyAndPast()
+function! ToggleCopyAndPast()
   set invpaste paste?
   if &mouse == ""
     set number
