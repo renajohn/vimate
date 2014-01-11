@@ -22,9 +22,7 @@ Bundle 'tpope/vim-sensible'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'groenewege/vim-less'
-Bundle 'kien/ctrlp.vim'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'majutsushi/tagbar'
 Bundle 'mustache/vim-mustache-handlebars'
@@ -40,11 +38,17 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-scripts/UltiSnips'
-Bundle 'vim-scripts/camelcasemotion'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'chriskempson/base16-vim'
-Bundle 'mileszs/ack.vim'
 Bundle 'mattn/emmet-vim'
+Bundle 'vim-scripts/SyntaxComplete'
+Bundle 'airblade/vim-rooter'
+Bundle 'ConradIrwin/vim-bracketed-paste'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/neocomplete.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite-outline'
+Bundle 'Shougo/unite-help'
+Bundle 'osyo-manga/unite-quickfix'
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
@@ -64,13 +68,10 @@ autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
 autocmd BufWritePre * :%s/\s\+$//e
 
 " set omnicompletion functions
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd Filetype *
+		    \	if &omnifunc == "" |
+		    \		setlocal omnifunc=syntaxcomplete#Complete |
+		    \	endif
 
 " JSON is javascript, after all
 autocmd BufNewFile,BufRead *.json set ft=javascript
@@ -82,15 +83,72 @@ autocmd BufNewFile,BufRead *.mustache,*.handlebars,*.hbs,*.hogan,*.hulk,*.hjs,*.
 au FileType make set noexpandtab
 au FileType python set noexpandtab
 
-" Thorfile, Rakefile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
-
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
+" Unite
+let g:unite_data_directory="~/.vim/.cache/unite"
+let g:unite_source_rec_max_cache_files=5000
+let g:unite_source_file_mru_limit = 200
+let g:unite_source_grep_command='ag --nocolor --nogroup --ignore ".git" --ignore "node_modules" --ignore "tmp" --hidden -g ""'
+let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden'
+let g:unite_source_grep_recursive_opt=''
+let g:unite_source_history_yank_enable = 1
+let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".git" --ignore "node_modules" --ignore "tmp" --hidden -g ""'
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+nnoremap <leader>p :<C-u>Unite -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f  :<C-u>Unite -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r  :<C-u>Unite -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o  :<C-u>Unite -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>g  :<C-u>Unite -buffer-name=grep    -start-insert grep:.<cr>
+nnoremap <leader>h  :<C-u>Unite -buffer-name=help    -start-insert help<cr>
+nnoremap <leader>y  :<C-u>Unite -buffer-name=yank                  history/yank<cr>
+nnoremap <leader>e  :<C-u>Unite -buffer-name=buffer  buffer file_mru bookmark<cr>
+nnoremap <leader>b  :<C-u>Unite -buffer-name=buffer  -quick-match  buffer<cr>
+nnoremap <leader>q  :<C-u>Unite -buffer-name=quickfix              quickfix location_list<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " esc or qq to quit
+  nmap <buffer> <ESC>   <Plug>(unite_exit)
+  nmap <buffer> qq      <Plug>(unite_exit)
+  imap <buffer> qq      <Plug>(unite_exit)
+
+  imap <buffer> jj      <Plug>(unite_insert_leave)
+
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+
+  nmap <buffer> g     <Plug>(unite_quick_match_choose_action)
+endfunction
+
+" syntax complete
+setlocal omnifunc=syntaxcomplete#Complete
+
 " javascript
 let javascript_enable_domhtmlcss = 1
+
+" neo complete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" FooBar select first entry by default
+let g:neocomplete#enable_auto_select = 1
+" use fuzzy completion
+let g:neocomplete#enable_fuzzy_completion = 1
+" If an upper case is used, only match an upper case
+let g:neocomplete#enable_camel_case = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " syntastic
 let g:syntastic_mode_map={ 'mode': 'active',
@@ -245,19 +303,6 @@ endfunction
 noremap <F2> :call ToggleCopyAndPast()<CR>
 inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>i
 set pastetoggle=<F2>
-
-" activate bracketed past mode
-if &term =~ "xterm.*"
-    let &t_ti = &t_ti . "\e[?2004h"
-    let &t_te = "\e[?2004l" . &t_te
-    function XTermPasteBegin(ret)
-        set pastetoggle=<Esc>[201~
-        set paste
-        return a:ret
-    endfunction
-    map <expr> <Esc>[200~ XTermPasteBegin("i")
-    imap <expr> <Esc>[200~ XTermPasteBegin("")
-endif
 
 " change cursor shape in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"

@@ -1,5 +1,6 @@
 .DS_Store
 .netrwhist
+.cache
 tags
 *.pyc
 tmp
