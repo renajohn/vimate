@@ -28,8 +28,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " BUNDLES (plugins administrated by NeoBundle) {{{
 
-" Shougo's way {{{
-
 " Vimproc to asynchronously run commands (NeoBundle, Unite)
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
@@ -39,6 +37,8 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+
+" Unite {{{
 
 " Unite. The interface to rule almost everything
 NeoBundle 'Shougo/unite.vim'
@@ -62,455 +62,14 @@ NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
 NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
             \ 'unite_sources':['junkfile','junkfile/new']}}
 
-" auto complete like I was hopping for
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'renajohn/neosnippet-snippets'
-
-" Vim Shell
-NeoBundle 'shougo/vimshell'
-
-" }}}
-
-
-" JavaScript {{{
-
-" JavaScript
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'lukaszb/vim-web-indent'
-NeoBundle 'pangloss/vim-javascript'
-
-" }}}
-
-
-" html/CSS/handlebars {{{
-
-" handle handlebars
-NeoBundle 'mustache/vim-mustache-handlebars'
-
-" emmet to write html
-NeoBundleLazy 'othree/html5.vim', {'autoload':
-            \ {'filetypes': ['html', 'xhttml', 'css']}}
-NeoBundleLazy 'mattn/emmet-vim', {'autoload':
-            \ {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
-
-" }}}
-
-
-" Text edition {{{
-
-" multiple cursors like sublime text
-NeoBundle 'terryma/vim-multiple-cursors'
-" Not sure I need this one
-NeoBundle 'tpope/vim-unimpaired'
-" to surround vim objects with a pair of identical chars
-NeoBundle 'tpope/vim-surround'
-" extend repetitions by the 'dot' key
-NeoBundle 'tpope/vim-repeat'
-" toggle comments
-NeoBundle 'tpope/vim-commentary'
-" Safe past mode
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-" Set working dir to root of project (.git)
-NeoBundle 'airblade/vim-rooter'
-" replace in quickfix
-NeoBundle 'thinca/vim-qfreplace'
-" close brackets automatically
-NeoBundle 'jiangmiao/auto-pairs'
-
-" }}}
-
-" GUI {{{
-
-" color scheme
-NeoBundle 'chriskempson/base16-vim'
-" awesome command line
-NeoBundle 'itchyny/lightline.vim'
-" browse the vim undo tree
-NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
-" Zooms a window
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
-            \{'commands' : 'ZoomWinTabToggle'}}
-" easily window resizing
-NeoBundle 'jimsei/winresizer'
-" Dir tree
-NeoBundle 'scrooloose/nerdtree'
-" Show indent lines
-NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python',
- \'javascript']}}
-
-" }}}
-
-
-" Git {{{
-
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'
-" Git viewer
-NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'],
-            \ 'autoload':{'commands':'Gitv'}}
-
-" }}}
-
-
-" Syntax {{{
-
-" Check syntax
-NeoBundle 'scrooloose/syntastic'
-" load syntax file as omnicomplete when there is no omnicompletion fn
-NeoBundle 'vim-scripts/SyntaxComplete'
-" JSON
-NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
-" color scheme for less
-NeoBundleLazy 'groenewege/vim-less', {'filetypes' : 'less'}
-
-" }}}
-"
-
-" Auto install the plugins {{{
-
-" First-time plugins installation
-if iCanHazNeoBundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :NeoBundleInstall
-endif
-
-" Check if all of the plugins are already installed, in other case ask if we
-" want to install them (useful to add plugins in the .vimrc)
-NeoBundleCheck
-
-" }}}
-
-filetype plugin indent on      " Indent and plugins by filetype
-
-" END BUNDLES }}}
-
-" VIM Setup {{{ ===============================================================
-
-" <Leader> & <LocalLeader> mapping {{{
-
-let mapleader='\'
-let maplocalleader= ' '
-
-" }}}
-
-" Basic options {{{
-
-scriptencoding utf-8
-set encoding=utf-8              " setup the encoding to UTF-8
-set ls=2                        " status line always visible
-set go-=T                       " hide the toolbar
-set go-=m                       " hide the menu
-" The next two lines are quite tricky, but in Gvim, if you don't do this, if you
-" only hide all the scrollbars, the vertical scrollbar is showed anyway
-set go+=rRlLbh                  " show all the scrollbars
-set go-=rRlLbh                  " hide all the scrollbars
-set visualbell                  " turn on the visual bell
-set cursorline                  " highlight the line under the cursor
-set fillchars+=vert:│           " better looking for windows separator
-set ttyfast                     " better screen redraw
-set title                       " set the terminal title to the current file
-set showcmd                     " shows partial commands
-set hidden                      " hide the inactive buffers
-set ruler                       " sets a permanent rule
-set lazyredraw                  " only redraws if it is needed
-set autoread                    " update a open file edited outside of Vim
-set ttimeoutlen=0               " toggle between modes almost instantly
-set backspace=indent,eol,start  " defines the backspace key behavior
-set nofoldenable                " disable folding
-
-set modeline                    " interpret vim commands in files (like the last comment of this file)
-set modelines=10                " number of lines checked to find each modeline
-set number                      " show line numbers
-set spell                       " activate spell checking
-set spellsuggest=6              " set the maximum number of suggestions
-
-" change cursor shape in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-" }}}
-
-" Wildmenu {{{
-
-set wildmenu                        " Command line autocompletion
-set wildmode=list:longest,full      " Shows all the options
-
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.o,*.obj,.git,*.rbc
-
-" }}}
-
-" Searching {{{
-
-set incsearch                   " incremental searching
-set showmatch                   " show pairs match
-set hlsearch                    " highlight search results
-set smartcase                   " smart case ignore
-set ignorecase                  " ignore case letters
-
-" turn highlight off
-nmap \\ :nohlsearch<CR>
-
-" }}}
-
-" History and permanent undo levels {{{
-
-set undofile
-set history=1000
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=1000
-
-" }}}
-
-" Tabs, space and wrapping {{{
-
-set nowrap
-set expandtab                  " spaces instead of tabs
-set tabstop=2                  " a tab = four spaces
-set shiftwidth=2               " number of spaces for auto-indent
-set softtabstop=2              " a soft-tab of four spaces
-set autoindent                 " set on the auto-indent
-
-" set formatoptions=qrn1ct
-set textwidth=80
-set colorcolumn=81
-
-function! ToggleWrap()
-    let s:nowrap_cc_bg = [22, '#005f00']
-    redir => s:curr_cc_hi
-    silent hi ColorColumn
-    redir END
-    let s:curr_cc_ctermbg = matchstr(s:curr_cc_hi, 'ctermbg=\zs.\{-}\s\ze\1')
-    let s:curr_cc_guibg = matchstr(s:curr_cc_hi, 'guibg=\zs.\{-}\_$\ze\1')
-    if s:curr_cc_ctermbg != s:nowrap_cc_bg[0]
-        let g:curr_cc_ctermbg = s:curr_cc_ctermbg
-    endif
-    if s:curr_cc_guibg != s:nowrap_cc_bg[1]
-        let g:curr_cc_guibg = s:curr_cc_guibg
-    endif
-    if &textwidth == 80
-        set textwidth=0
-        exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
-                    \' guibg='.s:nowrap_cc_bg[1]
-    elseif &textwidth == 0
-        set textwidth=80
-        exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
-                    \' guibg='.g:curr_cc_guibg
-    endif
-endfunction
-
-nmap <silent><Leader>ew :call ToggleWrap()<CR>
-
-" }}}
-
-" variables {{{
-
-" specify where node is
-let $JS_CMD='node'
-
-" }}}
-
-" CTags {{{
-
-set tags=./tags;$HOME " collect all tags up to the home directory
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-
-" }}}
-
-" Make a dir if no exists {{{
-
-function! MakeDirIfNoExists(path)
-    if !isdirectory(expand(a:path))
-        call mkdir(expand(a:path), "p")
-    endif
-endfunction
-
-" }}}
-
-" Backups {{{
-
-set backup
-set noswapfile
-set backupdir=$HOME/.vim/tmp/backup/
-set undodir=$HOME/.vim/tmp/undo/
-set directory=$HOME/.vim/tmp/swap/
-set viminfo+=n$HOME/.vim/tmp/viminfo
-
-" make this dirs if no exists previously
-silent! call MakeDirIfNoExists(&undodir)
-silent! call MakeDirIfNoExists(&backupdir)
-silent! call MakeDirIfNoExists(&directory)
-
-" }}}
-
-" Colorscheme {{{
-
-syntax enable                  " enable the syntax highlight
-set background=dark            " set a dark background
-set t_Co=256                   " 256 colors for the terminal
-let base16colorspace=256       " Access colors present in 256 colorspace
-colorscheme base16-monokai
-
-" }}}
-
-" QuickFix/Location file nav {{{
-
-" next and prev in location file
-map <F4> :lnext<CR>
-map <S-F4> :lprevious<CR>
-
-" next and prev in quickfix
-map <F5> :cnext<CR>
-map <S-F5> :cprevious<CR>
-
-" }}}
-
-" Font {{{
-
-set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h15
-
-" }}}
-
-" Clipboard {{{
-
-if has("gui_macvim")
-  " make clipboard work with std clipboard
-  set clipboard=unnamed
-else
-  " make clipboard work with std clipboard
-  " Note that X11 uses the plus register for
-  " std clipboard, not the * as Mac os or windows
-  set clipboard=unnamedplus
-endif
-
-" }}}
-
-" Show hidden chars {{{
-
-nmap <Leader>eh :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
-
-" }}}
-
-" Remember last location in file {{{
-
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-
-" }}}
-
-" Autoload configuration when this file changes ($MYVIMRC) {{{
-
-autocmd! BufWritePost vimrc source %
-
-" }}}
-
-" Toggle line numbers {{{
-
-nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>
-function! ToggleRelativeAbsoluteNumber()
-  if !&number && !&relativenumber
-      set number
-      set norelativenumber
-  elseif &number && !&relativenumber
-      set nonumber
-      set relativenumber
-  elseif !&number && &relativenumber
-      set number
-      set relativenumber
-  elseif &number && &relativenumber
-      set nonumber
-      set norelativenumber
-  endif
-endfunction
-
-" }}}
-
-" Save as root {{{
-
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-
-" }}}
-
-" Load matchit by default {{{
-
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
-" }}}
-
-" remove trailing white space on save {{{
-
-autocmd BufWritePre * :%s/\s\+$//e
-
-" }}}
-
-" make and python use real tabs {{{
-
-au FileType make set noexpandtab
-au FileType python set noexpandtab
-
-" }}}
-
-" Conceal to hide some part of the text {{{
-
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" }}}
-
-" END VIM SETUP }}}
-
-" PLUGINS Setup {{{ ===========================================================
-
-" JS Beautifier {{{
-
-" Beautifier
-autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
-
-" }}}
-
-" Syntax complete {{{
-
-autocmd Filetype *
-        \ if &omnifunc == "" |
-        \   setlocal omnifunc=syntaxcomplete#Complete |
-        \ endif
-
-setlocal omnifunc=syntaxcomplete#Complete
-
-" }}}
-
-" Handlebars  {{{
-
-autocmd BufNewFile,BufRead *.hb set filetype=html syntax=mustache
-
-" }}}
-
-" Emmet {{{
-
-let g:user_emmet_expandabbr_key = '<C-k>'
-let g:use_emmet_complete_tag = 1
-
-" }}}
-
-" Unite {{{
-
 " files
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
-nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/async<CR>
+nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async:!<CR>
 nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
+" bookmark
+nnoremap <silent><Leader>g :Unite -silent -start-insert
+  \ -default-action=project_cd  directory:~/Projects/BugBuster<CR>
+
 " buffers
 nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 " tabs
@@ -538,7 +97,9 @@ nnoremap <silent><Leader>T :Unite -silent -vertical -start-insert -winwidth=40
 " junk files
 nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 " sources
-nnoremap <silent><Leader>s :Unite -silent -toggle source<CR>
+nnoremap <silent><Leader>s :Unite -silent -start-insert -toggle source<CR>
+" quickfix
+nnoremap <silent><Leader>q :Unite -silent -toggle quickfix location_list<CR>
 
 " menus {{{
 let g:unite_source_menu_menus = {}
@@ -841,8 +402,9 @@ nnoremap <silent>[menu]m :Unite -silent menu:bookmarks<CR>
 
 " }}}
 
-" }}}
+" End menu }}}
 
+" call unite#filters#matcher_default#use(['matcher_fuzzy', 'matcher_project_files'])
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
@@ -886,20 +448,13 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
-" }}}
+" End Unite }}}
 
-" indentLine {{{
-
-map <silent> <Leader>L :IndentLinesToggle<CR>
-let g:indentLine_enabled = 0
-let g:indentLine_char = '┊'
-let g:indentLine_color_term = 239
-
-" }}}
-
-" NeoComplete and NeoSnippets {{{
 
 " neo complete {{{
+
+" auto complete like I was hopping for
+NeoBundle 'Shougo/neocomplete.vim'
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -929,6 +484,8 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " neosnippet {{{
 
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'renajohn/neosnippet-snippets'
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -941,44 +498,108 @@ imap <expr><TAB> !pumvisible() && neosnippet#expandable_or_jumpable() ?
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
+
 " }}}
 
-" Recommended key-mappings.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
+" Vim Shell {{{
 
-
-
-" End of NeoComplete and NeoSnippets }}}
-
-" Vim shell {{{
-
+NeoBundle 'shougo/vimshell'
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 
 " }}}
 
-" syntastic {{{
+" JavaScript {{{
 
-nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
+" JavaScript
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
-let g:syntastic_mode_map={ 'mode': 'active',
-                     \ 'active_filetypes': [],
-                     \ 'passive_filetypes': ['html'] }
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_style_error_symbol = '✠'
-let g:syntastic_warning_symbol = '∆'
-let g:syntastic_style_warning_symbol = '≈'
-"let g:syntastic_filetype_map = { 'mustache.handlebars.html': 'handlebars' }
+" JS Beautifier {{{
+
+NeoBundle 'maksimr/vim-jsbeautify'
+" Beautifier
+autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
 
 " }}}
 
+NeoBundle 'lukaszb/vim-web-indent'
+NeoBundle 'pangloss/vim-javascript'
+
+" }}}
+
+
+" html/CSS/handlebars {{{
+
+" A smart and powerful Color Management tool. Needs to be loaded to be able
+" to use the mappings
+NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
+    \ 'commands' : [
+                     \ 'ColorV', 'ColorVView', 'ColorVPreview',
+                     \ 'ColorVPicker', 'ColorVEdit', 'ColorVEditAll',
+                     \ 'ColorVInsert', 'ColorVList', 'ColorVName',
+                     \ 'ColorVScheme', 'ColorVSchemeFav',
+                     \ 'ColorVSchemeNew', 'ColorVTurn2'],
+    \ }}
+
+" Handlebars  {{{
+
+NeoBundle 'mustache/vim-mustache-handlebars'
+autocmd BufNewFile,BufRead *.hb set filetype=html syntax=mustache
+
+" }}}
+
+" HTML5 + inline SVG omnicomplete funtion, indent and syntax
+NeoBundleLazy 'othree/html5.vim', {'autoload':
+            \ {'filetypes': ['html', 'xhtml', 'css']}}
+
+" Emmet {{{
+
+" emmet to write html
+NeoBundleLazy 'mattn/emmet-vim', {'autoload':
+            \ {'filetypes': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}}
+let g:use_emmet_complete_tag = 1
+let g:user_emmet_mode='a'
+
+" }}}
+
+" }}}
+
+
+" Text edition {{{
+
+" multiple cursors like sublime text
+NeoBundle 'joedicastro/vim-multiple-cursors'
+" to surround vim objects with a pair of identical chars
+NeoBundle 'tpope/vim-surround'
+" extend repetitions by the 'dot' key
+NeoBundle 'tpope/vim-repeat'
+" toggle comments
+NeoBundle 'tpope/vim-commentary'
+" Safe past mode
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
+" Set working dir to root of project (.git)
+NeoBundle 'airblade/vim-rooter'
+" replace in quickfix
+NeoBundle 'thinca/vim-qfreplace'
+" Autocompletion of (, [, {, ', ", ... {{{
+NeoBundle 'delimitMate.vim'
+let delimitMate_expand_cr = 2
+" }}}
+
+" }}}
+
+" GUI {{{
+
+" color scheme
+NeoBundle 'chriskempson/base16-vim'
+
 " Status bar {{{ -------------------------------------------------------------
+" awesome command line
+NeoBundle 'itchyny/lightline.vim'
 let g:lightline = {
       \ 'colorscheme': 'default',
       \ 'mode_map': { 'c': 'NORMAL' },
@@ -1042,19 +663,32 @@ endfunction
 
 " }}}
 
-" NERDTree configuration {{{
+" gundo {{{
 
-let NERDTreeIgnore=['\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-let g:NERDTreeChDir=1
+" browse the vim undo tree
+NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
+nnoremap <F6> :GundoToggle<CR>
+let g:gundo_preview_bottom = 1
+
+" }}}
+
+" winresizer {{{
+
+" easily window resizing
+NeoBundle 'jimsei/winresizer'
+
+let g:winresizer_start_key = '<C-C><C-W>'
 
 " }}}
 
 " ZoomWin {{{
 
+" Zooms a window
+NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
+            \{'commands' : 'ZoomWinTabToggle'}}
+
 map <Leader>z :ZoomWinTabToggle<CR>
 
-" }}}
 
 " Toggle copy & past mode {{{
 
@@ -1085,32 +719,41 @@ set pastetoggle=<F2>
 
 " End Zoomwin }}}
 
-" Unimpaired {{{
+" NERDTree configuration {{{
 
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+NeoBundle 'scrooloose/nerdtree'
 
-" }}}
-
-" gundo {{{
-
-nnoremap <F6> :GundoToggle<CR>
-let g:gundo_preview_bottom = 1
+let NERDTreeIgnore=['\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeChDir=1
 
 " }}}
 
-" Commentary {{{ -------------------------------------------------------------
+" indentLine {{{
 
-nmap <Leader>c <Plug>CommentaryLine
-xmap <Leader>c <Plug>Commentary
+" Show indent lines
+NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python',
+ \'javascript']}}
+map <silent> <Leader>L :IndentLinesToggle<CR>
+let g:indentLine_enabled = 1
+let g:indentLine_char = '┊'
+" let g:indentLine_color_term = 239
 
 " }}}
+
+" }}}
+
+
+" Git {{{
+
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
 
 " Gitv {{{
+
+" Git viewer
+NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'],
+            \ 'autoload':{'commands':'Gitv'}}
 
 nnoremap <silent> <leader>gv :Gitv --all<CR>
 nnoremap <silent> <leader>gV :Gitv! --all<CR>
@@ -1125,17 +768,355 @@ autocmd FileType git set nofoldenable
 
 " }}}
 
-" winresizer {{{
+" }}}
 
-let g:winresizer_start_key = '<C-C><C-W>'
+
+" Syntax {{{
+
+" syntastic {{{
+
+NeoBundle 'scrooloose/syntastic'
+nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
+
+let g:syntastic_mode_map={ 'mode': 'active',
+                     \ 'active_filetypes': [],
+                     \ 'passive_filetypes': ['html'] }
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_style_error_symbol = '✠'
+let g:syntastic_warning_symbol = '∆'
+let g:syntastic_style_warning_symbol = '≈'
+
+"let g:syntastic_filetype_map = { 'mustache.handlebars.html': 'handlebars' }
 
 " }}}
 
+" Syntax complete {{{
+
+" load syntax file as omnicomplete when there is no omnicompletion fn
+NeoBundle 'vim-scripts/SyntaxComplete'
+autocmd Filetype *
+        \ if &omnifunc == "" |
+        \   setlocal omnifunc=syntaxcomplete#Complete |
+        \ endif
+
+setlocal omnifunc=syntaxcomplete#Complete
+
+" }}}
+" JSON
+NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
+" color scheme for less
+NeoBundleLazy 'groenewege/vim-less', {'filetypes' : 'less'}
+
+" }}}
+"
+
+" Auto install the plugins {{{
+
+" First-time plugins installation
+if iCanHazNeoBundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :NeoBundleInstall
+endif
+
+" Check if all of the plugins are already installed, in other case ask if we
+" want to install them (useful to add plugins in the .vimrc)
+NeoBundleCheck
+
 " }}}
 
-" Include user's local vim config"{{{"}}}
+filetype plugin indent on      " Indent and plugins by filetype
+
+" END BUNDLES }}}
+
+
+" VIM Setup {{{ ===============================================================
+
+" <Leader> & <LocalLeader> mapping {{{
+
+let mapleader='\'
+let maplocalleader= ' '
+
+" }}}
+
+" Basic options {{{
+
+scriptencoding utf-8
+set encoding=utf-8              " setup the encoding to UTF-8
+set ls=2                        " status line always visible
+set go-=T                       " hide the toolbar
+set go-=m                       " hide the menu
+" The next two lines are quite tricky, but in Gvim, if you don't do this, if you
+" only hide all the scrollbars, the vertical scrollbar is showed anyway
+set go+=rRlLbh                  " show all the scrollbars
+set go-=rRlLbh                  " hide all the scrollbars
+set visualbell                  " turn on the visual bell
+set cursorline                  " highlight the line under the cursor
+set fillchars+=vert:│           " better looking for windows separator
+set ttyfast                     " better screen redraw
+set title                       " set the terminal title to the current file
+set showcmd                     " shows partial commands
+set hidden                      " hide the inactive buffers
+set ruler                       " sets a permanent rule
+set lazyredraw                  " only redraws if it is needed
+set autoread                    " update a open file edited outside of Vim
+set ttimeoutlen=0               " toggle between modes almost instantly
+set backspace=indent,eol,start  " defines the backspace key behavior
+set nofoldenable                " disable folding
+
+set modeline                    " interpret vim commands in files (like the last comment of this file)
+set modelines=10                " number of lines checked to find each modeline
+set number                      " show line numbers
+set spell                       " activate spell checking
+set spellsuggest=6              " set the maximum number of suggestions
+
+" change cursor shape in insert mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" }}}
+
+" Wildmenu {{{
+
+set wildmenu                        " Command line autocompletion
+set wildmode=list:longest,full      " Shows all the options
+
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.o,*.obj,.git,*.rbc
+
+" }}}
+
+" Searching {{{
+
+set incsearch                   " incremental searching
+set showmatch                   " show pairs match
+set hlsearch                    " highlight search results
+set smartcase                   " smart case ignore
+set ignorecase                  " ignore case letters
+
+" turn highlight off
+nmap \\ :nohlsearch<CR>
+
+" }}}
+
+" History and permanent undo levels {{{
+
+set undofile
+set history=1000
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=1000
+
+" }}}
+
+" Tabs, space and wrapping {{{
+
+set nowrap
+set expandtab                  " spaces instead of tabs
+set tabstop=2                  " a tab = four spaces
+set shiftwidth=2               " number of spaces for auto-indent
+set softtabstop=2              " a soft-tab of four spaces
+set autoindent                 " set on the auto-indent
+
+" set formatoptions=qrn1ct
+set textwidth=80
+set colorcolumn=81
+
+function! ToggleWrap()
+    let s:nowrap_cc_bg = [22, '#005f00']
+    redir => s:curr_cc_hi
+    silent hi ColorColumn
+    redir END
+    let s:curr_cc_ctermbg = matchstr(s:curr_cc_hi, 'ctermbg=\zs.\{-}\s\ze\1')
+    let s:curr_cc_guibg = matchstr(s:curr_cc_hi, 'guibg=\zs.\{-}\_$\ze\1')
+    if s:curr_cc_ctermbg != s:nowrap_cc_bg[0]
+        let g:curr_cc_ctermbg = s:curr_cc_ctermbg
+    endif
+    if s:curr_cc_guibg != s:nowrap_cc_bg[1]
+        let g:curr_cc_guibg = s:curr_cc_guibg
+    endif
+    if &textwidth == 80
+        set textwidth=0
+        exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
+                    \' guibg='.s:nowrap_cc_bg[1]
+    elseif &textwidth == 0
+        set textwidth=80
+        exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
+                    \' guibg='.g:curr_cc_guibg
+    endif
+endfunction
+
+nmap <silent><Leader>ew :call ToggleWrap()<CR>
+
+" }}}
+
+" variables {{{
+
+" specify where node is
+let $JS_CMD='node'
+
+" }}}
+
+" CTags {{{
+
+set tags=./tags;$HOME " collect all tags up to the home directory
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+
+" }}}
+
+" Make a dir if no exists {{{
+
+function! MakeDirIfNoExists(path)
+    if !isdirectory(expand(a:path))
+        call mkdir(expand(a:path), "p")
+    endif
+endfunction
+
+" }}}
+
+" Backups {{{
+
+set backup
+set noswapfile
+set backupdir=$HOME/.vim/tmp/backup/
+set undodir=$HOME/.vim/tmp/undo/
+set directory=$HOME/.vim/tmp/swap/
+set viminfo+=n$HOME/.vim/tmp/viminfo
+
+" make this dirs if no exists previously
+silent! call MakeDirIfNoExists(&undodir)
+silent! call MakeDirIfNoExists(&backupdir)
+silent! call MakeDirIfNoExists(&directory)
+
+" }}}
+
+" Colorscheme {{{
+
+syntax enable                  " enable the syntax highlight
+set background=dark            " set a dark background
+set t_Co=256                   " 256 colors for the terminal
+let base16colorspace=256       " Access colors present in 256 colorspace
+colorscheme base16-monokai
+
+" }}}
+
+" QuickFix/Location file nav {{{
+
+" next and prev in location file
+map <F4> :lnext<CR>
+map <S-F4> :lprevious<CR>
+
+" next and prev in quickfix
+map <F5> :cnext<CR>
+map <S-F5> :cprevious<CR>
+
+" }}}
+
+" Font {{{
+
+set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h15
+
+" }}}
+
+" Clipboard {{{
+
+if has("gui_macvim")
+  " make clipboard work with std clipboard
+  set clipboard=unnamed
+else
+  " make clipboard work with std clipboard
+  " Note that X11 uses the plus register for
+  " std clipboard, not the * as Mac os or windows
+  set clipboard=unnamedplus
+endif
+
+" }}}
+
+" Show hidden chars {{{
+
+nmap <Leader>eh :set list!<CR>
+set listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
+
+" }}}
+
+" Remember last location in file {{{
+
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+
+" }}}
+
+" Autoload configuration when this file changes ($MYVIMRC) {{{
+
+autocmd! BufWritePost vimrc source %
+
+" }}}
+
+" Toggle line numbers {{{
+
+nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+function! ToggleRelativeAbsoluteNumber()
+  if !&number && !&relativenumber
+      set number
+      set norelativenumber
+  elseif &number && !&relativenumber
+      set nonumber
+      set relativenumber
+  elseif !&number && &relativenumber
+      set number
+      set relativenumber
+  elseif &number && &relativenumber
+      set nonumber
+      set norelativenumber
+  endif
+endfunction
+
+" }}}
+
+" Save as root {{{
+
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+" }}}
+
+" Load matchit by default {{{
+
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
+" }}}
+
+" remove trailing white space on save {{{
+
+autocmd BufWritePre * :%s/\s\+$//e
+
+" }}}
+
+" make and python use real tabs {{{
+
+au FileType make set noexpandtab
+au FileType python set noexpandtab
+
+" }}}
+
+" Conceal to hide some part of the text {{{
+
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" }}}
+
+" Include user's local vim config {{{
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+" }}}
 
+" END VIM SETUP }}}
 " vim:foldmethod=marker:foldlevel=3:foldenable
