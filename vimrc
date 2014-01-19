@@ -101,6 +101,27 @@ nnoremap <silent><Leader>s :Unite -silent -start-insert -toggle source<CR>
 " quickfix
 nnoremap <silent><Leader>q :Unite -silent -toggle quickfix location_list<CR>
 
+" actions {{{
+
+" add a delete action in file
+let my_delete_fn = {
+\ 'is_selectable' : 1,
+\ }
+function! my_delete_fn.func(candidates)
+  echom a:candidates
+  for candidate in a:candidates
+    call delete(expand(candidate.word));
+  endfor
+  " let dir = isdirectory(a:candidate.word) ?
+  " \    a:candidate.word : fnamemodify(a:candidate.word, ':p:h')
+  " execute g:unite_kind_openable_lcd_command '`=dir`'
+endfunction
+call unite#custom#action('file', 'delete', my_delete_fn)
+unlet my_delete_fn
+
+
+" }}}
+
 " menus {{{
 let g:unite_source_menu_menus = {}
 
@@ -441,7 +462,10 @@ endif
 let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
 
 " Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
+augroup filetype_unite
+  autocmd!
+  autocmd FileType unite call s:unite_settings()
+augroup END
 function! s:unite_settings()
   " Enable navigation with control-j and control-k in insert mode
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
@@ -517,12 +541,15 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 " JS Beautifier {{{
 
 NeoBundle 'maksimr/vim-jsbeautify'
-" Beautifier
-autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
+augroup JsBeautify_au
+  autocmd!
+  " Beautifier
+  autocmd FileType javascript noremap <buffer> ff :call JsBeautify()<cr>
+  " for html
+  autocmd FileType html noremap <buffer> ff :call HtmlBeautify()<cr>
+  " for css or scss
+  autocmd FileType css noremap <buffer> ff :call CSSBeautify()<cr>
+augroup END
 
 " }}}
 
@@ -548,7 +575,10 @@ NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
 " Handlebars  {{{
 
 NeoBundle 'mustache/vim-mustache-handlebars'
-autocmd BufNewFile,BufRead *.hb set filetype=html syntax=mustache
+augroup handlebars_au
+  autocmd!
+  autocmd BufNewFile,BufRead *.hb set filetype=html syntax=mustache
+augroup END
 
 " }}}
 
@@ -764,7 +794,10 @@ let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
 " let g:Gitv_WrapLines = 1
 
-autocmd FileType git set nofoldenable
+augroup filetype_git
+  autocmd!
+  autocmd FileType git set nofoldenable
+augroup END
 
 " }}}
 
@@ -797,10 +830,13 @@ let g:syntastic_style_warning_symbol = '≈'
 
 " load syntax file as omnicomplete when there is no omnicompletion fn
 NeoBundle 'vim-scripts/SyntaxComplete'
-autocmd Filetype *
-        \ if &omnifunc == "" |
-        \   setlocal omnifunc=syntaxcomplete#Complete |
-        \ endif
+augroup SyntaxComplete_au
+  autocmd!
+  autocmd Filetype *
+          \ if &omnifunc == "" |
+          \   setlocal omnifunc=syntaxcomplete#Complete |
+          \ endif
+augroup END
 
 setlocal omnifunc=syntaxcomplete#Complete
 
@@ -1045,14 +1081,20 @@ set listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
 
 " Remember last location in file {{{
 
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+augroup last_au
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
+augroup END
 
 " }}}
 
 " Autoload configuration when this file changes ($MYVIMRC) {{{
 
-autocmd! BufWritePost vimrc source %
+augroup vimrc_au
+  autocmd!
+  autocmd! BufWritePost vimrc source %
+augroup END
 
 " }}}
 
@@ -1093,14 +1135,20 @@ endif
 
 " remove trailing white space on save {{{
 
-autocmd BufWritePre * :%s/\s\+$//e
+augroup remove_trailing_au
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//e
+augroup END
 
 " }}}
 
 " make and python use real tabs {{{
 
-au FileType make set noexpandtab
-au FileType python set noexpandtab
+augroup keep_tab_au
+  autocmd!
+  autocmd FileType make set noexpandtab
+  autocmd FileType python set noexpandtab
+augroup END
 
 " }}}
 
