@@ -108,13 +108,21 @@ let my_delete_fn = {
 \ 'is_selectable' : 1,
 \ }
 function! my_delete_fn.func(candidates)
-  echom a:candidates
-  for candidate in a:candidates
-    call delete(expand(candidate.word));
-  endfor
-  " let dir = isdirectory(a:candidate.word) ?
-  " \    a:candidate.word : fnamemodify(a:candidate.word, ':p:h')
-  " execute g:unite_kind_openable_lcd_command '`=dir`'
+  let files = join(map(copy(a:candidates), 'v:val.word'), ", ")
+	call inputsave()
+  let ans = input("Delete " . len(a:candidates) . " file(s) - " . files . "?  [y|n]: ", "")
+  call inputrestore()
+  if ans == 'y'
+    for candidate in a:candidates
+      if isdirectory(candidate.action__path)
+        for path in split(globpath(candidate.action__path, '**'), '\n')
+          call delete(path)
+        endfor
+      else
+        call delete(candidate.action__path)
+      endif
+    endfor
+  endif
 endfunction
 call unite#custom#action('file', 'delete', my_delete_fn)
 unlet my_delete_fn
