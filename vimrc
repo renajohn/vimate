@@ -64,6 +64,7 @@ NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
 
 " files
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
+nnoremap <silent><Leader>O :Unite -silent -start-insert file:%:h<CR>
 nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async:!<CR>
 nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
 " bookmark
@@ -491,9 +492,9 @@ NeoBundle 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#enable_refresh_always = 1
+let g:neocomplete#enable_refresh_always = 0
 let g:neocomplete#max_list = 30
-let g:neocomplete#min_keyword_length = 1
+let g:neocomplete#min_keyword_length = 3
 let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
 " use fuzzy completion
@@ -504,6 +505,8 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " complete from all buffers
 let g:neocomplete#same_filetypes = {}
 let g:neocomplete#same_filetypes._ = '_'
+let g:neocomplete#force_omni_input_patterns= {}
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 
 " <C-h>, <BS>: close popup and delete backword char.
@@ -1043,7 +1046,7 @@ silent! call MakeDirIfNoExists(&directory)
 syntax enable                  " enable the syntax highlight
 set background=dark            " set a dark background
 set t_Co=256                   " 256 colors for the terminal
-let base16colorspace=256       " Access colors present in 256 colorspace
+" let base16colorspace=256       " Access colors present in 256 colorspace
 colorscheme base16-monokai
 
 " }}}
