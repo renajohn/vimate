@@ -2,6 +2,317 @@
 
 set nocompatible
 
+" VIM Setup {{{ ===============================================================
+
+" <Leader> & <LocalLeader> mapping {{{
+
+let mapleader='\'
+let maplocalleader= ' '
+
+" }}}
+
+" Basic options {{{
+
+scriptencoding utf-8
+set encoding=utf-8              " setup the encoding to UTF-8
+set ls=2                        " status line always visible
+set go-=T                       " hide the toolbar
+set go-=m                       " hide the menu
+" The next two lines are quite tricky, but in Gvim, if you don't do this, if you
+" only hide all the scrollbars, the vertical scrollbar is showed anyway
+set go+=rRlLbh                  " show all the scrollbars
+set go-=rRlLbh                  " hide all the scrollbars
+set visualbell                  " turn on the visual bell
+set cursorline                  " highlight the line under the cursor
+set fillchars+=vert:│           " better looking for windows separator
+set ttyfast                     " better screen redraw
+set title                       " set the terminal title to the current file
+set showcmd                     " shows partial commands
+set hidden                      " hide the inactive buffers
+set ruler                       " sets a permanent rule
+set lazyredraw                  " only redraws if it is needed
+set autoread                    " update a open file edited outside of Vim
+set ttimeoutlen=0               " toggle between modes almost instantly
+set backspace=indent,eol,start  " defines the backspace key behavior
+set nofoldenable                " disable folding
+
+set modeline                    " interpret vim commands in files (like the last comment of this file)
+set modelines=10                " number of lines checked to find each modeline
+set number                      " show line numbers
+set spell                       " activate spell checking
+set spellsuggest=6              " set the maximum number of suggestions
+
+" change cursor shape in insert mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" }}}
+
+" Wildmenu {{{
+
+set wildmenu                        " Command line autocompletion
+set wildmode=list:longest,full      " Shows all the options
+
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.o,*.obj,.git,*.rbc
+
+" }}}
+
+" Searching {{{
+
+set incsearch                   " incremental searching
+set showmatch                   " show pairs match
+set hlsearch                    " highlight search results
+set smartcase                   " smart case ignore
+set ignorecase                  " ignore case letters
+
+" turn highlight off
+nmap \\ :nohlsearch<CR>
+
+" }}}
+
+" History and permanent undo levels {{{
+
+set undofile
+set history=1000
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=1000
+
+" }}}
+
+" Tabs, space and wrapping {{{
+
+set nowrap
+set expandtab                  " spaces instead of tabs
+set tabstop=2                  " a tab = four spaces
+set shiftwidth=2               " number of spaces for auto-indent
+set softtabstop=2              " a soft-tab of four spaces
+set autoindent                 " set on the auto-indent
+
+" set formatoptions=qrn1ct
+set textwidth=80
+set colorcolumn=81
+
+function! ToggleWrap()
+    let s:nowrap_cc_bg = [22, '#005f00']
+    redir => s:curr_cc_hi
+    silent hi ColorColumn
+    redir END
+    let s:curr_cc_ctermbg = matchstr(s:curr_cc_hi, 'ctermbg=\zs.\{-}\s\ze\1')
+    let s:curr_cc_guibg = matchstr(s:curr_cc_hi, 'guibg=\zs.\{-}\_$\ze\1')
+    if s:curr_cc_ctermbg != s:nowrap_cc_bg[0]
+        let g:curr_cc_ctermbg = s:curr_cc_ctermbg
+    endif
+    if s:curr_cc_guibg != s:nowrap_cc_bg[1]
+        let g:curr_cc_guibg = s:curr_cc_guibg
+    endif
+    if &textwidth == 80
+        set textwidth=0
+        exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
+                    \' guibg='.s:nowrap_cc_bg[1]
+    elseif &textwidth == 0
+        set textwidth=80
+        exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
+                    \' guibg='.g:curr_cc_guibg
+    endif
+endfunction
+
+nmap <silent><Leader>ew :call ToggleWrap()<CR>
+
+" }}}
+
+" variables {{{
+
+" specify where node is
+let $JS_CMD='node'
+
+" }}}
+
+" CTags {{{
+
+set tags=./tags;$HOME " collect all tags up to the home directory
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+
+" }}}
+
+" Make a dir if no exists {{{
+
+function! MakeDirIfNoExists(path)
+    if !isdirectory(expand(a:path))
+        call mkdir(expand(a:path), "p")
+    endif
+endfunction
+
+" }}}
+
+" Backups {{{
+
+set backup
+set noswapfile
+set backupdir=$HOME/.vim/tmp/backup/
+set undodir=$HOME/.vim/tmp/undo/
+set directory=$HOME/.vim/tmp/swap/
+set viminfo+=n$HOME/.vim/tmp/viminfo
+
+" make this dirs if no exists previously
+silent! call MakeDirIfNoExists(&undodir)
+silent! call MakeDirIfNoExists(&backupdir)
+silent! call MakeDirIfNoExists(&directory)
+
+" }}}
+
+" Colorscheme {{{
+
+syntax enable                  " enable the syntax highlight
+set background=dark            " set a dark background
+set t_Co=256                   " 256 colors for the terminal
+" let base16colorspace=256       " Access colors present in 256 colorspace
+
+" }}}
+
+" QuickFix/Location file nav {{{
+
+" next and prev in location file
+map <F4> :lnext<CR>
+map <S-F4> :lprevious<CR>
+
+" next and prev in quickfix
+map <F5> :cnext<CR>
+map <S-F5> :cprevious<CR>
+
+" }}}
+
+" Font {{{
+
+set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h15
+
+" }}}
+
+" Cursor shape in tmux {{{
+" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
+" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+" }}}
+
+" Clipboard {{{
+
+if has("gui_macvim")
+  " make clipboard work with std clipboard
+  set clipboard=unnamed
+else
+  " make clipboard work with std clipboard
+  " Note that X11 uses the plus register for
+  " std clipboard, not the * as Mac os or windows
+  set clipboard=unnamedplus
+endif
+
+" }}}
+
+" Show hidden chars {{{
+
+nmap <Leader>eh :set list!<CR>
+set listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
+
+" }}}
+
+" Remember last location in file {{{
+
+augroup last_au
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+augroup END
+
+" }}}
+
+" Autoload configuration when this file changes ($MYVIMRC) {{{
+
+augroup vimrc_au
+  autocmd!
+  autocmd! BufWritePost vimrc source %
+augroup END
+
+" }}}
+
+" Toggle line numbers {{{
+
+nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+function! ToggleRelativeAbsoluteNumber()
+  if !&number && !&relativenumber
+      set number
+      set norelativenumber
+  elseif &number && !&relativenumber
+      set nonumber
+      set relativenumber
+  elseif !&number && &relativenumber
+      set number
+      set relativenumber
+  elseif &number && &relativenumber
+      set nonumber
+      set norelativenumber
+  endif
+endfunction
+
+" }}}
+
+" Save as root {{{
+
+cnoremap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+" }}}
+
+" Load matchit by default {{{
+
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
+" }}}
+
+" remove trailing white space on save {{{
+
+augroup remove_trailing_au
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
+" }}}
+
+" make and python use real tabs {{{
+
+augroup keep_tab_au
+  autocmd!
+  autocmd FileType make set noexpandtab
+  autocmd FileType python set noexpandtab
+augroup END
+
+" }}}
+
+" Conceal to hide some part of the text {{{
+
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" }}}
+
+" Include user's local vim config {{{
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+" }}}
+
+" END VIM SETUP }}}
+
 " NeoBundle auto-installation and setup {{{
 
 " Auto installing NeoBundle
@@ -637,6 +948,7 @@ let delimitMate_expand_cr = 2
 
 " color scheme
 NeoBundle 'chriskempson/base16-vim'
+colorscheme base16-monokai
 
 " Status bar {{{ -------------------------------------------------------------
 " awesome command line
@@ -880,302 +1192,4 @@ filetype plugin indent on      " Indent and plugins by filetype
 " END BUNDLES }}}
 
 
-" VIM Setup {{{ ===============================================================
-
-" <Leader> & <LocalLeader> mapping {{{
-
-let mapleader='\'
-let maplocalleader= ' '
-
-" }}}
-
-" Basic options {{{
-
-scriptencoding utf-8
-set encoding=utf-8              " setup the encoding to UTF-8
-set ls=2                        " status line always visible
-set go-=T                       " hide the toolbar
-set go-=m                       " hide the menu
-" The next two lines are quite tricky, but in Gvim, if you don't do this, if you
-" only hide all the scrollbars, the vertical scrollbar is showed anyway
-set go+=rRlLbh                  " show all the scrollbars
-set go-=rRlLbh                  " hide all the scrollbars
-set visualbell                  " turn on the visual bell
-set cursorline                  " highlight the line under the cursor
-set fillchars+=vert:│           " better looking for windows separator
-set ttyfast                     " better screen redraw
-set title                       " set the terminal title to the current file
-set showcmd                     " shows partial commands
-set hidden                      " hide the inactive buffers
-set ruler                       " sets a permanent rule
-set lazyredraw                  " only redraws if it is needed
-set autoread                    " update a open file edited outside of Vim
-set ttimeoutlen=0               " toggle between modes almost instantly
-set backspace=indent,eol,start  " defines the backspace key behavior
-set nofoldenable                " disable folding
-
-set modeline                    " interpret vim commands in files (like the last comment of this file)
-set modelines=10                " number of lines checked to find each modeline
-set number                      " show line numbers
-set spell                       " activate spell checking
-set spellsuggest=6              " set the maximum number of suggestions
-
-" change cursor shape in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-" }}}
-
-" Wildmenu {{{
-
-set wildmenu                        " Command line autocompletion
-set wildmode=list:longest,full      " Shows all the options
-
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.o,*.obj,.git,*.rbc
-
-" }}}
-
-" Searching {{{
-
-set incsearch                   " incremental searching
-set showmatch                   " show pairs match
-set hlsearch                    " highlight search results
-set smartcase                   " smart case ignore
-set ignorecase                  " ignore case letters
-
-" turn highlight off
-nmap \\ :nohlsearch<CR>
-
-" }}}
-
-" History and permanent undo levels {{{
-
-set undofile
-set history=1000
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=1000
-
-" }}}
-
-" Tabs, space and wrapping {{{
-
-set nowrap
-set expandtab                  " spaces instead of tabs
-set tabstop=2                  " a tab = four spaces
-set shiftwidth=2               " number of spaces for auto-indent
-set softtabstop=2              " a soft-tab of four spaces
-set autoindent                 " set on the auto-indent
-
-" set formatoptions=qrn1ct
-set textwidth=80
-set colorcolumn=81
-
-function! ToggleWrap()
-    let s:nowrap_cc_bg = [22, '#005f00']
-    redir => s:curr_cc_hi
-    silent hi ColorColumn
-    redir END
-    let s:curr_cc_ctermbg = matchstr(s:curr_cc_hi, 'ctermbg=\zs.\{-}\s\ze\1')
-    let s:curr_cc_guibg = matchstr(s:curr_cc_hi, 'guibg=\zs.\{-}\_$\ze\1')
-    if s:curr_cc_ctermbg != s:nowrap_cc_bg[0]
-        let g:curr_cc_ctermbg = s:curr_cc_ctermbg
-    endif
-    if s:curr_cc_guibg != s:nowrap_cc_bg[1]
-        let g:curr_cc_guibg = s:curr_cc_guibg
-    endif
-    if &textwidth == 80
-        set textwidth=0
-        exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
-                    \' guibg='.s:nowrap_cc_bg[1]
-    elseif &textwidth == 0
-        set textwidth=80
-        exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
-                    \' guibg='.g:curr_cc_guibg
-    endif
-endfunction
-
-nmap <silent><Leader>ew :call ToggleWrap()<CR>
-
-" }}}
-
-" variables {{{
-
-" specify where node is
-let $JS_CMD='node'
-
-" }}}
-
-" CTags {{{
-
-set tags=./tags;$HOME " collect all tags up to the home directory
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-
-" }}}
-
-" Make a dir if no exists {{{
-
-function! MakeDirIfNoExists(path)
-    if !isdirectory(expand(a:path))
-        call mkdir(expand(a:path), "p")
-    endif
-endfunction
-
-" }}}
-
-" Backups {{{
-
-set backup
-set noswapfile
-set backupdir=$HOME/.vim/tmp/backup/
-set undodir=$HOME/.vim/tmp/undo/
-set directory=$HOME/.vim/tmp/swap/
-set viminfo+=n$HOME/.vim/tmp/viminfo
-
-" make this dirs if no exists previously
-silent! call MakeDirIfNoExists(&undodir)
-silent! call MakeDirIfNoExists(&backupdir)
-silent! call MakeDirIfNoExists(&directory)
-
-" }}}
-
-" Colorscheme {{{
-
-syntax enable                  " enable the syntax highlight
-set background=dark            " set a dark background
-set t_Co=256                   " 256 colors for the terminal
-" let base16colorspace=256       " Access colors present in 256 colorspace
-colorscheme base16-monokai
-
-" }}}
-
-" QuickFix/Location file nav {{{
-
-" next and prev in location file
-map <F4> :lnext<CR>
-map <S-F4> :lprevious<CR>
-
-" next and prev in quickfix
-map <F5> :cnext<CR>
-map <S-F5> :cprevious<CR>
-
-" }}}
-
-" Font {{{
-
-set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h15
-
-" }}}
-
-" Clipboard {{{
-
-if has("gui_macvim")
-  " make clipboard work with std clipboard
-  set clipboard=unnamed
-else
-  " make clipboard work with std clipboard
-  " Note that X11 uses the plus register for
-  " std clipboard, not the * as Mac os or windows
-  set clipboard=unnamedplus
-endif
-
-" }}}
-
-" Show hidden chars {{{
-
-nmap <Leader>eh :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
-
-" }}}
-
-" Remember last location in file {{{
-
-augroup last_au
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-augroup END
-
-" }}}
-
-" Autoload configuration when this file changes ($MYVIMRC) {{{
-
-augroup vimrc_au
-  autocmd!
-  autocmd! BufWritePost vimrc source %
-augroup END
-
-" }}}
-
-" Toggle line numbers {{{
-
-nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>
-function! ToggleRelativeAbsoluteNumber()
-  if !&number && !&relativenumber
-      set number
-      set norelativenumber
-  elseif &number && !&relativenumber
-      set nonumber
-      set relativenumber
-  elseif !&number && &relativenumber
-      set number
-      set relativenumber
-  elseif &number && &relativenumber
-      set nonumber
-      set norelativenumber
-  endif
-endfunction
-
-" }}}
-
-" Save as root {{{
-
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
-
-" }}}
-
-" Load matchit by default {{{
-
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-
-" }}}
-
-" remove trailing white space on save {{{
-
-augroup remove_trailing_au
-  autocmd!
-  autocmd BufWritePre * :%s/\s\+$//e
-augroup END
-
-" }}}
-
-" make and python use real tabs {{{
-
-augroup keep_tab_au
-  autocmd!
-  autocmd FileType make set noexpandtab
-  autocmd FileType python set noexpandtab
-augroup END
-
-" }}}
-
-" Conceal to hide some part of the text {{{
-
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" }}}
-
-" Include user's local vim config {{{
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-" }}}
-
-" END VIM SETUP }}}
 " vim:foldmethod=marker:foldlevel=3:foldenable
