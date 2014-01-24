@@ -190,19 +190,6 @@ set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h15
 
 " }}}
 
-" Cursor shape in tmux {{{
-" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
-" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
-
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-" }}}
-
 " Clipboard {{{
 
 if has("gui_macvim")
@@ -845,6 +832,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
 
+" }}}
+
+" Play nice with iterm2 + tmux {{{
+NeoBundle 'sjl/vitality.vim'
 " }}}
 
 " Vim Shell {{{
