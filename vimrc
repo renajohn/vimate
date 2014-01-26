@@ -91,6 +91,7 @@ set tabstop=2                  " a tab = four spaces
 set shiftwidth=2               " number of spaces for auto-indent
 set softtabstop=2              " a soft-tab of four spaces
 set autoindent                 " set on the auto-indent
+set smartindent                " Try to guess indent
 
 " set formatoptions=qrn1ct
 set textwidth=80
