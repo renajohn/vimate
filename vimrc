@@ -35,6 +35,7 @@ set autoread                    " update a open file edited outside of Vim
 set ttimeoutlen=0               " toggle between modes almost instantly
 set backspace=indent,eol,start  " defines the backspace key behavior
 set nofoldenable                " disable folding
+set noshowmode                  " Hide the default mode text (e.g. -- INSERT --)
 
 set modeline                    " interpret vim commands in files (like the last comment of this file)
 set modelines=10                " number of lines checked to find each modeline
@@ -290,6 +291,17 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" }}}
+
+" Fix terminal timeout when pressing escape {{{
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
 " }}}
 
 " Include user's local vim config {{{
