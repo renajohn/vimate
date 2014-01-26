@@ -836,6 +836,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " Play nice with iterm2 + tmux {{{
 NeoBundle 'sjl/vitality.vim'
+let g:vitality_fix_cursor = 1
+let g:vitality_fix_focus = 1
+let g:vitality_always_assume_iterm = 1
+
 " }}}
 
 " Vim Shell {{{
