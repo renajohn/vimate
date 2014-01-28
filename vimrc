@@ -66,8 +66,8 @@ set wildignore+=*.o,*.obj,.git,*.rbc
 set incsearch                   " incremental searching
 set showmatch                   " show pairs match
 set hlsearch                    " highlight search results
-set smartcase                   " smart case ignore
-set ignorecase                  " ignore case letters
+set nosmartcase                   " smart case ignore
+set noignorecase                  " ignore case letters
 
 " turn highlight off
 nmap \\ :nohlsearch<CR>
@@ -1096,8 +1096,9 @@ let g:NERDTreeChDir=1
 NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python',
  \'javascript']}}
 map <silent> <Leader>L :IndentLinesToggle<CR>
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
 let g:indentLine_char = '┊'
+let g:indentLine_faster = 1
 " let g:indentLine_color_term = 239
 
 " }}}
