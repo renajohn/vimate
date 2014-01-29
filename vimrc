@@ -201,7 +201,7 @@ else
   " make clipboard work with std clipboard
   " Note that X11 uses the plus register for
   " std clipboard, not the * as Mac os or windows
-  set clipboard=unnamedplus
+  set clipboard=unnamedplus,unnamed,autoselect
 endif
 
 " }}}
@@ -536,8 +536,6 @@ let g:unite_source_menu_menus.navigation.command_candidates = [
         \'close'],
     \['▷ toggle quickfix window                                     ⌘ \q',
         \'normal ,q'],
-    \['▷ zoom                                                       ⌘ \z',
-        \'ZoomWinTabToggle'],
     \['▷ delete buffer                                              ⌘ \K',
         \'bd'],
     \]
@@ -1041,44 +1039,6 @@ NeoBundle 'jimsei/winresizer'
 let g:winresizer_start_key = '<C-C><C-W>'
 
 " }}}
-
-" ZoomWin {{{
-
-" Zooms a window
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
-            \{'commands' : 'ZoomWinTabToggle'}}
-
-map <Leader>z :ZoomWinTabToggle<CR>
-
-
-" Toggle copy & past mode {{{
-
-" active mouse
-set mouse=a
-
-" toggle auto indent for pasting
-" TODO: ZoomWin should be triggered only if there are more then 1 window. No
-" idea how to detect the number of window in VIM.
-function! ToggleCopyAndPast()
-  set invpaste paste?
-  if &mouse == ""
-    set number
-    let &mouse = "a"
-    :ZoomWinTabToggle
-  else
-    set nonumber
-    let &mouse=""
-    :ZoomWinTabToggle
-  endif
-endfunction
-
-noremap <F2> :call ToggleCopyAndPast()<CR>
-inoremap <F2> <Esc>:call ToggleCopyAndPast()<CR>i
-set pastetoggle=<F2>
-
-" }}}
-
-" End Zoomwin }}}
 
 " NERDTree configuration {{{
 
