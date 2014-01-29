@@ -940,7 +940,7 @@ NeoBundle 'tpope/vim-repeat'
 " toggle comments
 NeoBundle 'tpope/vim-commentary'
 " Safe past mode
-NeoBundle 'renajohn/vim-bracketed-paste'
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
 " Set working dir to root of project (.git)
 NeoBundle 'airblade/vim-rooter'
 " replace in quickfix
