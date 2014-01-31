@@ -325,6 +325,7 @@ if !filereadable(neobundle_readme)
     silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
     let iCanHazNeoBundle=0
 endif
+let g:neobundle#install_process_timeout = 600
 
 
 " Call NeoBundle
@@ -792,57 +793,26 @@ endfunction
 
 " End Unite }}}
 
+" ultisnips {{{
+NeoBundle 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-" neo complete {{{
-
-" auto complete like I was hopping for
-NeoBundle 'Shougo/neocomplete.vim'
-
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 0
-let g:neocomplete#enable_refresh_always = 0
-let g:neocomplete#max_list = 30
-let g:neocomplete#min_keyword_length = 3
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
-" use fuzzy completion
-let g:neocomplete#enable_fuzzy_completion = 1
-" If an upper case is used, only match an upper case
-let g:neocomplete#enable_camel_case = 1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" complete from all buffers
-let g:neocomplete#same_filetypes = {}
-let g:neocomplete#same_filetypes._ = '_'
-let g:neocomplete#force_omni_input_patterns= {}
-let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-
+let g:UltiSnipsSnippetsDir = '~/.vim/snippets'
+let g:UltiSnipsSnippetDirectories = [ "snippets" ]
 " }}}
 
-" neosnippet {{{
+" You complete me {{{
 
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'renajohn/neosnippet-snippets'
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+NeoBundle 'Valloric/YouCompleteMe' , {
+            \ 'build' : {
+            \    'unix' : './install.sh --system-libclang',
+            \    'mac' : './install.sh'
+            \ },
+\ }
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> !pumvisible() && neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
+let g:ycm_autoclose_preview_window_after_completion = 1
 " }}}
 
 " Play nice with iterm2 + tmux {{{
@@ -884,6 +854,13 @@ augroup END
 NeoBundle 'lukaszb/vim-web-indent'
 NeoBundle 'pangloss/vim-javascript'
 
+" Tern code analysis for JS
+NeoBundle 'marijnh/tern_for_vim', {
+      \ 'build' : {
+      \     'mac' : 'npm install',
+      \     'unix' : 'npm install',
+      \    },
+      \ }
 " }}}
 
 
@@ -930,7 +907,7 @@ let g:user_emmet_mode='a'
 " Text edition {{{
 
 " multiple cursors like sublime text
-NeoBundle 'joedicastro/vim-multiple-cursors'
+NeoBundle 'terryma/vim-multiple-cursors'
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
 " extend repetitions by the 'dot' key
