@@ -454,145 +454,6 @@ nmap <LocalLeader> [menu]
 " menus menu
 nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
 
-" files and dirs menu {{{
-let g:unite_source_menu_menus.files = {
-    \ 'description' : '          files & dirs
-        \                                          ⌘ [space]o',
-    \}
-let g:unite_source_menu_menus.files.command_candidates = [
-    \['▷ open file                                                  ⌘ \o',
-        \'Unite -start-insert file'],
-    \['▷ open more recently used files                              ⌘ \m',
-        \'Unite file_mru'],
-    \['▷ open file with recursive search                            ⌘ \O',
-        \'Unite -start-insert file_rec/async'],
-    \['▷ edit new file',
-        \'Unite file/new'],
-    \['▷ search directory',
-        \'Unite directory'],
-    \['▷ search recently used directories',
-        \'Unite directory_mru'],
-    \['▷ search directory with recursive search',
-        \'Unite directory_rec/async'],
-    \['▷ make new directory',
-        \'Unite directory/new'],
-    \['▷ change working directory',
-        \'Unite -default-action=lcd directory'],
-    \['▷ know current working directory',
-        \'Unite output:pwd'],
-    \['▷ junk files                                                 ⌘ \d',
-        \'Unite junkfile/new junkfile'],
-    \['▷ save as root                                               ⌘ :w!!',
-        \'exe "write !sudo tee % >/dev/null"'],
-    \['▷ quick save                                                 ⌘ \w',
-        \'normal ,w'],
-    \['▷ open NERD tree                                             ⌘ \n',
-        \'NERDTreeToggle'],
-    \]
-nnoremap <silent>[menu]o :Unite -silent -winheight=17 -start-insert
-            \ menu:files<CR>
-" }}}
-
-" file searching menu {{{
-let g:unite_source_menu_menus.grep = {
-    \ 'description' : '           search files
-        \                                          ⌘ [space]a',
-    \}
-let g:unite_source_menu_menus.grep.command_candidates = [
-    \['▷ grep (ag → ack → grep)                                     ⌘ \a',
-        \'Unite -no-quit grep'],
-    \['▷ find',
-        \'Unite find'],
-    \['▷ locate',
-        \'Unite -start-insert locate'],
-    \['▷ vimgrep (very slow)',
-        \'Unite vimgrep'],
-    \]
-nnoremap <silent>[menu]a :Unite -silent menu:grep<CR>
-" }}}
-
-" buffers, tabs & windows menu {{{
-let g:unite_source_menu_menus.navigation = {
-    \ 'description' : '     navigate by buffers, tabs & windows
-        \                   ⌘ [space]b',
-    \}
-let g:unite_source_menu_menus.navigation.command_candidates = [
-    \['▷ buffers                                                    ⌘ \b',
-        \'Unite buffer'],
-    \['▷ tabs                                                       ⌘ \B',
-        \'Unite tab'],
-    \['▷ windows',
-        \'Unite window'],
-    \['▷ location list',
-        \'Unite location_list'],
-    \['▷ quickfix',
-        \'Unite quickfix'],
-    \['▷ resize windows                                             ⌘ C-C C-W',
-        \'WinResizerStartResize'],
-    \['▷ new vertical window                                        ⌘ \v',
-        \'vsplit'],
-    \['▷ new horizontal window                                      ⌘ \h',
-        \'split'],
-    \['▷ close current window                                       ⌘ \k',
-        \'close'],
-    \['▷ toggle quickfix window                                     ⌘ \q',
-        \'normal ,q'],
-    \['▷ delete buffer                                              ⌘ \K',
-        \'bd'],
-    \]
-nnoremap <silent>[menu]b :Unite -silent menu:navigation<CR>
-" }}}
-
-" buffer internal searching menu {{{
-let g:unite_source_menu_menus.searching = {
-    \ 'description' : '      searchs inside the current buffer
-        \                     ⌘ [space]f',
-    \}
-let g:unite_source_menu_menus.searching.command_candidates = [
-    \['▷ search line                                                ⌘ \f',
-        \'Unite -auto-preview -start-insert line'],
-    \['▷ search word under the cursor                               ⌘ [space]8',
-        \'UniteWithCursorWord -no-split -auto-preview line'],
-    \['▷ search outlines & tags (ctags)                             ⌘ \t',
-        \'Unite -vertical -winwidth=40 -direction=topleft -toggle outline'],
-    \['▷ search marks',
-        \'Unite -auto-preview mark'],
-    \['▷ search folds',
-        \'Unite -vertical -winwidth=30 -auto-highlight fold'],
-    \['▷ search changes',
-        \'Unite change'],
-    \['▷ search jumps',
-        \'Unite jump'],
-    \['▷ search undos',
-        \'Unite undo'],
-    \['▷ search tasks                                               ⌘ \;',
-        \'Unite -toggle grep:%::FIXME|TODO|NOTE|XXX|COMBAK|@todo'],
-    \]
-nnoremap <silent>[menu]f :Unite -silent menu:searching<CR>
-" }}}
-
-" yanks, registers & history menu {{{
-let g:unite_source_menu_menus.registers = {
-    \ 'description' : '      yanks, registers & history
-        \                            ⌘ [space]i',
-    \}
-let g:unite_source_menu_menus.registers.command_candidates = [
-    \['▷ yanks                                                      ⌘ \i',
-        \'Unite history/yank'],
-    \['▷ commands       (history)                                   ⌘ q:',
-        \'Unite history/command'],
-    \['▷ searches       (history)                                   ⌘ q/',
-        \'Unite history/search'],
-    \['▷ registers',
-        \'Unite register'],
-    \['▷ messages',
-        \'Unite output:messages'],
-    \['▷ undo tree      (gundo)                                     ⌘ \u',
-        \'GundoToggle'],
-    \]
-nnoremap <silent>[menu]i :Unite -silent menu:registers<CR>
-" }}}
-
 " text edition menu {{{
 let g:unite_source_menu_menus.text = {
     \ 'description' : '           text edition
@@ -651,95 +512,6 @@ let g:unite_source_menu_menus.neobundle.command_candidates = [
         \'NeoBundleExtraEdit'],
     \]
 nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>
-" }}}
-
-" git menu {{{
-let g:unite_source_menu_menus.git = {
-    \ 'description' : '            admin git repositories
-        \                                ⌘ [space]g',
-    \}
-let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig                                                        ⌘ \gt',
-        \'normal ,gt'],
-    \['▷ git viewer             (gitv)                              ⌘ \gv',
-        \'normal ,gv'],
-    \['▷ git viewer - buffer    (gitv)                              ⌘ \gV',
-        \'normal ,gV'],
-    \['▷ git status             (fugitive)                          ⌘ \gs',
-        \'Gstatus'],
-    \['▷ git diff               (fugitive)                          ⌘ \gd',
-        \'Gdiff'],
-    \['▷ git commit             (fugitive)                          ⌘ \gc',
-        \'Gcommit'],
-    \['▷ git log                (fugitive)                          ⌘ \gl',
-        \'exe "silent Glog | Unite -no-quit quickfix"'],
-    \['▷ git log - all          (fugitive)                          ⌘ \gL',
-        \'exe "silent Glog -all | Unite -no-quit quickfix"'],
-    \['▷ git blame              (fugitive)                          ⌘ \gb',
-        \'Gblame'],
-    \['▷ git add/stage          (fugitive)                          ⌘ \gw',
-        \'Gwrite'],
-    \['▷ git checkout           (fugitive)                          ⌘ \go',
-        \'Gread'],
-    \['▷ git rm                 (fugitive)                          ⌘ \gR',
-        \'Gremove'],
-    \['▷ git mv                 (fugitive)                          ⌘ \gm',
-        \'exe "Gmove " input("destino: ")'],
-    \['▷ git push               (fugitive, buffer output)           ⌘ \gp',
-        \'Git! push'],
-    \['▷ git pull               (fugitive, buffer output)           ⌘ \gP',
-        \'Git! pull'],
-    \['▷ git command            (fugitive, buffer output)           ⌘ \gi',
-        \'exe "Git! " input("comando git: ")'],
-    \['▷ git edit               (fugitive)                          ⌘ \gE',
-        \'exe "command Gedit " input(":Gedit ")'],
-    \['▷ git grep               (fugitive)                          ⌘ \gg',
-        \'exe "silent Ggrep -i ".input("Pattern: ") | Unite -no-quit quickfix'],
-    \['▷ git grep - messages    (fugitive)                          ⌘ \ggm',
-        \'exe "silent Glog --grep=".input("Pattern: ")." | Unite -no-quit quickfix"'],
-    \['▷ git grep - text        (fugitive)                          ⌘ \ggt',
-        \'exe "silent Glog -S".input("Pattern: ")." | Unite -no-quit quickfix"'],
-    \['▷ git init                                                   ⌘ \gn',
-        \'Unite output:echo\ system("git\ init")'],
-    \['▷ git cd                 (fugitive)',
-        \'Gcd'],
-    \['▷ git lcd                (fugitive)',
-        \'Glcd'],
-    \['▷ git browse             (fugitive)                          ⌘ \gB',
-        \'Gbrowse'],
-    \]
-nnoremap <silent>[menu]g :Unite -silent -winheight=29 -start-insert menu:git<CR>
-" }}}
-
-" code menu {{{
-let g:unite_source_menu_menus.code = {
-    \ 'description' : '           code tools
-        \                                            ⌘ [space]p',
-    \}
-let g:unite_source_menu_menus.code.command_candidates = [
-    \['▷ syntastic toggle                           (syntastic)',
-        \'SyntasticToggleMode'],
-    \['▷ syntastic check & errors                   (syntastic)     ⌘ \N',
-        \'normal ,N'],
-    \['▷ toggle indent lines                                        ⌘ \L',
-        \'IndentLinesToggle'],
-    \]
-nnoremap <silent>[menu]p :Unite -silent -winheight=42 menu:code<CR>
-" }}}
-
-" bookmarks menu {{{
-let g:unite_source_menu_menus.bookmarks = {
-    \ 'description' : '      bookmarks
-        \                                             ⌘ [space]m',
-    \}
-let g:unite_source_menu_menus.bookmarks.command_candidates = [
-    \['▷ open bookmarks',
-        \'Unite bookmark:*'],
-    \['▷ add bookmark',
-        \'UniteBookmarkAdd'],
-    \]
-nnoremap <silent>[menu]m :Unite -silent menu:bookmarks<CR>
-
 " }}}
 
 " End menu }}}
@@ -839,6 +611,7 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 " JS Beautifier {{{
 
 NeoBundle 'maksimr/vim-jsbeautify'
+NeoBundle 'einars/js-beautify'
 augroup JsBeautify_au
   autocmd!
   " Beautifier
@@ -865,17 +638,6 @@ NeoBundle 'marijnh/tern_for_vim', {
 
 
 " html/CSS/handlebars {{{
-
-" A smart and powerful Color Management tool. Needs to be loaded to be able
-" to use the mappings
-NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
-    \ 'commands' : [
-                     \ 'ColorV', 'ColorVView', 'ColorVPreview',
-                     \ 'ColorVPicker', 'ColorVEdit', 'ColorVEditAll',
-                     \ 'ColorVInsert', 'ColorVList', 'ColorVName',
-                     \ 'ColorVScheme', 'ColorVSchemeFav',
-                     \ 'ColorVSchemeNew', 'ColorVTurn2'],
-    \ }}
 
 " Handlebars  {{{
 
@@ -906,6 +668,8 @@ let g:user_emmet_mode='a'
 
 " Text edition {{{
 
+" similar to f, but instead of one it expects two characters
+NeoBundle 'goldfeld/vim-seek'
 " multiple cursors like sublime text
 NeoBundle 'terryma/vim-multiple-cursors'
 " to surround vim objects with a pair of identical chars
@@ -937,7 +701,7 @@ colorscheme base16-monokai
 " awesome command line
 NeoBundle 'itchyny/lightline.vim'
 let g:lightline = {
-      \ 'colorscheme': 'default',
+      \ 'colorscheme': 'wombat',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -957,11 +721,11 @@ let g:lightline = {
       \ }
 
 function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &ft =~ 'help\|vimfiler\|undotree' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+  return &ft !~? 'help\|vimfiler\|undotree' && &readonly ? '⭤' : ''
 endfunction
 
 function! MyFilename()
@@ -969,12 +733,12 @@ function! MyFilename()
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
         \  &ft == 'unite' ? unite#get_status_string() :
         \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ '' != expand('%:t') ? expand('%:h:t') . '/' . expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
 function! MyFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+  if &ft !~? 'vimfiler\|undotree' && exists("*fugitive#head")
     let _ = fugitive#head()
     return strlen(_) ? '⭠ '._ : ''
   endif
@@ -999,12 +763,12 @@ endfunction
 
 " }}}
 
-" gundo {{{
+" undotree {{{
 
 " browse the vim undo tree
-NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
-nnoremap <F6> :GundoToggle<CR>
-let g:gundo_preview_bottom = 1
+
+NeoBundleLazy 'mbbill/undotree', { 'autoload' : {'commands': 'UndotreeToggle'}}
+nnoremap <F6> :UndotreeToggle<CR>
 
 " }}}
 
@@ -1019,11 +783,9 @@ let g:winresizer_start_key = '<C-C><C-W>'
 
 " NERDTree configuration {{{
 
-NeoBundle 'scrooloose/nerdtree'
-
-let NERDTreeIgnore=['\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
-let g:NERDTreeChDir=1
+NeoBundle 'Shougo/vimfiler.vim'
+map <Leader>n :VimFilerExplorer<CR>
+let g:vimfiler_as_default_explorer = 1
 
 " }}}
 
@@ -1046,7 +808,7 @@ let g:indentLine_faster = 1
 " Git {{{
 
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'mhinz/vim-signify'
 
 " Gitv {{{
 
