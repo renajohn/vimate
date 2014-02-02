@@ -369,6 +369,7 @@ NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':
             \ ['quickfix', 'location_list']}}
 NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
+NeoBundle 'thinca/vim-ref'
 
 " Junk files
 NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
@@ -540,7 +541,7 @@ let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 if executable('ag')
     let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden -a -S'
+    let g:unite_source_grep_default_opts='ag --nocolor --nogroup --hidden -g ""'
     let g:unite_source_grep_recursive_opt=''
     let g:unite_source_grep_search_word_highlight = 1
 elseif executable('ack')
@@ -592,14 +593,6 @@ NeoBundle 'sjl/vitality.vim'
 let g:vitality_fix_cursor = 1
 let g:vitality_fix_focus = 1
 let g:vitality_always_assume_iterm = 1
-
-" }}}
-
-" Vim Shell {{{
-
-NeoBundle 'shougo/vimshell'
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt =  '$ '
 
 " }}}
 
@@ -732,7 +725,6 @@ function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
         \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
         \ '' != expand('%:t') ? expand('%:h:t') . '/' . expand('%:t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
