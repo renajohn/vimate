@@ -27,7 +27,7 @@ set cursorline                  " highlight the line under the cursor
 set fillchars+=vert:│           " better looking for windows separator
 set ttyfast                     " better screen redraw
 set title                       " set the terminal title to the current file
-set showcmd                     " shows partial commands
+set noshowcmd                     " shows partial commands
 set hidden                      " hide the inactive buffers
 set ruler                       " sets a permanent rule
 set lazyredraw                  " only redraws if it is needed
@@ -42,10 +42,6 @@ set modelines=10                " number of lines checked to find each modeline
 set number                      " show line numbers
 set spell                       " activate spell checking
 set spellsuggest=6              " set the maximum number of suggestions
-
-" change cursor shape in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " }}}
 
@@ -541,7 +537,7 @@ let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 if executable('ag')
     let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='ag --nocolor --nogroup --hidden -g ""'
+    let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden --column'
     let g:unite_source_grep_recursive_opt=''
     let g:unite_source_grep_search_word_highlight = 1
 elseif executable('ack')
@@ -572,8 +568,8 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-let g:UltiSnipsSnippetsDir = '~/.vim/snippets'
-let g:UltiSnipsSnippetDirectories = [ "snippets" ]
+let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = [ "ultisnips" ]
 " }}}
 
 " You complete me {{{
@@ -589,10 +585,20 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " }}}
 
 " Play nice with iterm2 + tmux {{{
-NeoBundle 'sjl/vitality.vim'
-let g:vitality_fix_cursor = 1
-let g:vitality_fix_focus = 1
-let g:vitality_always_assume_iterm = 1
+
+" Changing cursor shape per mode
+" 1 or 0 -> blinking block
+" 2 -> solid block
+" 3 -> blinking underscore
+" 4 -> solid underscore
+if exists('$TMUX')
+    " tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
+    let &t_SI .= "\<Esc>Ptmux;\<Esc>\<Esc>[5 q\<Esc>\\"
+    let &t_EI .= "\<Esc>Ptmux;\<Esc>\<Esc>[1 q\<Esc>\\"
+else
+    let &t_SI .= "\<Esc>[5 q"
+    let &t_EI .= "\<Esc>[1 q"
+endif
 
 " }}}
 
@@ -775,9 +781,12 @@ let g:winresizer_start_key = '<C-C><C-W>'
 
 " NERDTree configuration {{{
 
-NeoBundle 'Shougo/vimfiler.vim'
-map <Leader>n :VimFilerExplorer<CR>
-let g:vimfiler_as_default_explorer = 1
+NeoBundle 'scrooloose/nerdtree'
+map <Leader>n :NERDTreeToggle<CR>
+augroup nerdtree
+  autocmd!
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q
+augroup END
 
 " }}}
 
@@ -866,6 +875,8 @@ setlocal omnifunc=syntaxcomplete#Complete
 " }}}
 " JSON
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
+let g:vim_json_syntax_conceal = 0
+
 " color scheme for less
 NeoBundleLazy 'groenewege/vim-less', {'filetypes' : 'less'}
 
