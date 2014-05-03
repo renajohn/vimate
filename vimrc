@@ -784,6 +784,7 @@ let g:winresizer_start_key = '<C-C><C-W>'
 
 NeoBundle 'scrooloose/nerdtree'
 map <Leader>n :NERDTreeFind<CR>
+let NERDTreeQuitOnOpen = 1
 augroup nerdtree
   autocmd!
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q
