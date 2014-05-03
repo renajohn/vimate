@@ -353,6 +353,7 @@ NeoBundle 'Shougo/unite.vim'
 
 " Unite sources
 NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
+NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'neomru/file'}}
 NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
 NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':
             \ 'colorscheme'}}
@@ -375,7 +376,7 @@ NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
 nnoremap <silent><Leader>O :Unite -silent -start-insert file:%:h<CR>
 nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async:!<CR>
-nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
+nnoremap <silent><Leader>m :Unite -silent neomru/file<CR>
 " bookmark
 nnoremap <silent><Leader>g :Unite -silent -start-insert
   \ -default-action=project_cd  directory:~/Projects/BugBuster<CR>
@@ -516,7 +517,7 @@ nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>
 " call unite#filters#matcher_default#use(['matcher_fuzzy', 'matcher_project_files'])
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
+call unite#custom#source('neomru/file,file_rec,file_rec/async,grep,locate',
             \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/',
             \ 'node_modules/', 'dist/'], '\|'))
 
@@ -782,7 +783,7 @@ let g:winresizer_start_key = '<C-C><C-W>'
 " NERDTree configuration {{{
 
 NeoBundle 'scrooloose/nerdtree'
-map <Leader>n :NERDTreeToggle<CR>
+map <Leader>n :NERDTreeFind<CR>
 augroup nerdtree
   autocmd!
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q
@@ -874,8 +875,10 @@ setlocal omnifunc=syntaxcomplete#Complete
 
 " }}}
 " JSON
-NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
-let g:vim_json_syntax_conceal = 0
+augroup JSON
+  autocmd!
+  autocmd BufNewFile,BufRead *.json set ft=javascript
+augroup END
 
 " color scheme for less
 NeoBundleLazy 'groenewege/vim-less', {'filetypes' : 'less'}
