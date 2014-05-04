@@ -3,8 +3,8 @@
 ###########################################################################
 snippet head "Header information"
 /*
- * Copyright (C) `date +%Y` `echo $COMPANY`. All rights reserved.
- * `echo $NAME` <`echo $EMAIL`> `date +"%d %B %Y"`
+ * Copyright (C) `date +%Y` `git config user.company`. All rights reserved.
+ * `git config user.name` <`git config user.email`> `date +"%d %B %Y"`
  *
  * ${1:Description}
  */
