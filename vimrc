@@ -92,6 +92,7 @@ set smartindent                " Try to guess indent
 " set formatoptions=qrn1ct
 set textwidth=80
 set colorcolumn=81
+set formatoptions-=tc " don't add EOL
 
 function! ToggleWrap()
     let s:nowrap_cc_bg = [22, '#005f00']
@@ -382,7 +383,7 @@ nnoremap <silent><Leader>g :Unite -silent -start-insert
   \ -default-action=project_cd  directory:~/Projects/BugBuster<CR>
 
 " buffers
-nnoremap <silent><Leader>b :Unite -silent buffer<CR>
+nnoremap <silent><Leader>b :Unite -silent -start-insert buffer<CR>
 " tabs
 nnoremap <silent><Leader>B :Unite -silent tab<CR>
 " buffer search
