@@ -675,6 +675,8 @@ NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'terryma/vim-multiple-cursors'
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
+" abolish.vim: easily search for, substitute, and abbreviate multiple variants of a word
+NeoBundle 'tpope/vim-abolish'
 " extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
 " toggle comments
