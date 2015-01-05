@@ -40,6 +40,7 @@ set noshowmode                  " Hide the default mode text (e.g. -- INSERT --)
 set modeline                    " interpret vim commands in files (like the last comment of this file)
 set modelines=10                " number of lines checked to find each modeline
 set number                      " show line numbers
+set relativenumber              " show relative line
 set spell                       " activate spell checking
 set spellsuggest=6              " set the maximum number of suggestions
 
@@ -83,7 +84,7 @@ set undoreload=1000
 
 set nowrap
 set expandtab                  " spaces instead of tabs
-set tabstop=2                  " a tab = four spaces
+set tabstop=2                  " a tab = two spaces
 set shiftwidth=2               " number of spaces for auto-indent
 set softtabstop=2              " a soft-tab of four spaces
 set autoindent                 " set on the auto-indent
@@ -283,6 +284,15 @@ augroup END
 
 " }}}
 
+" Use 4 tabs for CPP {{{
+
+augroup CPP_indent
+  autocmd!
+  autocmd FileType cpp setlocal shiftwidth=4 tabstop=4 softtabstop=4
+augroup END
+
+"}}}
+
 " Conceal to hide some part of the text {{{
 
 if has('conceal')
@@ -327,13 +337,15 @@ let g:neobundle#install_process_timeout = 600
 
 " Call NeoBundle
 if has('vim_starting')
-    set rtp+=$HOME/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand($HOME.'/.vim/bundle/'))
 
-" is better if NeoBundle rules NeoBundle (needed!)
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-" }}}
+
+call neobundle#end()
 
 " BUNDLES (plugins administrated by NeoBundle) {{{
 
@@ -577,10 +589,10 @@ let g:UltiSnipsSnippetDirectories = [ "ultisnips" ]
 " You complete me {{{
 
 NeoBundle 'Valloric/YouCompleteMe' , {
-            \ 'build' : {
-            \    'unix' : './install.sh --system-libclang',
-            \    'mac' : './install.sh'
-            \ },
+           \ 'build' : {
+           \    'unix' : './install.sh --system-libclang',
+           \    'mac' : './install.sh'
+           \ },
 \ }
 
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -611,8 +623,7 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 
 " JS Beautifier {{{
 
-NeoBundle 'maksimr/vim-jsbeautify'
-NeoBundle 'einars/js-beautify'
+NeoBundle 'beautify-web/js-beautify'
 augroup JsBeautify_au
   autocmd!
   " Beautifier
@@ -689,7 +700,11 @@ NeoBundle 'airblade/vim-rooter'
 NeoBundle 'thinca/vim-qfreplace'
 " Autocompletion of (, [, {, ', ", ... {{{
 NeoBundle 'delimitMate.vim'
+" Ag
+NeoBundle 'rking/ag.vim'
 let delimitMate_expand_cr = 2
+" quickfix do (Cdo) / location do (Ldo)
+NeoBundle 'Peeja/vim-cdo'
 " }}}
 
 " }}}
@@ -795,48 +810,11 @@ augroup END
 
 " }}}
 
-" indentLine {{{
-
-" Show indent lines
-NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python',
- \'javascript']}}
-map <silent> <Leader>L :IndentLinesToggle<CR>
-let g:indentLine_enabled = 0
-let g:indentLine_char = '┊'
-let g:indentLine_faster = 1
-" let g:indentLine_color_term = 239
-
-" }}}
-
-" }}}
-
 
 " Git {{{
 
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mhinz/vim-signify'
-
-" Gitv {{{
-
-" Git viewer
-NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'],
-            \ 'autoload':{'commands':'Gitv'}}
-
-nnoremap <silent> <leader>gv :Gitv --all<CR>
-nnoremap <silent> <leader>gV :Gitv! --all<CR>
-vnoremap <silent> <leader>gV :Gitv! --all<CR>
-
-let g:Gitv_OpenHorizontal = 'auto'
-let g:Gitv_WipeAllOnClose = 1
-let g:Gitv_DoNotMapCtrlKey = 1
-" let g:Gitv_WrapLines = 1
-
-augroup filetype_git
-  autocmd!
-  autocmd FileType git set nofoldenable
-augroup END
-
-" }}}
+NeoBundle 'mhinz/vim-signify'  " Add +/- in gutter bar when file is changed
 
 " }}}
 
@@ -885,9 +863,16 @@ augroup JSON
 augroup END
 
 " color scheme for less
+
 NeoBundleLazy 'groenewege/vim-less', {'filetypes' : 'less'}
 
 " }}}
+" color scheme for sass
+
+NeoBundle 'tpope/vim-haml'
+
+" }}}
+
 "
 
 " Auto install the plugins {{{
@@ -898,6 +883,7 @@ if iCanHazNeoBundle == 0
     echo ""
     :NeoBundleInstall
 endif
+
 
 " Check if all of the plugins are already installed, in other case ask if we
 " want to install them (useful to add plugins in the .vimrc)
