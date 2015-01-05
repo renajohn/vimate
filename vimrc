@@ -515,6 +515,15 @@ NeoBundle 'marijnh/tern_for_vim', {
 
 " html/CSS/handlebars {{{
 
+" Markdown  {{{
+
+augroup markdown_md
+  autocmd!
+  autocmd BufNewFile,BufRead *.md set filetype=markdown
+augroup END
+
+" }}}
+"
 " Handlebars  {{{
 
 NeoBundle 'mustache/vim-mustache-handlebars'
