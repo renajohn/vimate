@@ -367,32 +367,13 @@ NeoBundle 'Shougo/unite.vim'
 " Unite sources
 NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
 NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'neomru/file'}}
-NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':
-            \ 'colorscheme'}}
-NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' :
-            \ ['history/command', 'history/search']}}
-NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' :
-            \ 'filetype', }}
-NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':
-            \ ['quickfix', 'location_list']}}
 NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-NeoBundle 'thinca/vim-ref'
-
-" Junk files
-NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen',
-            \ 'unite_sources':['junkfile','junkfile/new']}}
 
 " files
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
 nnoremap <silent><Leader>O :Unite -silent -start-insert file:%:h<CR>
 nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async:!<CR>
 nnoremap <silent><Leader>m :Unite -silent neomru/file<CR>
-" bookmark
-nnoremap <silent><Leader>g :Unite -silent -start-insert
-  \ -default-action=project_cd  directory:~/Projects/BugBuster<CR>
 
 " buffers
 nnoremap <silent><Leader>b :Unite -silent -start-insert buffer<CR>
@@ -401,131 +382,14 @@ nnoremap <silent><Leader>B :Unite -silent tab<CR>
 " buffer search
 nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview
             \ line<CR>
-nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview
-            \ line<CR>
-" yankring
-nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
 " grep
 nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>
-" help
-nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
-" tasks
-nnoremap <silent><Leader>; :Unite -silent -toggle
-            \ grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
 " outlines (also ctags)
 nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40
             \ -direction=topleft -toggle outline<CR>
 " fold
 nnoremap <silent><Leader>T :Unite -silent -vertical -start-insert -winwidth=40
             \ -direction=topleft -toggle fold<CR>
-" junk files
-nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
-" sources
-nnoremap <silent><Leader>s :Unite -silent -start-insert -toggle source<CR>
-" quickfix
-nnoremap <silent><Leader>q :Unite -silent -toggle quickfix location_list<CR>
-
-" actions {{{
-
-" add a delete action in file
-let my_delete_fn = {
-\ 'is_selectable' : 1,
-\ }
-function! my_delete_fn.func(candidates)
-  let files = join(map(copy(a:candidates), 'v:val.word'), ", ")
-	call inputsave()
-  let ans = input("Delete " . len(a:candidates) . " file(s) - " . files . "?  [y|n]: ", "")
-  call inputrestore()
-  if ans == 'y'
-    for candidate in a:candidates
-      if isdirectory(candidate.action__path)
-        for path in split(globpath(candidate.action__path, '**'), '\n')
-          call delete(path)
-        endfor
-      else
-        call delete(candidate.action__path)
-      endif
-    endfor
-  endif
-endfunction
-call unite#custom#action('file', 'delete', my_delete_fn)
-unlet my_delete_fn
-
-
-" }}}
-
-" menus {{{
-let g:unite_source_menu_menus = {}
-
-" menu prefix key (for all Unite menus) {{{
-nnoremap [menu] <Nop>
-nmap <LocalLeader> [menu]
-" }}}
-
-" menus menu
-nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
-
-" text edition menu {{{
-let g:unite_source_menu_menus.text = {
-    \ 'description' : '           text edition
-        \                                          ⌘ [space]e',
-    \}
-let g:unite_source_menu_menus.text.command_candidates = [
-    \['▷ toggle search results highlight                            ⌘ \\',
-        \'set invhlsearch'],
-    \['▷ toggle line numbers                                        ⌘ \l',
-        \'call ToggleRelativeAbsoluteNumber()'],
-    \['▷ toggle wrapping                                            ⌘ \ew',
-        \'call ToggleWrap()'],
-    \['▷ show hidden chars                                          ⌘ \eh',
-        \'set list!'],
-    \['▷ toggle fold                                                ⌘ /',
-        \'normal za'],
-    \['▷ open all folds                                             ⌘ zR',
-        \'normal zR'],
-    \['▷ close all folds                                            ⌘ zM',
-        \'normal zM'],
-    \['▷ remove trailing whitespaces                                ⌘ \et',
-        \'normal \et'],
-    \['▷ show current char info                                     ⌘ ga',
-        \'normal ga'],
-    \]
-nnoremap <silent>[menu]e :Unite -silent -winheight=20 menu:text <CR>
-" }}}
-
-" neobundle menu {{{
-let g:unite_source_menu_menus.neobundle = {
-    \ 'description' : '      plugins administration with neobundle
-        \                 ⌘ [space]n',
-    \}
-let g:unite_source_menu_menus.neobundle.command_candidates = [
-    \['▷ neobundle',
-        \'Unite neobundle'],
-    \['▷ neobundle log',
-        \'Unite neobundle/log'],
-    \['▷ neobundle lazy',
-        \'Unite neobundle/lazy'],
-    \['▷ neobundle update',
-        \'Unite neobundle/update'],
-    \['▷ neobundle search',
-        \'Unite neobundle/search'],
-    \['▷ neobundle install',
-        \'Unite neobundle/install'],
-    \['▷ neobundle check',
-        \'Unite -no-empty output:NeoBundleCheck'],
-    \['▷ neobundle docs',
-        \'Unite output:NeoBundleDocs'],
-    \['▷ neobundle clean',
-        \'NeoBundleClean'],
-    \['▷ neobundle list',
-        \'Unite output:NeoBundleList'],
-    \['▷ neobundle direct edit',
-        \'NeoBundleExtraEdit'],
-    \]
-nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>
-" }}}
-
-" End menu }}}
 
 " call unite#filters#matcher_default#use(['matcher_fuzzy', 'matcher_project_files'])
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
