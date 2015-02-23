@@ -730,9 +730,12 @@ setlocal omnifunc=syntaxcomplete#Complete
 
 " }}}
 " JSON
+NeoBundle 'elzr/vim-json'
+
+let g:vim_json_syntax_conceal = 0
 augroup JSON
   autocmd!
-  autocmd BufNewFile,BufRead *.json set ft=javascript
+  autocmd BufNewFile,BufRead *.json set ft=json
 augroup END
 
 " color scheme for less
