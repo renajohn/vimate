@@ -452,8 +452,6 @@ NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'terryma/vim-multiple-cursors'
 " to surround vim objects with a pair of identical chars
 NeoBundle 'tpope/vim-surround'
-" abolish.vim: easily search for, substitute, and abbreviate multiple variants of a word
-NeoBundle 'tpope/vim-abolish'
 " extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
 " toggle comments
@@ -476,6 +474,8 @@ NeoBundle 'henrik/vim-qargs'
 " Fuzzy search (Ctrlp) {{{
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
+NeoBundle 'tacahiroy/ctrlp-funky'
+
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
@@ -484,6 +484,15 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore "**/*.pyc"
       \ -g ""'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>f :CtrlPFunky<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>T :CtrlPBufTag<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>m :CtrlPMRUFiles<CR>
+nnoremap <leader>M :CtrlPMixed<CR>
+nnoremap <leader>l :CtrlPLine<CR>
 
 " }}}
 
