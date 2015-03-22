@@ -25,7 +25,6 @@ set go-=rRlLbh                  " hide all the scrollbars
 set visualbell                  " turn on the visual bell
 set cursorline                  " highlight the line under the cursor
 set fillchars+=vert:│           " better looking for windows separator
-set ttyfast                     " better screen redraw
 set title                       " set the terminal title to the current file
 set noshowcmd                     " shows partial commands
 set hidden                      " hide the inactive buffers
@@ -192,15 +191,10 @@ set guifont=Sauce\ Code\ Powerline\ Light:h15
 
 " Clipboard {{{
 
-if has("gui_macvim")
-  " make clipboard work with std clipboard
-  set clipboard=unnamed
-else
-  " make clipboard work with std clipboard
-  " Note that X11 uses the plus register for
-  " std clipboard, not the * as Mac os or windows
-  set clipboard=unnamedplus,unnamed,autoselect
-endif
+" make clipboard work with std clipboard
+" Note that X11 uses the plus register for
+" std clipboard, not the * as Mac os or windows
+set clipboard+=unnamedplus
 
 " }}}
 
@@ -349,97 +343,6 @@ call neobundle#end()
 
 " BUNDLES (plugins administrated by NeoBundle) {{{
 
-" Vimproc to asynchronously run commands (NeoBundle, Unite)
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-
-" Unite {{{
-
-" Unite. The interface to rule almost everything
-NeoBundle 'Shougo/unite.vim'
-
-" Unite sources
-NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'neomru/file'}}
-NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-
-" files
-nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
-nnoremap <silent><Leader>O :Unite -silent -start-insert file:%:h<CR>
-nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async:!<CR>
-nnoremap <silent><Leader>m :Unite -silent neomru/file<CR>
-
-" buffers
-nnoremap <silent><Leader>b :Unite -silent -start-insert buffer<CR>
-" tabs
-nnoremap <silent><Leader>B :Unite -silent tab<CR>
-" buffer search
-nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview
-            \ line<CR>
-" grep
-nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>
-" outlines (also ctags)
-nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40
-            \ -direction=topleft -toggle outline<CR>
-" fold
-nnoremap <silent><Leader>T :Unite -silent -vertical -start-insert -winwidth=40
-            \ -direction=topleft -toggle fold<CR>
-
-" call unite#filters#matcher_default#use(['matcher_fuzzy', 'matcher_project_files'])
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('neomru/file,file_rec,file_rec/async,grep,locate',
-            \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/',
-            \ 'node_modules/', 'dist/'], '\|'))
-
-let g:unite_source_history_yank_enable = 1
-let g:unite_enable_start_insert = 0
-let g:unite_enable_short_source_mes = 0
-let g:unite_force_overwrite_statusline = 0
-let g:unite_prompt = '>>> '
-let g:unite_marked_icon = '✓'
-" let g:unite_candidate_icon = '∘'
-let g:unite_winheight = 15
-let g:unite_update_time = 200
-let g:unite_split_rule = 'botright'
-let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
-let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-
-if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden --column'
-    let g:unite_source_grep_recursive_opt=''
-    let g:unite_source_grep_search_word_highlight = 1
-elseif executable('ack')
-    let g:unite_source_grep_command='ack'
-    let g:unite_source_grep_default_opts='--no-group --no-color'
-    let g:unite_source_grep_recursive_opt=''
-    let g:unite_source_grep_search_word_highlight = 1
-endif
-
-let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
-
-" Custom mappings for the unite buffer
-augroup filetype_unite
-  autocmd!
-  autocmd FileType unite call s:unite_settings()
-augroup END
-function! s:unite_settings()
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
-
-" End Unite }}}
-
 " ultisnips {{{
 NeoBundle 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -487,7 +390,7 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 
 " JS Beautifier {{{
 
-NeoBundle 'beautify-web/js-beautify'
+NeoBundle 'maksimr/vim-jsbeautify'
 augroup JsBeautify_au
   autocmd!
   " Beautifier
@@ -538,16 +441,6 @@ augroup END
 NeoBundleLazy 'othree/html5.vim', {'autoload':
             \ {'filetypes': ['html', 'xhtml', 'css']}}
 
-" Emmet {{{
-
-" emmet to write html
-NeoBundleLazy 'mattn/emmet-vim', {'autoload':
-            \ {'filetypes': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}}
-let g:use_emmet_complete_tag = 1
-let g:user_emmet_mode='a'
-
-" }}}
-
 " }}}
 
 
@@ -573,9 +466,10 @@ NeoBundle 'airblade/vim-rooter'
 NeoBundle 'thinca/vim-qfreplace'
 " Autocompletion of (, [, {, ', ", ... {{{
 NeoBundle 'delimitMate.vim'
+let delimitMate_expand_cr = 2
 " Ag
 NeoBundle 'rking/ag.vim'
-let delimitMate_expand_cr = 2
+nmap <Leader>a :Ag<space>''<left>
 " quickfix do (Cdo) / location do (Ldo)
 NeoBundle 'Peeja/vim-cdo'
 " }}}
@@ -694,23 +588,14 @@ NeoBundle 'mhinz/vim-signify'  " Add +/- in gutter bar when file is changed
 
 " Syntax {{{
 
-" syntastic {{{
+" Neomake {{{
 
-NeoBundle 'scrooloose/syntastic'
-nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
+NeoBundle 'benekastah/neomake'
 
-let g:syntastic_mode_map={ 'mode': 'active',
-                     \ 'active_filetypes': [],
-                     \ 'passive_filetypes': ['html'] }
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_style_error_symbol = '✠'
-let g:syntastic_warning_symbol = '∆'
-let g:syntastic_style_warning_symbol = '≈'
-
-"let g:syntastic_filetype_map = { 'mustache.handlebars.html': 'handlebars' }
+augroup Neomake
+  autocmd!
+  autocmd BufWritePost * Neomake
+augroup END
 
 " }}}
 
