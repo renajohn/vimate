@@ -150,10 +150,10 @@ endfunction
 
 set backup
 set noswapfile
-set backupdir=$HOME/.vim/tmp/backup/
-set undodir=$HOME/.vim/tmp/undo/
-set directory=$HOME/.vim/tmp/swap/
-set viminfo+=n$HOME/.vim/tmp/viminfo
+set backupdir=$HOME/.nvim/tmp/backup/
+set undodir=$HOME/.nvim/tmp/undo/
+set directory=$HOME/.nvim/tmp/swap/
+set viminfo+=n$HOME/.nvim/tmp/viminfo
 
 " make this dirs if no exists previously
 silent! call MakeDirIfNoExists(&undodir)
@@ -307,8 +307,8 @@ endif
 " }}}
 
 " Include user's local vim config {{{
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+if filereadable(expand("~/.nvimrc.local"))
+  source ~/.nvimrc.local
 endif
 " }}}
 
@@ -318,12 +318,12 @@ endif
 
 " Auto installing NeoBundle
 let iCanHazNeoBundle=1
-let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
+let neobundle_readme=expand($HOME.'/.nvim/bundle/neobundle.vim/README.md')
 if !filereadable(neobundle_readme)
     echo "Installing NeoBundle.."
     echo ""
-    silent !mkdir -p $HOME/.vim/bundle
-    silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
+    silent !mkdir -p $HOME/.nvim/bundle
+    silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.nvim/bundle/neobundle.vim
     let iCanHazNeoBundle=0
 endif
 let g:neobundle#install_process_timeout = 600
@@ -331,10 +331,10 @@ let g:neobundle#install_process_timeout = 600
 
 " Call NeoBundle
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.nvim/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.nvim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -349,7 +349,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'
+let g:UltiSnipsSnippetsDir = '~/.nvim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [ "ultisnips" ]
 " }}}
 
@@ -462,9 +462,9 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 " Set working dir to root of project (.git)
 NeoBundle 'airblade/vim-rooter'
-" replace in quickfix
-NeoBundle 'thinca/vim-qfreplace'
-" Autocompletion of (, [, {, ', ", ... {{{
+" replace in quickfix. Do search with Ag/Grep then do :EnMasse
+NeoBundle 'Wolfy87/vim-enmasse'
+" Autocompletion of (, [, {, ', ", ...
 NeoBundle 'delimitMate.vim'
 let delimitMate_expand_cr = 2
 " Ag
@@ -472,7 +472,6 @@ NeoBundle 'rking/ag.vim'
 nmap <Leader>a :Ag<space>''<left>
 " quickfix do (Cdo) / location do (Ldo)
 NeoBundle 'Peeja/vim-cdo'
-" }}}
 
 " }}}
 
@@ -647,7 +646,7 @@ endif
 
 
 " Check if all of the plugins are already installed, in other case ask if we
-" want to install them (useful to add plugins in the .vimrc)
+" want to install them (useful to add plugins in the .nvimrc)
 NeoBundleCheck
 
 " }}}
