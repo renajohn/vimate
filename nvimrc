@@ -470,8 +470,20 @@ let delimitMate_expand_cr = 2
 " Ag
 NeoBundle 'rking/ag.vim'
 nmap <Leader>a :Ag<space>''<left>
-" quickfix do (Cdo) / location do (Ldo)
-NeoBundle 'Peeja/vim-cdo'
+" quickfix do (Qdo) and convert to args (Qargs)
+NeoBundle 'henrik/vim-qargs'
+
+" Fuzzy search (Ctrlp) {{{
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'FelikZ/ctrlp-py-matcher'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " }}}
 
