@@ -467,7 +467,7 @@ NeoBundle 'delimitMate.vim'
 let delimitMate_expand_cr = 2
 " Ag
 NeoBundle 'rking/ag.vim'
-nmap <Leader>a :Ag<space>''<left>
+nmap <Leader>a :Ag<space>
 " quickfix do (Qdo) and convert to args (Qargs)
 NeoBundle 'henrik/vim-qargs'
 
