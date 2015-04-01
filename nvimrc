@@ -1,7 +1,5 @@
 " Vimate v0.3.2
 
-set nocompatible
-
 " VIM Setup {{{ ===============================================================
 
 " <Leader> & <LocalLeader> mapping {{{
@@ -466,8 +464,10 @@ NeoBundle 'Wolfy87/vim-enmasse'
 NeoBundle 'delimitMate.vim'
 let delimitMate_expand_cr = 2
 " Ag
-NeoBundle 'rking/ag.vim'
-nmap <Leader>a :Ag<space>
+NeoBundle 'gabesoft/vim-ags'
+nnoremap <Leader>a :Ags<space>
+nnoremap <Leader><Leader>a :AgsQuit<cr>
+
 " quickfix do (Qdo) and convert to args (Qargs)
 NeoBundle 'henrik/vim-qargs'
 
