@@ -336,9 +336,6 @@ call neobundle#begin(expand('~/.nvim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-
-call neobundle#end()
-
 " BUNDLES (plugins administrated by NeoBundle) {{{
 
 " ultisnips {{{
@@ -500,7 +497,6 @@ nnoremap <leader>l :CtrlPLine<CR>
 
 " color scheme
 NeoBundle 'chriskempson/base16-vim'
-colorscheme base16-monokai
 
 " Status bar {{{ -------------------------------------------------------------
 " awesome command line
@@ -653,6 +649,10 @@ NeoBundleLazy 'groenewege/vim-less', {'filetypes' : 'less'}
 NeoBundle 'tpope/vim-haml'
 
 " }}}
+
+
+call neobundle#end()
+colorscheme base16-monokai
 
 "
 
